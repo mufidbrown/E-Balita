@@ -2,6 +2,7 @@ package com.magang.plnicon.service.impl;
 
 import com.magang.plnicon.entity.User;
 import com.magang.plnicon.exception.orangtua.EmailAlreadyExistsException;
+import com.magang.plnicon.exception.orangtua.UserNotFoundException;
 import com.magang.plnicon.payload.request.auth.LoginRequest;
 import com.magang.plnicon.payload.request.auth.SignupRequest;
 import com.magang.plnicon.payload.request.auth.TokenRefreshRequest;
@@ -76,6 +77,15 @@ public class AuthServiceImpl implements AuthService {
         SecurityContextHolder.getContext().setAuthentication(auth);
         String jwtToken = jwtUtils.generateJwtToken(auth);
 
+
+
+        User user = userRepository.findByEmail(request.getEmail()).orElseThrow(UserNotFoundException::new);
+
+        return JWTResponse.builder()
+                .email(request.getEmail())
+                .token(jwtToken)
+                .refreshToken(refreshTokenService.createRefreshToken(user))
+                .build();
 
     }
 
