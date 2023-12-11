@@ -3,7 +3,9 @@ package com.magang.plnicon.service;
 
 import com.magang.plnicon.payload.request.auth.LoginRequest;
 import com.magang.plnicon.payload.request.auth.SignupRequest;
+import com.magang.plnicon.payload.request.auth.TokenRefreshRequest;
 import com.magang.plnicon.payload.response.auth.JWTResponse;
+import com.magang.plnicon.payload.response.auth.TokenRefreshResponse;
 
 /**
  * This interface defines authentication and authorization services.
@@ -25,5 +27,19 @@ public interface AuthService {
      */
     JWTResponse login(LoginRequest request);
 
+    /**
+     * Refreshes a user's authentication token.
+     *
+     * @param request The token refresh request containing the old token.
+     * @return A {@link TokenRefreshResponse} containing a new JWT token upon successful token refresh.
+     */
+    TokenRefreshResponse refreshToken(TokenRefreshRequest request);
+
+    /**
+     * Logs a user out by invalidating their token.
+     *
+     * @param token The user's authentication token to be invalidated.
+     * @return A string representing the result of the logout process.
+     */
 
 }
