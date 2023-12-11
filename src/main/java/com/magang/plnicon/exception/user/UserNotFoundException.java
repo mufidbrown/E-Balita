@@ -1,4 +1,4 @@
-package com.magang.plnicon.exception.orangtua;
+package com.magang.plnicon.exception.user;
 
 import com.magang.plnicon.exception.NotFoundException;
 

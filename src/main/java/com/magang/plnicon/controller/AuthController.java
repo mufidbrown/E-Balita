@@ -2,7 +2,9 @@ package com.magang.plnicon.controller;
 
 
 import com.magang.plnicon.payload.request.auth.SignupRequest;
+import com.magang.plnicon.payload.request.auth.TokenRefreshRequest;
 import com.magang.plnicon.payload.response.CustomResponse;
+import com.magang.plnicon.payload.response.auth.TokenRefreshResponse;
 import com.magang.plnicon.service.AuthService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -20,5 +22,11 @@ public class AuthController {
     public CustomResponse<String> register(@RequestBody SignupRequest request) {
 
         return CustomResponse.created(authService.register(request));
+    }
+
+    @PostMapping("/refreshtoken")
+    public CustomResponse<TokenRefreshResponse> refreshToken(@RequestBody TokenRefreshRequest request) {
+
+        return CustomResponse.ok(authService.refreshToken(request));
     }
 }

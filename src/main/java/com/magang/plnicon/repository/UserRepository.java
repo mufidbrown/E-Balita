@@ -12,7 +12,6 @@ import java.util.Optional;
  */
 public interface UserRepository  extends JpaRepository <User, Long>{
 
-
     /**
      * Checks if a user with the specified email exists in the database.
      *
@@ -36,4 +35,5 @@ public interface UserRepository  extends JpaRepository <User, Long>{
      * @return An Optional containing the User entity if found, or an empty Optional if not found.
      */
     Optional<User> findByEmail(String email);
+
 }

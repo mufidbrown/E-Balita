@@ -2,8 +2,8 @@ package com.magang.plnicon.service.impl;
 
 import com.magang.plnicon.entity.RefreshToken;
 import com.magang.plnicon.entity.User;
-import com.magang.plnicon.exception.orangtua.EmailAlreadyExistsException;
-import com.magang.plnicon.exception.orangtua.UserNotFoundException;
+import com.magang.plnicon.exception.user.EmailAlreadyExistsException;
+import com.magang.plnicon.exception.user.UserNotFoundException;
 import com.magang.plnicon.exception.token.RefreshTokenNotFoundException;
 import com.magang.plnicon.payload.request.auth.LoginRequest;
 import com.magang.plnicon.payload.request.auth.SignupRequest;
