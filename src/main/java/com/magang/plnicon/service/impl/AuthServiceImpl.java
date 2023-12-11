@@ -1,14 +1,17 @@
 package com.magang.plnicon.service.impl;
 
+import com.magang.plnicon.entity.RefreshToken;
 import com.magang.plnicon.entity.User;
 import com.magang.plnicon.exception.orangtua.EmailAlreadyExistsException;
 import com.magang.plnicon.exception.orangtua.UserNotFoundException;
+import com.magang.plnicon.exception.token.RefreshTokenNotFoundException;
 import com.magang.plnicon.payload.request.auth.LoginRequest;
 import com.magang.plnicon.payload.request.auth.SignupRequest;
 import com.magang.plnicon.payload.request.auth.TokenRefreshRequest;
 import com.magang.plnicon.payload.response.auth.JWTResponse;
 import com.magang.plnicon.payload.response.auth.TokenRefreshResponse;
 import com.magang.plnicon.repository.UserRepository;
+import com.magang.plnicon.security.CustomUserDetails;
 import com.magang.plnicon.security.jwt.JwtUtils;
 import com.magang.plnicon.service.AuthService;
 import com.magang.plnicon.service.RefreshTokenService;
@@ -78,7 +81,6 @@ public class AuthServiceImpl implements AuthService {
         String jwtToken = jwtUtils.generateJwtToken(auth);
 
 
-
         User user = userRepository.findByEmail(request.getEmail()).orElseThrow(UserNotFoundException::new);
 
         return JWTResponse.builder()
@@ -86,8 +88,41 @@ public class AuthServiceImpl implements AuthService {
                 .token(jwtToken)
                 .refreshToken(refreshTokenService.createRefreshToken(user))
                 .build();
-
     }
 
 
+    /**
+     * Refreshes a user's authentication token.
+     *
+     * @param request The token refresh request containing the old token.
+     * @return A {@link TokenRefreshResponse} containing a new JWT token upon successful token refresh.
+     */
+    @Override
+    public TokenRefreshResponse refreshToken(TokenRefreshRequest request) {
+
+        RefreshToken refreshToken = refreshTokenService.findByToken(request.getRefreshToken())
+                .orElseThrow(RefreshTokenNotFoundException::new);
+
+
+        if (!refreshTokenService.isRefreshExpired(refreshToken)) {
+            CustomUserDetails customUserDetails = new CustomUserDetails(refreshToken.getUser());
+            String newToken = jwtUtils.generateJwtToken(customUserDetails);
+
+            return TokenRefreshResponse.builder()
+                    .accessToken(newToken)
+                    .refreshToken(refreshToken.getToken())
+                    .build();
+        }
+
+        return null;
+    }
+
+    /**
+     * Logs a user out by invalidating their token.
+     *
+     * @param token The user's authentication token to be invalidated.
+     * @return A string representing the result of the logout process.
+     */
 }
+
+
