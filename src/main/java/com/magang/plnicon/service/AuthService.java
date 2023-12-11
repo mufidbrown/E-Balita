@@ -1,7 +1,9 @@
 package com.magang.plnicon.service;
 
 
+import com.magang.plnicon.payload.request.auth.LoginRequest;
 import com.magang.plnicon.payload.request.auth.SignupRequest;
+import com.magang.plnicon.payload.response.auth.JWTResponse;
 
 /**
  * This interface defines authentication and authorization services.
@@ -21,4 +23,7 @@ public interface AuthService {
      * @param request The login request containing user login credentials.
      * @return A {@link JWTResponse} containing a JWT token and related information upon successful login.
      */
+    JWTResponse login(LoginRequest request);
+
+
 }
