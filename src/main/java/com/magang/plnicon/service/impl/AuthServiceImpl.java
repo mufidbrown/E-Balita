@@ -2,11 +2,20 @@ package com.magang.plnicon.service.impl;
 
 import com.magang.plnicon.entity.User;
 import com.magang.plnicon.exception.orangtua.EmailAlreadyExistsException;
+import com.magang.plnicon.payload.request.auth.LoginRequest;
 import com.magang.plnicon.payload.request.auth.SignupRequest;
+import com.magang.plnicon.payload.request.auth.TokenRefreshRequest;
+import com.magang.plnicon.payload.response.auth.JWTResponse;
+import com.magang.plnicon.payload.response.auth.TokenRefreshResponse;
 import com.magang.plnicon.repository.UserRepository;
+import com.magang.plnicon.security.jwt.JwtUtils;
 import com.magang.plnicon.service.AuthService;
+import com.magang.plnicon.service.RefreshTokenService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -19,6 +28,11 @@ public class AuthServiceImpl implements AuthService {
     private final UserRepository userRepository;
 
     private final AuthenticationManager authenticationManager;
+
+    private final RefreshTokenService refreshTokenService;
+
+    private final JwtUtils jwtUtils;
+
 
     /**
      * Registers a new user based on the provided signup request.
@@ -44,6 +58,25 @@ public class AuthServiceImpl implements AuthService {
         userRepository.save(user);
 
         return "success";
+    }
+
+    /**
+     * Logs a user in using the provided login credentials.
+     *
+     * @param request The login request containing user login credentials.
+     * @return A {@link JWTResponse} containing a JWT token and related information upon successful login.
+     */
+    @Override
+    public JWTResponse login(LoginRequest request) {
+
+        UsernamePasswordAuthenticationToken authToken =
+                new UsernamePasswordAuthenticationToken(request.getEmail(), request.getPassword());
+
+        Authentication auth = authenticationManager.authenticate(authToken);
+        SecurityContextHolder.getContext().setAuthentication(auth);
+        String jwtToken = jwtUtils.generateJwtToken(auth);
+
+
     }
 
 
