@@ -4,6 +4,7 @@ import com.magang.plnicon.dto.BalitaDTO;
 import com.magang.plnicon.entity.Balita;
 import com.magang.plnicon.payload.request.balita.BalitaCreateRequest;
 import com.magang.plnicon.payload.request.balita.BalitaUpdateRequest;
+import com.magang.plnicon.payload.response.CustomPageResponse;
 import com.magang.plnicon.payload.response.balita.BalitaCreatedResponse;
 import com.magang.plnicon.payload.response.balita.BalitaGetResponse;
 import lombok.experimental.UtilityClass;
@@ -94,7 +95,7 @@ public class BalitaMapper {
     }
 
     /**
-     * Converts a {@link Page <BalitaDTO>} to a {@link CustomPageResponse<BalitaGetResponse>}.
+     * Converts a {@link Page <BalitaDTO>} to a {@link CustomPageResponse <BalitaGetResponse>}.
      *
      * @param sources The source {@link Page<BalitaDTO>} to be converted.
      * @return A {@link CustomPageResponse<BalitaGetResponse>} containing converted data.
