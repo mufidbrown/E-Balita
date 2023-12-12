@@ -16,23 +16,12 @@ import lombok.Getter;
 @EqualsAndHashCode
 public class BalitaDTO {
 
-    @NotBlank
+    private Long id;
     private String namaLengkap;
-
-    @NotNull
-    @Min(value = 0, message = "Usia tidak boleh kurang dari 0")
     private Integer umur;
-
-    @NotBlank
     private String namaAyah;
-
-    @NotBlank
     private String namaIbu;
-
-    @NotBlank
     private String telepon;
-
-    @NotBlank
     private String alamat;
 
 }

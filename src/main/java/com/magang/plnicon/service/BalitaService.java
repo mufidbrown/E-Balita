@@ -1,7 +1,6 @@
 package com.magang.plnicon.service;
 
 import com.magang.plnicon.dto.BalitaDTO;
-import com.magang.plnicon.entity.Balita;
 
 import java.util.List;
 
