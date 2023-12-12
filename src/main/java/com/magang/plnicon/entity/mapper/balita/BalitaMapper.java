@@ -102,17 +102,17 @@ public class BalitaMapper {
     }
 
     /**
-     * Converts a {@link BookDTO} to a {@link BookUpdatedResponse}.
+     * Converts a {@link BalitaDTO} to a {@link BalitaUpdatedResponse}.
      *
-     * @param source The source {@link BookDTO} to be converted.
-     * @return A {@link BookUpdatedResponse} containing data from the source DTO.
+     * @param source The source {@link BalitaDTO} to be converted.
+     * @return A {@link BalitaUpdatedResponse} containing data from the source DTO.
      */
-    public static BookUpdatedResponse toUpdatedResponse(BookDTO source) {
+    public static BalitaUpdatedResponse toUpdatedResponse(BalitaDTO source) {
         if (source == null) {
             return null;
         }
 
-        return BookUpdatedResponse.builder()
+        return BalitaUpdatedResponse.builder()
                 .id(source.getId())
                 .isbn(source.getIsbn())
                 .name(source.getName())

@@ -17,7 +17,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 
 /**
- * Implementation of the {@link BalitaService} interface for creating and managing books.
+ * Implementation of the {@link BalitaService} interface for creating and managing balitas.
  */
 
 @Service
@@ -40,10 +40,10 @@ public class BalitaServiceImpl implements BalitaService {
     }
 
     /**
-     * Retrieves a book by its unique identifier.
+     * Retrieves a balita by its unique identifier.
      *
-     * @param balitaId The unique identifier of the book.
-     * @return A {@link BalitaDTO} representing the requested book.
+     * @param balitaId The unique identifier of the balita.
+     * @return A {@link BalitaDTO} representing the requested balita.
      */
     @Transactional
     public BalitaDTO getBalitaById(final String balitaId) {
@@ -58,10 +58,10 @@ public class BalitaServiceImpl implements BalitaService {
 
 
     /**
-     * Retrieves a paginated list of all books based on the provided request.
+     * Retrieves a paginated list of all balitas based on the provided request.
      *
      * @param paginationRequest The request containing pagination information.
-     * @return A {@link Page} of {@link BalitaDTO} objects representing the list of books.
+     * @return A {@link Page} of {@link BalitaDTO} objects representing the list of balitas.
      */
     @Override
     public Page<BalitaDTO> getAllBalitas(PaginationRequest paginationRequest) {
@@ -72,11 +72,11 @@ public class BalitaServiceImpl implements BalitaService {
     }
 
     /**
-     * Updates a book by its unique identifier.
+     * Updates a balita by its unique identifier.
      *
-     * @param balitaId The unique identifier of the book.
-     * @param request The request containing the updated book information.
-     * @return A {@link BalitaDTO} representing the book after the update.
+     * @param balitaId The unique identifier of the balita.
+     * @param request The request containing the updated balita information.
+     * @return A {@link BalitaDTO} representing the balita after the update.
      */
     @Override
     @Transactional

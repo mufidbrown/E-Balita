@@ -6,8 +6,6 @@ import com.magang.plnicon.payload.request.balita.BalitaUpdateRequest;
 import com.magang.plnicon.payload.request.pagination.PaginationRequest;
 import org.springframework.data.domain.Page;
 
-import java.util.List;
-
 
 /**
  * This interface defines a service for managing books.
