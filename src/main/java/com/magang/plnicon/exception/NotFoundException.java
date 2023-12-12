@@ -29,7 +29,7 @@ public class NotFoundException extends RuntimeException {
     public static final HttpStatus STATUS = HttpStatus.NOT_FOUND;
 
     /**
-     * Constructs a {@code NotFoundException} with the specified detail message.
+     * Constructs a {@code BalitaNotFoundException} with the specified detail message.
      *
      * @param message the detail message (which is saved for later retrieval by the {@link #getMessage()} method).
      */

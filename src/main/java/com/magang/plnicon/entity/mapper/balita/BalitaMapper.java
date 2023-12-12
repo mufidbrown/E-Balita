@@ -1,45 +1,52 @@
 package com.magang.plnicon.entity.mapper.balita;
 
+import com.magang.plnicon.entity.Balita;
+import com.magang.plnicon.payload.request.balita.BalitaCreateRequest;
+import com.magang.plnicon.payload.request.balita.BalitaUpdateRequest;
 import lombok.experimental.UtilityClass;
 import org.springframework.data.domain.Page;
 
 
 /**
- * Utility class for mapping between {@link Book} entities and DTOs.
+ * Utility class for mapping between {@link Balita} entities and DTOs.
  */
 @UtilityClass
 public class BalitaMapper {
 
     /**
-     * Maps a {@link BalitaCreateRequest} to a {@link Book} entity for saving.
+     * Maps a {@link BalitaCreateRequest} to a {@link Balita} entity for saving.
      *
-     * @param request The {@link BookCreateRequest} to be mapped.
-     * @return A new {@link Book} entity populated with data from the request.
+     * @param request The {@link BalitaCreateRequest} to be mapped.
+     * @return A new {@link Balita} entity populated with data from the request.
      */
-    public static Book mapForSaving(BookCreateRequest request) {
-        return Book.builder()
-                .isbn(request.getIsbn())
-                .name(request.getName())
-                .authorFullName(request.getAuthorFullName())
-                .stock(request.getStock())
-                .price(request.getPrice())
+    public static Balita mapForSaving(BalitaCreateRequest request) {
+        return Balita.builder()
+                .namaLengkap(request.getNamaLengkap())
+                .umur(request.getUmur())
+                .namaAyah(request.getNamaAyah())
+                .namaIbu(request.getNamaIbu())
+                .telepon(request.getTelepon())
+                .alamat(request.getAlamat())
                 .build();
     }
 
     /**
-     * Updates the {@link Book} entity given as a parameter using the
-     * {@link BookUpdateRequest} DTO object given as a parameter. <br>
+     * Updates the {@link Balita} entity given as a parameter using the
+     * {@link BalitaUpdateRequest} DTO object given as a parameter. <br>
      * This method has no return, the update operation is performed through
      * the reference of the object.
      *
-     * @param bookEntityToBeUpdate {@link Book} entity to be updated
-     * @param request              {@link BookUpdateRequest} request DTO object containing update details
+     * @param balitaEntityToBeUpdate {@link Balita} entity to be updated
+     * @param request              {@link BalitaUpdateRequest} request DTO object containing update details
      */
-    public static void mapForUpdating(Book bookEntityToBeUpdate, BookUpdateRequest request) {
-        bookEntityToBeUpdate.setIsbn(request.getIsbn());
-        bookEntityToBeUpdate.setName(request.getName());
-        bookEntityToBeUpdate.setAuthorFullName(request.getAuthorFullName());
-        bookEntityToBeUpdate.setStock(request.getStock());
+    public static void mapForUpdating(Balita balitaEntityToBeUpdate, BalitaUpdateRequest request) {
+        balitaEntityToBeUpdate.setNamaLengkap(request.getNamaLengkap());
+        balitaEntityToBeUpdate.setUmur(request.getUmur());
+        balitaEntityToBeUpdate.setNamaAyah(request.getNamaAyah());
+        balitaEntityToBeUpdate.setNamaIbu(request.getNamaIbu());
+        balitaEntityToBeUpdate.setTelepon(request.getTelepon());
+        balitaEntityToBeUpdate.setAlamat(request.getAlamat());
+
         bookEntityToBeUpdate.setPrice(request.getPrice());
     }
 

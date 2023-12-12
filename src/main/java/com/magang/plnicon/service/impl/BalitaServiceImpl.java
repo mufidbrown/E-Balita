@@ -4,17 +4,16 @@ package com.magang.plnicon.service.impl;
 import com.magang.plnicon.dto.BalitaDTO;
 import com.magang.plnicon.entity.Balita;
 import com.magang.plnicon.entity.mapper.balita.BalitaMapper;
+import com.magang.plnicon.exception.balita.BalitaNotFoundException;
 import com.magang.plnicon.payload.request.balita.BalitaCreateRequest;
+import com.magang.plnicon.payload.request.balita.BalitaUpdateRequest;
 import com.magang.plnicon.repository.BalitaRepository;
 import com.magang.plnicon.service.BalitaService;
-import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.List;
 
 @Service
 @RequiredArgsConstructor
@@ -52,72 +51,37 @@ public class BalitaServiceImpl implements BalitaService {
         return BalitaMapper.toDTO(balita);
     }
 
-    /**
-     * Updates the stock quantity of a book by its unique identifier.
-     *
-     * @param bookId The unique identifier of the book.
-     * @param request The request containing the updated stock information.
-     * @return A {@link BalitaDTO} representing the book after the stock update.
-     */
-    @Override
-    @Transactional
-    public BalitaDTO updateBalitaStockById(String balitaId, BalitaUpdateStockRequest request) {
-
-        Book book = bookRepository.findById(bookId)
-                .orElseThrow(() -> new BookNotFoundException(bookId));
-        book.setStock(request.getStock());
-
-        return BookMapper.toDTO(bookRepository.save(book));
-    }
 
     /**
      * Retrieves a paginated list of all books based on the provided request.
      *
      * @param paginationRequest The request containing pagination information.
-     * @return A {@link Page} of {@link BookDTO} objects representing the list of books.
+     * @return A {@link Page} of {@link BalitaDTO} objects representing the list of books.
      */
     @Override
-    public Page<BookDTO> getAllBooks(PaginationRequest paginationRequest) {
+    public Page<BalitaDTO> getAllBalitas(PaginationRequest paginationRequest) {
 
-        return bookRepository
+        return balitaRepository
                 .findAll(paginationRequest.toPageable())
-                .map(BookMapper::toDTO);
+                .map(BalitaMapper::toDTO);
     }
 
     /**
      * Updates a book by its unique identifier.
      *
-     * @param bookId The unique identifier of the book.
+     * @param balitaId The unique identifier of the book.
      * @param request The request containing the updated book information.
-     * @return A {@link BookDTO} representing the book after the update.
+     * @return A {@link BalitaDTO} representing the book after the update.
      */
     @Override
     @Transactional
-    public BookDTO updateBookById(final String bookId, final BookUpdateRequest request) {
-        final Book bookEntityToBeUpdate = bookRepository
-                .findById(bookId)
-                .orElseThrow(() -> new BookNotFoundException(bookId));
+    public BalitaDTO updateBalitaById(final String balitaId, final BalitaUpdateRequest request) {
+        final Balita balitaEntityToBeUpdate = balitaRepository
+                .findById(balitaId)
+                .orElseThrow(() -> new BalitaNotFoundException(balitaId));
 
-        BookMapper.mapForUpdating(bookEntityToBeUpdate, request);
+        BalitaMapper.mapForUpdating(balitaEntityToBeUpdate, request);
 
-        return BookMapper.toDTO(bookRepository.save(bookEntityToBeUpdate));
+        return BalitaMapper.toDTO(balitaRepository.save(balitaEntityToBeUpdate));
     }
-
-    /**
-     * Checks if a given amount of a book is available in stock.
-     *
-     * @param bookDTO The {@link BookDTO} representing the book to check.
-     * @param amount The amount of the book to check for availability.
-     * @return {@code true} if the specified amount is available in stock, {@code false} otherwise.
-     */
-    @Override
-    public boolean isStockAvailable(BookDTO bookDTO, int amount) {
-        if (bookDTO.getStock() < amount) {
-            throw new NoAvailableStockException(amount);
-        } else {
-            return true;
-        }
-
-    }
-
 }
