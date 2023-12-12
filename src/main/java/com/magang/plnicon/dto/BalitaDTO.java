@@ -16,7 +16,7 @@ import lombok.Getter;
 @EqualsAndHashCode
 public class BalitaDTO {
 
-    private Long id;
+    private String id;
     private String namaLengkap;
     private Integer umur;
     private String namaAyah;

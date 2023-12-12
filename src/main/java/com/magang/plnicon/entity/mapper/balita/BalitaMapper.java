@@ -4,6 +4,8 @@ import com.magang.plnicon.dto.BalitaDTO;
 import com.magang.plnicon.entity.Balita;
 import com.magang.plnicon.payload.request.balita.BalitaCreateRequest;
 import com.magang.plnicon.payload.request.balita.BalitaUpdateRequest;
+import com.magang.plnicon.payload.response.balita.BalitaCreatedResponse;
+import com.magang.plnicon.payload.response.balita.BalitaGetResponse;
 import lombok.experimental.UtilityClass;
 import org.springframework.data.domain.Page;
 
@@ -74,31 +76,32 @@ public class BalitaMapper {
      * @param source The source {@link BalitaDTO} to be converted.
      * @return A {@link BalitaGetResponse} containing data from the source DTO.
      */
-    public static BookGetResponse toGetResponse(BookDTO source) {
+    public static BalitaGetResponse toGetResponse(BalitaDTO source) {
         if (source == null) {
             return null;
         }
 
-        return BookGetResponse.builder()
+        return BalitaGetResponse.builder()
                 .id(source.getId())
-                .isbn(source.getIsbn())
-                .name(source.getName())
-                .authorFullName(source.getAuthorFullName())
-                .stock(source.getStock())
-                .price(source.getPrice())
+                .namaLengkap(source.getNamaLengkap())
+                .umur(source.getUmur())
+                .namaAyah(source.getNamaAyah())
+                .namaIbu(source.getNamaIbu())
+                .telepon(source.getTelepon())
+                .alamat(source.getAlamat())
                 .build();
 
     }
 
     /**
-     * Converts a {@link Page <BookDTO>} to a {@link CustomPageResponse<BookGetResponse>}.
+     * Converts a {@link Page <BalitaDTO>} to a {@link CustomPageResponse<BalitaGetResponse>}.
      *
-     * @param sources The source {@link Page<BookDTO>} to be converted.
-     * @return A {@link CustomPageResponse<BookGetResponse>} containing converted data.
+     * @param sources The source {@link Page<BalitaDTO>} to be converted.
+     * @return A {@link CustomPageResponse<BalitaGetResponse>} containing converted data.
      */
-    public static CustomPageResponse<BookGetResponse> toGetResponse(Page<BookDTO> sources) {
+    public static CustomPageResponse<BalitaGetResponse> toGetResponse(Page<BalitaDTO> sources) {
 
-        return CustomPageResponse.of(sources.map(BookMapper::toGetResponse));
+        return CustomPageResponse.of(sources.map(BalitaMapper::toGetResponse));
     }
 
     /**
