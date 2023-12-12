@@ -37,4 +37,10 @@ public class AuthController {
 
         return CustomResponse.ok(authService.refreshToken(request));
     }
+
+    @PostMapping("/logout")
+    public CustomResponse<String> logout(@RequestHeader("Authorization") String token) {
+
+        return CustomResponse.ok(authService.logout(token));
+    }
 }
