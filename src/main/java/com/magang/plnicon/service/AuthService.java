@@ -41,6 +41,7 @@ public interface AuthService {
      * @param token The user's authentication token to be invalidated.
      * @return A string representing the result of the logout process.
      */
+    String logout(String token);
 
 
 }
