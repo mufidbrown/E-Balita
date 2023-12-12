@@ -4,6 +4,7 @@ package com.magang.plnicon.service.impl;
 import com.magang.plnicon.dto.BalitaDTO;
 import com.magang.plnicon.entity.Balita;
 import com.magang.plnicon.entity.mapper.balita.BalitaMapper;
+import com.magang.plnicon.payload.request.balita.BalitaCreateRequest;
 import com.magang.plnicon.repository.BalitaRepository;
 import com.magang.plnicon.service.BalitaService;
 import jakarta.persistence.EntityNotFoundException;
@@ -22,10 +23,10 @@ public class BalitaServiceImpl implements BalitaService {
     private final BalitaRepository balitaRepository;
 
     /**
-     * Creates a new book based on the provided request.
+     * Creates a new balita based on the provided request.
      *
-     * @param request The request containing book information.
-     * @return A {@link BalitaDTO} representing the newly created book.
+     * @param request The request containing balita information.
+     * @return A {@link BalitaDTO} representing the newly created balita.
      */
     public BalitaDTO createBalita(BalitaCreateRequest request) {
 
@@ -37,18 +38,18 @@ public class BalitaServiceImpl implements BalitaService {
     /**
      * Retrieves a book by its unique identifier.
      *
-     * @param bookId The unique identifier of the book.
-     * @return A {@link BookDTO} representing the requested book.
+     * @param balitaId The unique identifier of the book.
+     * @return A {@link BalitaDTO} representing the requested book.
      */
     @Transactional
-    public BookDTO getBookById(final String bookId) {
+    public BalitaDTO getBalitaById(final String balitaId) {
 
-        Book book = bookRepository.findById(bookId)
+        Balita balita = balitaRepository.findById(balitaId)
                 .orElseThrow(
-                        () -> new BookNotFoundException(bookId)
+                        () -> new BalitaNotFoundException(balitaId)
                 );
 
-        return BookMapper.toDTO(book);
+        return BalitaMapper.toDTO(balita);
     }
 
     /**
@@ -56,11 +57,11 @@ public class BalitaServiceImpl implements BalitaService {
      *
      * @param bookId The unique identifier of the book.
      * @param request The request containing the updated stock information.
-     * @return A {@link BookDTO} representing the book after the stock update.
+     * @return A {@link BalitaDTO} representing the book after the stock update.
      */
     @Override
     @Transactional
-    public BookDTO updateBookStockById(String bookId, BookUpdateStockRequest request) {
+    public BalitaDTO updateBalitaStockById(String balitaId, BalitaUpdateStockRequest request) {
 
         Book book = bookRepository.findById(bookId)
                 .orElseThrow(() -> new BookNotFoundException(bookId));

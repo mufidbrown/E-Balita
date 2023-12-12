@@ -13,7 +13,7 @@ import java.util.Optional;
  * Repository interface for accessing and managing Book entities in the database.
  * This interface extends JpaRepository to provide basic CRUD operations.
  */
-public interface BalitaRepository extends JpaRepository<Balita, Long> {
+public interface BalitaRepository extends JpaRepository<Balita, String> {
 
     /**
      * <p>Retrieves a Book entity by its unique identifier while applying

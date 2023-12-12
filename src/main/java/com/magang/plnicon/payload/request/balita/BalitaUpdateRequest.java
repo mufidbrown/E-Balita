@@ -1,5 +1,6 @@
 package com.magang.plnicon.payload.request.balita;
 
+
 import jakarta.persistence.Column;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -7,20 +8,19 @@ import jakarta.persistence.Id;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 /**
- * Represents a request object for creating a new book.
+ * Represents a request object for updating an existing book.
  */
 @Data
-@Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class BalitaCreateRequest {
+@Builder
+public class BalitaUpdateRequest {
 
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
@@ -45,6 +45,4 @@ public class BalitaCreateRequest {
 
     @NotBlank
     private String alamat;
-
-
 }
