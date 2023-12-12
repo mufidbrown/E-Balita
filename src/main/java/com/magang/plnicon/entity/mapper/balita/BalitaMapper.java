@@ -7,6 +7,7 @@ import com.magang.plnicon.payload.request.balita.BalitaUpdateRequest;
 import com.magang.plnicon.payload.response.CustomPageResponse;
 import com.magang.plnicon.payload.response.balita.BalitaCreatedResponse;
 import com.magang.plnicon.payload.response.balita.BalitaGetResponse;
+import com.magang.plnicon.payload.response.balita.BalitaUpdatedResponse;
 import lombok.experimental.UtilityClass;
 import org.springframework.data.domain.Page;
 
@@ -118,45 +119,50 @@ public class BalitaMapper {
 
         return BalitaUpdatedResponse.builder()
                 .id(source.getId())
-                .isbn(source.getIsbn())
-                .name(source.getName())
-                .authorFullName(source.getAuthorFullName())
-                .stock(source.getStock())
-                .price(source.getPrice())
+                .namaLengkap(source.getNamaLengkap())
+                .umur(source.getUmur())
+                .namaAyah(source.getNamaAyah())
+                .namaIbu(source.getNamaIbu())
+                .telepon(source.getTelepon())
+                .alamat(source.getAlamat())
                 .build();
     }
 
     /**
-     * Converts a {@link Book} entity to a {@link BookDTO}.
+     * Converts a {@link Balita} entity to a {@link BalitaDTO}.
      *
-     * @param book The {@link Book} entity to be converted.
-     * @return A {@link BookDTO} containing data from the source entity.
+     * @param balita The {@link Balita} entity to be converted.
+     * @return A {@link BalitaDTO} containing data from the source entity.
      */
-    public static BookDTO toDTO(Book book) {
-        return BookDTO.builder()
-                .id(book.getId())
-                .name(book.getName())
-                .authorFullName(book.getAuthorFullName())
-                .isbn(book.getIsbn())
-                .price(book.getPrice())
-                .stock(book.getStock())
+    public static BalitaDTO toDTO(Balita balita) {
+        return BalitaDTO.builder()
+                .id(balita.getId())
+                .namaLengkap(balita.getNamaLengkap())
+                .umur(balita.getUmur())
+                .namaAyah(balita.getNamaAyah())
+                .namaIbu(balita.getNamaIbu())
+                .telepon(balita.getTelepon())
+                .alamat(balita.getAlamat())
+                .namaLengkap(balita.getNamaLengkap())
                 .build();
     }
 
     /**
-     * Converts a {@link BookDTO} to a {@link Book} entity.
+     * Converts a {@link BalitaDTO} to a {@link Balita} entity.
      *
-     * @param bookDTO The {@link BookDTO} to be converted.
-     * @return A {@link Book} entity containing data from the source DTO.
+     * @param balitaDTO The {@link BalitaDTO} to be converted.
+     * @return A {@link Balita} entity containing data from the source DTO.
      */
-    public static Book toBook(BookDTO bookDTO) {
-        return Book.builder()
-                .id(bookDTO.getId())
-                .name(bookDTO.getName())
-                .authorFullName(bookDTO.getAuthorFullName())
-                .isbn(bookDTO.getIsbn())
-                .price(bookDTO.getPrice())
-                .stock(bookDTO.getStock())
+    public static Balita toBalita(BalitaDTO balitaDTO) {
+        return Balita.builder()
+                .id(balitaDTO.getId())
+                .namaLengkap(balitaDTO.getNamaLengkap())
+                .umur(balitaDTO.getUmur())
+                .namaAyah(balitaDTO.getNamaAyah())
+                .namaIbu(balitaDTO.getNamaIbu())
+                .telepon(balitaDTO.getTelepon())
+                .alamat(balitaDTO.getAlamat())
+                .namaLengkap(balitaDTO.getNamaLengkap())
                 .build();
 
     }
