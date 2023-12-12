@@ -7,6 +7,7 @@ import com.magang.plnicon.entity.mapper.balita.BalitaMapper;
 import com.magang.plnicon.exception.balita.BalitaNotFoundException;
 import com.magang.plnicon.payload.request.balita.BalitaCreateRequest;
 import com.magang.plnicon.payload.request.balita.BalitaUpdateRequest;
+import com.magang.plnicon.payload.request.pagination.PaginationRequest;
 import com.magang.plnicon.repository.BalitaRepository;
 import com.magang.plnicon.service.BalitaService;
 import lombok.RequiredArgsConstructor;
@@ -14,6 +15,10 @@ import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+
+/**
+ * Implementation of the {@link BalitaService} interface for creating and managing books.
+ */
 
 @Service
 @RequiredArgsConstructor

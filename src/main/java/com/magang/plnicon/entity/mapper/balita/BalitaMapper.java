@@ -1,5 +1,6 @@
 package com.magang.plnicon.entity.mapper.balita;
 
+import com.magang.plnicon.dto.BalitaDTO;
 import com.magang.plnicon.entity.Balita;
 import com.magang.plnicon.payload.request.balita.BalitaCreateRequest;
 import com.magang.plnicon.payload.request.balita.BalitaUpdateRequest;
@@ -47,31 +48,31 @@ public class BalitaMapper {
         balitaEntityToBeUpdate.setTelepon(request.getTelepon());
         balitaEntityToBeUpdate.setAlamat(request.getAlamat());
 
-        bookEntityToBeUpdate.setPrice(request.getPrice());
+        balitaEntityToBeUpdate.setNamaLengkap(request.getNamaLengkap());
     }
 
     /**
-     * Converts a {@link BookDTO} to a {@link BookCreatedResponse}.
+     * Converts a {@link BalitaDTO} to a {@link BalitaCreatedResponse}.
      *
-     * @param source The source {@link BookDTO} to be converted.
-     * @return A {@link BookCreatedResponse} containing data from the source DTO.
+     * @param source The source {@link BalitaDTO} to be converted.
+     * @return A {@link BalitaCreatedResponse} containing data from the source DTO.
      */
-    public static BookCreatedResponse toCreatedResponse(BookDTO source) {
-        return BookCreatedResponse.builder()
+    public static BalitaCreatedResponse toCreatedResponse(BalitaDTO source) {
+        return BalitaCreatedResponse.builder()
                 .id(source.getId())
-                .isbn(source.getIsbn())
-                .name(source.getName())
-                .authorFullName(source.getAuthorFullName())
-                .stock(source.getStock())
-                .price(source.getPrice())
+                .namaLengkap(source.getNamaLengkap())
+                .umur(source.getUmur())
+                .namaAyah(source.getNamaAyah())
+                .namaIbu(source.getNamaIbu())
+                .telepon(source.getTelepon())
                 .build();
     }
 
     /**
-     * Converts a {@link BookDTO} to a {@link BookGetResponse}.
+     * Converts a {@link BalitaDTO} to a {@link BalitaGetResponse}.
      *
-     * @param source The source {@link BookDTO} to be converted.
-     * @return A {@link BookGetResponse} containing data from the source DTO.
+     * @param source The source {@link BalitaDTO} to be converted.
+     * @return A {@link BalitaGetResponse} containing data from the source DTO.
      */
     public static BookGetResponse toGetResponse(BookDTO source) {
         if (source == null) {

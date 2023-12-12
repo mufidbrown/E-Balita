@@ -3,6 +3,7 @@ package com.magang.plnicon.service;
 import com.magang.plnicon.dto.BalitaDTO;
 import com.magang.plnicon.payload.request.balita.BalitaCreateRequest;
 import com.magang.plnicon.payload.request.balita.BalitaUpdateRequest;
+import com.magang.plnicon.payload.request.pagination.PaginationRequest;
 import org.springframework.data.domain.Page;
 
 import java.util.List;
@@ -46,15 +47,8 @@ public interface BalitaService {
      * @param request The request containing the updated book information.
      * @return A {@link BalitaDTO} representing the book after the update.
      */
-    BalitaDTO updateBalitaById(String bookId, BalitaUpdateRequest request);
+    BalitaDTO updateBalitaById(String balitaId, BalitaUpdateRequest request);
 
-    /**
-     * Checks if a given amount of a book is available in stock.
-     *
-     * @param balitaDTO The {@link BalitaDTO} representing the book to check.
-     * @param amount The amount of the book to check for availability.
-     * @return {@code true} if the specified amount is available in stock, {@code false} otherwise.
-     */
-    boolean isStockAvailable(BalitaDTO balitaDTO, int amount);
+
 
 }
