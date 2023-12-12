@@ -1,4 +1,4 @@
-package com.magang.plnicon.entity.mapper;
+package com.magang.plnicon.entity.mapper.user;
 
 
 import com.magang.plnicon.dto.UserDTO;
