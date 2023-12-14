@@ -31,7 +31,7 @@ public class BalitaUpdateRequest {
     private String namaLengkap;
 
     @NotNull
-    @Min(value = 0, message = "Usia tidak boleh kurang dari 0")
+    @Min(value = 0)
     private Integer umur;
 
     @NotBlank

@@ -24,18 +24,22 @@ public class Balita extends BaseEntity{
     @Column(name = "ID")
     private String id;
 
+    @Column(name = "NAMA_LENGKAP")
     private String namaLengkap;
 
-    @NotNull
-    @Min(value = 0, message = "Usia tidak boleh kurang dari 0")
+    @Column(name = "UMUR")
     private Integer umur;
 
+    @Column(name = "NAMA_AYAH")
     private String namaAyah;
 
+    @Column(name = "NAMA_IBU")
     private String namaIbu;
 
+    @Column(name = "TELEPON")
     private String telepon;
 
+    @Column(name = "ALAMAT")
     private String alamat;
 
 
