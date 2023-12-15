@@ -4,9 +4,11 @@ package com.magang.plnicon.controller;
 import com.magang.plnicon.dto.BalitaDTO;
 import com.magang.plnicon.entity.mapper.balita.BalitaMapper;
 import com.magang.plnicon.payload.request.balita.BalitaCreateRequest;
+import com.magang.plnicon.payload.request.balita.BalitaUpdateRequest;
 import com.magang.plnicon.payload.response.CustomResponse;
 import com.magang.plnicon.payload.response.balita.BalitaCreatedResponse;
 import com.magang.plnicon.payload.response.balita.BalitaGetResponse;
+import com.magang.plnicon.payload.response.balita.BalitaUpdatedResponse;
 import com.magang.plnicon.service.BalitaService;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import jakarta.validation.Valid;
@@ -22,8 +24,6 @@ import org.springframework.web.bind.annotation.*;
 public class BidanController {
 
     private final BalitaService balitaService;
-
-
 
     /**
      * Creates a new Balita entity.
@@ -55,6 +55,19 @@ public class BidanController {
     public CustomResponse<BalitaGetResponse> getBalitaById(@PathVariable("balitaId") final String balitaId) {
         final BalitaDTO bookEntityFromDb = balitaService.getBalitaById(balitaId);
         final BalitaGetResponse response = BalitaMapper.toGetResponse(bookEntityFromDb);
+
+        return CustomResponse.ok(response);
+    }
+
+
+    @PutMapping("/{balitaId}")
+    @PreAuthorize("hasAuthority('ROLE_BIDAN')")
+    public CustomResponse<BalitaUpdatedResponse> updateBalitaByBalitaId(@PathVariable("balitaId") final String balitaId,
+                                                                    @RequestBody @Valid final BalitaUpdateRequest request) {
+        final BalitaDTO updatedBalitaEntity = balitaService
+                .updateBalitaById(balitaId, request);
+        final BalitaUpdatedResponse response = BalitaMapper
+                .toUpdatedResponse(updatedBalitaEntity);
 
         return CustomResponse.ok(response);
     }
