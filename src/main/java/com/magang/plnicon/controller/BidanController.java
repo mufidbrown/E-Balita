@@ -51,7 +51,7 @@ public class BidanController {
      * @return Response containing information about the requested Book.
      */
     @GetMapping("/{balitaId}")
-    @PreAuthorize("hasAnyAuthority('ROLE_SUPER_ADMIN','ROLE_ORANG_TUA')")
+    @PreAuthorize("hasAnyAuthority('ROLE_SUPER_ADMIN', 'ROLE_BIDAN','ROLE_ORANG_TUA')")  //ini bisa ditambahkan ROLE_BIDAN
     public CustomResponse<BalitaGetResponse> getBalitaById(@PathVariable("balitaId") final String balitaId) {
         final BalitaDTO bookEntityFromDb = balitaService.getBalitaById(balitaId);
         final BalitaGetResponse response = BalitaMapper.toGetResponse(bookEntityFromDb);
