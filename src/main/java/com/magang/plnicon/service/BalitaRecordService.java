@@ -1,6 +1,7 @@
 package com.magang.plnicon.service;
 
 import com.magang.plnicon.dto.BalitaRecordDto;
+import com.magang.plnicon.dto.ExternalBalitaRecordDto;
 import com.magang.plnicon.entity.BalitaRecord;
 
 import java.util.List;
