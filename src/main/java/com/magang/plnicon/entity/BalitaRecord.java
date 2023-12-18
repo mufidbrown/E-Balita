@@ -16,7 +16,7 @@ import java.time.LocalTime;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name = "BalitaRecord")
+@Table(name = "BalitaRecordRepository")
 public class BalitaRecord {
 
     @Id
