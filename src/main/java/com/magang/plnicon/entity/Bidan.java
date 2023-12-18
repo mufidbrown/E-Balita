@@ -33,7 +33,7 @@ public class Bidan extends BaseEntity{
 
     public void setBidanRecords(List<BidanRecord> bidanRecords) {
         this.bidanRecords = bidanRecords;
-        bidanRecords.forEach(orderItem -> orderItem.setBidan(this));
+        bidanRecords.forEach(bidanRecord -> bidanRecord.setBidan(this));
     }
 
 }
