@@ -44,6 +44,10 @@ public class Balita extends BaseEntity{
 
 
     @OneToMany(mappedBy = "balita")
-    private List<BidanRecord> bidanRecords;
+    private List<BidanRecord> catatanBalita;
+
+   /* ini yang asli
+    @OneToMany(mappedBy = "balita")
+    private List<BidanRecord> bidanRecords;*/
 
 }
