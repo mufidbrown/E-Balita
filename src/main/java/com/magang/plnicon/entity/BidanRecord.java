@@ -34,7 +34,6 @@ public class BidanRecord extends BaseEntity{
     @Column(length = 1000)
     private String catatan;*/
 
-/*
 //    ini yang asli
     @ManyToOne
     @JoinColumn(name = "balitaId")
@@ -43,7 +42,7 @@ public class BidanRecord extends BaseEntity{
 //    ini yang asli
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "bidanId", referencedColumnName = "id")
-    private Bidan bidan;*/
+    private Bidan bidan;
 
 
 }

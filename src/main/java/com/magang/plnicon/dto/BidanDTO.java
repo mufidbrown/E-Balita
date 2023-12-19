@@ -19,6 +19,6 @@ public class BidanDTO {
     private Long id;
     private UserDTO user;
     private LocalDateTime createdAt;
-    private List<CatatanBalitaDTO> catatanBalita;
+    private List<BalitaRecordDTO> balitaRecords;
 
 }
