@@ -1,12 +1,14 @@
 package com.magang.plnicon.controller;
 
 import com.magang.plnicon.dto.BalitaDTO;
+import com.magang.plnicon.dto.VisitPrescriptionDTO;
 import com.magang.plnicon.entity.mapper.balita.BalitaMapper;
 import com.magang.plnicon.payload.request.balita.BalitaCreateRequest;
 import com.magang.plnicon.payload.response.CustomResponse;
 import com.magang.plnicon.payload.response.balita.BalitaCreatedResponse;
 import com.magang.plnicon.payload.response.balita.BalitaGetResponse;
 import com.magang.plnicon.service.BalitaService;
+import com.magang.plnicon.service.VisitPrescriptionServiceImpl;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,6 +26,9 @@ import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 public class BalitaController {
 
     private final BalitaService balitaService;
+
+//    @Autowired
+//    private VisitPrescriptionServiceImpl visitPrescriptionService;
 
     /**
      * Creates a new Balita entity.
@@ -58,4 +63,35 @@ public class BalitaController {
 
         return CustomResponse.ok(response);
     }
+
+
+
+
+//    //ini tambahan dari VisitPrescriptio, logika ne digawe ngene wae. dan VisitPrescription sing mempunyai hak akses penuh adalah BIDAN
+//    @PostMapping(value = "/visitPrescription")
+//    @PreAuthorize("hasAuthority('ROLE_BIDAN')")
+//    @ResponseStatus(HttpStatus.CREATED)
+//    public ResponseEntity<VisitPrescriptionDTO> addVisitPrescription(@RequestBody VisitPrescriptionDTO visitPrescriptionDTO) {
+//
+//        VisitPrescriptionDTO visitPrescriptionDTO1 = visitPrescriptionService.save(visitPrescriptionDTO);
+//        return ResponseEntity.ok().body(visitPrescriptionDTO1);
+//    }
+//
+//
+//    @GetMapping(value = "/visitPrescription/{id}")
+//    @PreAuthorize("hasAnyAuthority('ROLE_BIDAN','ROLE_ORANG_TUA')")
+//    public ResponseEntity<VisitPrescriptionDTO> findById(@PathVariable long id) throws Exception {
+//
+//        VisitPrescriptionDTO visitPrescriptionDTO = visitPrescriptionService.getById(id);
+//        return ResponseEntity.ok().body(visitPrescriptionDTO);
+//    }
+//
+//    @PutMapping(value = "/visitPrescription/{id}")
+//    @PreAuthorize("hasAuthority('ROLE_BIDAN')")
+//    public ResponseEntity<VisitPrescriptionDTO> updateVisitPrescription(@RequestBody VisitPrescriptionDTO visitPrescriptionDTO, @PathVariable("id") long id)
+//            throws Exception {
+//
+//        VisitPrescriptionDTO visitPrescriptionDTO1 = visitPrescriptionService.update(visitPrescriptionDTO, id);
+//        return ResponseEntity.ok().body(visitPrescriptionDTO1);
+//    }
 }
