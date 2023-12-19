@@ -1,12 +1,12 @@
 package com.magang.plnicon.dto;
 
 import com.magang.plnicon.entity.Balita;
+import com.magang.plnicon.entity.BalitaRecord;
 import com.magang.plnicon.entity.Bidan;
-import com.magang.plnicon.entity.VisitPrescription;
 
 import java.util.Date;
 
-public class VisitPrescriptionDTO {
+public class BalitaRecordDTO {
 
     public long getvId() {
         return vId;
@@ -64,17 +64,17 @@ public class VisitPrescriptionDTO {
     private Bidan bidan;
     private Balita balita;
 
-    public VisitPrescriptionDTO() {
+    public BalitaRecordDTO() {
         // TODO Auto-generated constructor stub
     }
 
-    public VisitPrescriptionDTO(VisitPrescription visitPrescription) {
+    public BalitaRecordDTO(BalitaRecord balitaRecord) {
         super();
-        this.vId = visitPrescription.getVId();
-        this.balita = visitPrescription.getBalita();
-        this.bidan = visitPrescription.getBidan();
-        this.vBidanAdvices = visitPrescription.getvBidanAdvices();
-        this.vName = visitPrescription.getvName();
-        this.vDate = visitPrescription.getvDate();
+        this.vId = balitaRecord.getVId();
+        this.balita = balitaRecord.getBalita();
+        this.bidan = balitaRecord.getBidan();
+        this.vBidanAdvices = balitaRecord.getvBidanAdvices();
+        this.vName = balitaRecord.getvName();
+        this.vDate = balitaRecord.getvDate();
     }
 }

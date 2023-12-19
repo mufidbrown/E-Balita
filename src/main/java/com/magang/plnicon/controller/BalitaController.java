@@ -1,19 +1,15 @@
 package com.magang.plnicon.controller;
 
 import com.magang.plnicon.dto.BalitaDTO;
-import com.magang.plnicon.dto.VisitPrescriptionDTO;
 import com.magang.plnicon.entity.mapper.balita.BalitaMapper;
 import com.magang.plnicon.payload.request.balita.BalitaCreateRequest;
 import com.magang.plnicon.payload.response.CustomResponse;
 import com.magang.plnicon.payload.response.balita.BalitaCreatedResponse;
 import com.magang.plnicon.payload.response.balita.BalitaGetResponse;
 import com.magang.plnicon.service.BalitaService;
-import com.magang.plnicon.service.VisitPrescriptionServiceImpl;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
@@ -28,7 +24,7 @@ public class BalitaController {
     private final BalitaService balitaService;
 
 //    @Autowired
-//    private VisitPrescriptionServiceImpl visitPrescriptionService;
+//    private BalitaRecordServiceImpl visitPrescriptionService;
 
     /**
      * Creates a new Balita entity.
@@ -67,7 +63,7 @@ public class BalitaController {
 
 
 
-//    //ini tambahan dari VisitPrescriptio, logika ne digawe ngene wae. dan VisitPrescription sing mempunyai hak akses penuh adalah BIDAN
+//    //ini tambahan dari VisitPrescriptio, logika ne digawe ngene wae. dan BalitaRecord sing mempunyai hak akses penuh adalah BIDAN
 //    @PostMapping(value = "/visitPrescription")
 //    @PreAuthorize("hasAuthority('ROLE_BIDAN')")
 //    @ResponseStatus(HttpStatus.CREATED)

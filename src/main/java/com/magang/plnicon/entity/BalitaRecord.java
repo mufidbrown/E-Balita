@@ -5,8 +5,8 @@ import jakarta.persistence.*;
 import java.util.Date;
 
 @Entity
-@Table(name = "VisitPrescription")
-public class VisitPrescription {
+@Table(name = "BalitaRecord")
+public class BalitaRecord {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -31,10 +31,10 @@ public class VisitPrescription {
 	@JoinColumn(name = "balitaId")
 	private Balita balita;
 
-	public VisitPrescription() {
+	public BalitaRecord() {
 	}
 
-	public VisitPrescription(long vId, String vName, Date vDate, String vBidanAdvices, Bidan bidan, Balita balita) {
+	public BalitaRecord(long vId, String vName, Date vDate, String vBidanAdvices, Bidan bidan, Balita balita) {
 		this.vId = vId;
 		this.vName = vName;
 		this.vDate = vDate;
