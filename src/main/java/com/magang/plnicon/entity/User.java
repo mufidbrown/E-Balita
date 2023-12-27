@@ -1,49 +1,27 @@
 package com.magang.plnicon.entity;
 
-
-import com.magang.plnicon.entity.enums.Role;
-import com.magang.plnicon.entity.enums.TokenClaims;
-import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import javax.persistence.*;
+import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
+@Table(name = "Users")
 @Data
-@Builder
 @NoArgsConstructor
-@AllArgsConstructor
-@Table(name = "USERS")
-public class User {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-
-    private String fullName;
+public class User extends IdBasedEntity implements Serializable {
 
     private String username;
-
     private String email;
-
     private String password;
 
-    @Enumerated(EnumType.STRING)
-    @Column(name = "ROLE")
-    private Role role;
+    @ManyToMany(cascade = CascadeType.MERGE,fetch = FetchType.EAGER)
+    @JoinTable(name = "user_roles",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "role_id"))
+    private Set<Role> roles = new HashSet<>();
 
-    public Map<String, Object> getClaims() {
-        final Map<String, Object> claims = new HashMap<>();
-        claims.put(TokenClaims.ID.getValue(), this.id);
-        claims.put(TokenClaims.USERNAME.getValue(), this.username);
-        claims.put(TokenClaims.ROLES.getValue(), List.of(this.role));
-        claims.put(TokenClaims.USER_FULL_NAME.getValue(), this.fullName);
-        claims.put(TokenClaims.EMAIL.getValue(), this.email);
-        return claims;
-    }
 }
