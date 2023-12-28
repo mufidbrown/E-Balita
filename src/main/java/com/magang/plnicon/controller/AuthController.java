@@ -18,26 +18,6 @@ import com.magang.plnicon.jwt.JwtUtils;
 import com.magang.plnicon.service.impl.RefreshTokenService;
 import com.magang.plnicon.service.impl.RoleService;
 import com.magang.plnicon.service.impl.UserService;
-//import com.refreshtokenjwt.app.exception.RefreshTokenException;
-//import com.refreshtokenjwt.app.exception.RoleException;
-//import com.refreshtokenjwt.app.jwt.JwtUtils;
-//import com.refreshtokenjwt.app.modal.ERole;
-//import com.refreshtokenjwt.app.modal.RefreshToken;
-//import com.refreshtokenjwt.app.modal.Role;
-//import com.refreshtokenjwt.app.modal.User;
-//import com.refreshtokenjwt.app.payload.request.LoginRequest;
-//import com.refreshtokenjwt.app.payload.request.RoleRequest;
-//import com.refreshtokenjwt.app.payload.request.SignupRequest;
-//import com.refreshtokenjwt.app.payload.request.TokenRefreshRequest;
-//import com.refreshtokenjwt.app.payload.response.JWTResponse;
-//import com.refreshtokenjwt.app.payload.response.MessageResponse;
-//import com.refreshtokenjwt.app.payload.response.TokenRefreshResponse;
-//import com.refreshtokenjwt.app.security.CustomUserDetails;
-//import com.refreshtokenjwt.app.service.impl.RefreshTokenService;
-//import com.refreshtokenjwt.app.service.impl.RoleService;
-//import com.refreshtokenjwt.app.service.impl.UserService;
-//import io.swagger.annotations.ApiOperation;
-//import io.swagger.annotations.Authorization;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -131,6 +111,8 @@ public class AuthController {
         String provinsi = signUpRequest.getProvinsi();
         String dinkes_kabupaten = signUpRequest.getDinkes_kabupaten();
         String dinkes_provinsi = signUpRequest.getDinkes_provinsi();
+//        String approval_status = signUpRequest.getApproval_status();
+
 
 
         Set<String> strRoles = signUpRequest.getRoles();
@@ -154,6 +136,8 @@ public class AuthController {
         user.setProvinsi(provinsi);
         user.setDinkes_kabupaten(dinkes_kabupaten);
         user.setDinkes_provinsi(dinkes_provinsi);
+//        user.setApproval_status(approval_status);
+
 
 
 

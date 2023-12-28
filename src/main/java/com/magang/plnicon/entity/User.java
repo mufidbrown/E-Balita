@@ -23,6 +23,7 @@ public class User extends IdBasedEntity implements Serializable {
     private String provinsi;
     private String dinkes_kabupaten;
     private String dinkes_provinsi;
+//    private String approval_status;
 
 
     @ManyToMany(cascade = CascadeType.MERGE,fetch = FetchType.EAGER)
