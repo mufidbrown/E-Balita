@@ -29,18 +29,18 @@ public class Role extends IdBasedEntity implements Serializable {
     }
 
 
-
+//    public Role(ERole level_user){
+//        this.level_user = level_user;
+//    }
     public ERole getLevel_user() {
         return level_user;
     }
-//
-//
-//
+
 //    public Role(ERole level_administrasi){
 //        this.level_administrasi = level_administrasi;
 //    }
-//
-//    public ERole getLevel_administrasi() {
-//        return level_administrasi;
-//    }
+    public ERole getLevel_administrasi() {
+        return level_administrasi;
+    }
+
 }

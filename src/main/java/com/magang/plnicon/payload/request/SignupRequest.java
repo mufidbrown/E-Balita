@@ -27,6 +27,31 @@ public class SignupRequest {
     @Email
     private String email;
 
+    @NotBlank
+    @Size(min = 3, max = 30)
+    private String kelurahan;
+
+    @NotBlank
+    @Size(min = 3, max = 20)
+    private String kecamatan;
+
+    @NotBlank
+    @Size(min = 3, max = 30)
+    private String kabupaten;
+
+    @NotBlank
+    @Size(min = 3, max = 30)
+    private String provinsi;
+
+    @NotBlank
+    @Size(min = 3, max = 30)
+    private String dinkes_kabupaten;
+
+    @NotBlank
+    @Size(min = 3, max = 30)
+    private String dinkes_provinsi;
+
+
     private Set<String> roles;
 
 }

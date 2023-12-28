@@ -124,6 +124,15 @@ public class AuthController {
         String username = signUpRequest.getUsername();
         String email = signUpRequest.getEmail();
         String password = signUpRequest.getPassword();
+
+        String kelurahan = signUpRequest.getKelurahan();
+        String kecamatan = signUpRequest.getKecamatan();
+        String kabupaten = signUpRequest.getKabupaten();
+        String provinsi = signUpRequest.getProvinsi();
+        String dinkes_kabupaten = signUpRequest.getDinkes_kabupaten();
+        String dinkes_provinsi = signUpRequest.getDinkes_provinsi();
+
+
         Set<String> strRoles = signUpRequest.getRoles();
         Set<Role> roles = new HashSet<>();
 
@@ -139,6 +148,13 @@ public class AuthController {
         user.setEmail(email);
         user.setUsername(username);
         user.setPassword(encoder.encode(password));
+        user.setKelurahan(kelurahan);
+        user.setKecamatan(kecamatan);
+        user.setKabupaten(kabupaten);
+        user.setProvinsi(provinsi);
+        user.setDinkes_kabupaten(dinkes_kabupaten);
+        user.setDinkes_provinsi(dinkes_provinsi);
+
 
 
         if (strRoles != null) {
