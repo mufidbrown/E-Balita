@@ -17,11 +17,18 @@ public class User extends IdBasedEntity implements Serializable {
     private String username;
     private String email;
     private String password;
+    private String kelurahan;
+    private String kecamatan;
+    private String kabupaten;
+    private String provinsi;
+    private String dinkes_kabupaten;
+    private String dinkes_provinsi;
+
 
     @ManyToMany(cascade = CascadeType.MERGE,fetch = FetchType.EAGER)
     @JoinTable(name = "user_roles",
             joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "role_id"))
     private Set<Role> roles = new HashSet<>();
-
+    
 }
