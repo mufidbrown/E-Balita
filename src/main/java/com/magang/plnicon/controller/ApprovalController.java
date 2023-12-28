@@ -4,9 +4,9 @@ import com.magang.plnicon.service.ApprovalService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/approval")
@@ -17,6 +17,42 @@ public class ApprovalController {
     @Autowired
     public ApprovalController(ApprovalService approvalService) {
         this.approvalService = approvalService;
+    }
+
+    @PostMapping("/pending")
+    public ResponseEntity<String> setPendingStatus(@RequestBody String pending) {
+        if (pending != null && !pending.isEmpty()) {
+            approvalService.setPendingStatus(pending);
+            return ResponseEntity.ok("Pending status has been set");
+        } else {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Invalid input or empty string for pending status");
+        }
+    }
+
+    @PostMapping("/approved")
+    public ResponseEntity<String> setApprovedStatus(@RequestBody String approved) {
+        if (approved != null && !approved.isEmpty()) {
+            approvalService.setApprovedStatus(approved);
+            return ResponseEntity.ok("Approved status has been set");
+        } else {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Invalid input or empty string for approved status");
+        }
+    }
+
+    @PostMapping("/rejected")
+    public ResponseEntity<String> setRejectedStatus(@RequestBody String rejected) {
+        if (rejected != null && !rejected.isEmpty()) {
+            approvalService.setRejectedStatus(rejected);
+            return ResponseEntity.ok("Rejected status has been set");
+        } else {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Invalid input or empty string for rejected status");
+        }
+    }
+
+    @GetMapping("/allStatus")
+    public ResponseEntity<List<String>> getAllStatus() {
+        List<String> allStatus = approvalService.getAllStatus();
+        return ResponseEntity.ok(allStatus);
     }
 
     @GetMapping("/pending")
@@ -48,5 +84,5 @@ public class ApprovalController {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Rejected status is not set");
         }
     }
-    
+
 }
