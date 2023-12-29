@@ -1,22 +1,21 @@
 package com.magang.plnicon.service;
 
+import com.magang.plnicon.entity.Approval;
+
 import java.util.List;
+import java.util.Optional;
 
 public interface ApprovalService {
 
-        String getPendingStatus();
+        List<Approval> getAllApprovals();
 
-        String getApprovedStatus();
+        Optional<Approval> getApprovalById(Integer id);
 
-        String getRejectedStatus();
+        Approval createApproval(Approval approval);
 
-        void setPendingStatus(String pending);
+        Approval updateApproval(Integer id, Approval approval);
 
-        void setApprovedStatus(String approved);
-
-        void setRejectedStatus(String rejected);
-
-        List<String> getAllStatus(); // Jika Anda ingin mendapatkan semua status dalam bentuk list
+        void deleteApproval(Integer id);
 
 }
 

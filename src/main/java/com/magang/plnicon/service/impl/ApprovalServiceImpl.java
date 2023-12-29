@@ -1,79 +1,53 @@
 package com.magang.plnicon.service.impl;
 
+import com.magang.plnicon.entity.Approval;
+import com.magang.plnicon.repository.ApprovalRepository;
 import com.magang.plnicon.service.ApprovalService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class ApprovalServiceImpl implements ApprovalService {
 
-        private String pending;
-        private String approved;
-        private String rejected;
+    private final ApprovalRepository approvalRepository;
 
-        @Override
-        public String getPendingStatus() {
-            if (pending != null) {
-                return pending;
-            } else {
-                return "Pending status is not set";
-            }
-        }
+    @Autowired
+    public ApprovalServiceImpl(ApprovalRepository approvalRepository) {
+        this.approvalRepository = approvalRepository;
+    }
 
-        @Override
-        public String getApprovedStatus() {
-            if (approved != null) {
-                return approved;
-            } else {
-                return "Approved status is not set";
-            }
-        }
+    @Override
+    public List<Approval> getAllApprovals() {
+        return approvalRepository.findAll();
+    }
 
-        @Override
-        public String getRejectedStatus() {
-            if (rejected != null) {
-                return rejected;
-            } else {
-                return "Rejected status is not set";
-            }
-        }
+    @Override
+    public Optional<Approval> getApprovalById(Integer id) {
+        return approvalRepository.findById(id);
+    }
 
-        @Override
-        public void setPendingStatus(String pending) {
-            if (pending != null && !pending.isEmpty()) {
-                this.pending = pending;
-            } else {
-                // Handle invalid input or empty string
-                // You can throw an exception or handle it based on your application's logic
-            }
-        }
+    @Override
+    public Approval createApproval(Approval approval) {
+        return approvalRepository.save(approval);
+    }
 
-        @Override
-        public void setApprovedStatus(String approved) {
-            if (approved != null && !approved.isEmpty()) {
-                this.approved = approved;
-            } else {
-                // Handle invalid input or empty string
-            }
-        }
+    @Override
+    public Approval updateApproval(Integer id, Approval updatedApproval) {
+        Approval approval = approvalRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Approval not found with id: " + id));
 
-        @Override
-        public void setRejectedStatus(String rejected) {
-            if (rejected != null && !rejected.isEmpty()) {
-                this.rejected = rejected;
-            } else {
-                // Handle invalid input or empty string
-            }
-        }
+        approval.setName(updatedApproval.getName());
+        approval.setStatus(updatedApproval.getStatus());
 
-        @Override
-        public List<String> getAllStatus() {
-            List<String> allStatus = new ArrayList<>();
-            allStatus.add(getPendingStatus());
-            allStatus.add(getApprovedStatus());
-            allStatus.add(getRejectedStatus());
-            return allStatus;
-        }
+        return approvalRepository.save(approval);
+    }
+
+    @Override
+    public void deleteApproval(Integer id) {
+        approvalRepository.deleteById(id);
+    }
 }
+
