@@ -4,6 +4,7 @@ import com.magang.plnicon.service.ApprovalService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -20,6 +21,7 @@ public class ApprovalController {
     }
 
     @PostMapping("/pending")
+    @PreAuthorize("hasAuthority('ROLE_ADMIN')")
     public ResponseEntity<String> setPendingStatus(@RequestBody String pending) {
         if (pending != null && !pending.isEmpty()) {
             approvalService.setPendingStatus(pending);
@@ -29,7 +31,8 @@ public class ApprovalController {
         }
     }
 
-    @PostMapping("/approved")
+    @PostMapping("/approved/{id}")
+    @PreAuthorize("hasAuthority('ROLE_ADMIN')")
     public ResponseEntity<String> setApprovedStatus(@RequestBody String approved) {
         if (approved != null && !approved.isEmpty()) {
             approvalService.setApprovedStatus(approved);
@@ -40,6 +43,7 @@ public class ApprovalController {
     }
 
     @PostMapping("/rejected")
+    @PreAuthorize("hasAuthority('ROLE_ADMIN')")
     public ResponseEntity<String> setRejectedStatus(@RequestBody String rejected) {
         if (rejected != null && !rejected.isEmpty()) {
             approvalService.setRejectedStatus(rejected);

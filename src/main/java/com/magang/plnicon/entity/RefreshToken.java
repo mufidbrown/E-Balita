@@ -9,7 +9,11 @@ import java.time.Instant;
 @Entity
 @Table(name = "RefreshToken")
 @Data
-public class RefreshToken extends IdBasedEntity implements Serializable {
+public class RefreshToken implements Serializable {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
 
     @OneToOne
     @JoinColumn(name = "user_id", referencedColumnName = "id")

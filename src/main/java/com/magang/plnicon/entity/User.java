@@ -12,8 +12,11 @@ import java.util.Set;
 @Table(name = "Users")
 @Data
 @NoArgsConstructor
-public class User extends IdBasedEntity implements Serializable {
+public class User implements Serializable {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
     private String username;
     private String email;
     private String password;
@@ -23,7 +26,7 @@ public class User extends IdBasedEntity implements Serializable {
     private String provinsi;
     private String dinkes_kabupaten;
     private String dinkes_provinsi;
-//    private String approval_status;
+    private String approval_status;
 
 
     @ManyToMany(cascade = CascadeType.MERGE,fetch = FetchType.EAGER)
@@ -34,5 +37,7 @@ public class User extends IdBasedEntity implements Serializable {
 //    private Set<Role> level_user = new HashSet<>();
 //    private Set<Role> level_administrasi = new HashSet<>();
 
+//    @ManyToMany(mappedBy = "approvedUsers")
+//    private List<Approval> approvals;
 
 }
