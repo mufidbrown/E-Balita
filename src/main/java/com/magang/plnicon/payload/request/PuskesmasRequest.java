@@ -1,25 +1,35 @@
-package com.magang.plnicon.entity;
+package com.magang.plnicon.payload.request;
 
+
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
 
-
-@Entity
-@Table(name = "Puskesmas")
 @Data
+@AllArgsConstructor
 @NoArgsConstructor
-public class Puskesmas {
+public class PuskesmasRequest {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    @NotBlank
     private String nama_puskesmas;
+
+    @NotBlank
     private String jenis_puskesmas;
+
+    @NotBlank
     private String alamat;
+
+    @NotBlank
     private String kecamatan;
+
+    @NotBlank
     private String kabupaten;
+
+    @NotBlank
     private String provinsi;
+
+    @NotBlank
     private String status;
 }
