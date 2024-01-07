@@ -6,8 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.server.ResponseStatusException;
 
-import javax.persistence.EntityNotFoundException;
 import java.util.Collections;
 import java.util.List;
 
@@ -52,23 +52,61 @@ public class KnowledgeController {
         }
     }
 
-    @PutMapping("/{id}/update")
+    @PutMapping("/{id}")
     public ResponseEntity<Knowledge> updateKnowledge(@PathVariable Integer id, @RequestBody Knowledge newKnowledge) {
-        Knowledge updatedKnowledge = knowledgeService.updateKnowledge(id, newKnowledge);
-        if (updatedKnowledge != null) {
-            return ResponseEntity.ok(updatedKnowledge);
-        } else {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
+        try {
+            Knowledge updatedKnowledge = knowledgeService.updateKnowledge(id, newKnowledge);
+            if (updatedKnowledge!= null) {
+                return ResponseEntity.ok(updatedKnowledge);
+            } else {
+                throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Knowledge dengan ID " + id + " tidak ditemukan");
+            }
+        } catch (IllegalArgumentException e) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, e.getMessage());
         }
     }
 
+
+
+//    ini bagus untuk jadi referensi logic pengkodingan saya
     @DeleteMapping("/{id}/delete")
     public ResponseEntity<String> deleteKnowledge(@PathVariable Integer id) {
-        try {
-            knowledgeService.deleteKnowledge(id);
-            return ResponseEntity.ok("Knowledge dengan ID " + id + " berhasil dihapus");
-        } catch (EntityNotFoundException ex) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Knowledge dengan ID " + id + " tidak ditemukan");
+        if (id != null) {
+            Knowledge knowledge = knowledgeService.getKnowledgeById(id);
+            if (knowledge != null) {
+                knowledgeService.deleteKnowledge(id);
+                return ResponseEntity.ok("Knowledge dengan ID " + id + " berhasil dihapus");
+            } else {
+                return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Knowledge dengan ID " + id + " tidak ditemukan");
+            }
+        } else {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Invalid ID input");
         }
     }
+
+
 }
+
+
+//    @PutMapping("/{id}/update")
+//    public ResponseEntity<Knowledge> updateKnowledge(@PathVariable Integer id, @RequestBody Knowledge newKnowledge) {
+//        Knowledge updatedKnowledge = knowledgeService.updateKnowledge(id, newKnowledge);
+//        if (updatedKnowledge != null) {
+//            return ResponseEntity.ok(updatedKnowledge);
+//        } else {
+//            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
+//        }
+//    }
+
+
+//    @DeleteMapping("/{id}/delete")
+//    public ResponseEntity<String> deleteKnowledge(@PathVariable Integer id) {
+//        try {
+//            knowledgeService.deleteKnowledge(id);
+//            return ResponseEntity.ok("Knowledge dengan ID " + id + " berhasil dihapus");
+//        } catch (EntityNotFoundException ex) {
+//            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Knowledge dengan ID " + id + " tidak ditemukan");
+//        }
+//    }
+
+
