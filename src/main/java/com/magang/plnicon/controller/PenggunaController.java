@@ -44,16 +44,21 @@ public class PenggunaController {
     }
 
 
-
     @PostMapping("/create")
-    public ResponseEntity<Pengguna> createPengguna(@RequestBody Pengguna pengguna) {
-        try {
-            Pengguna createdPengguna = penggunaService.createPengguna(pengguna);
-            return ResponseEntity.status(HttpStatus.CREATED).body(createdPengguna);
-        } catch (IllegalArgumentException e) {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
+    public ResponseEntity<?> createPengguna(@RequestBody Pengguna pengguna) {
+        if (pengguna != null) {
+            try {
+                Pengguna createdPengguna = penggunaService.createPengguna(pengguna);
+                return ResponseEntity.status(HttpStatus.CREATED).body(createdPengguna);
+            } catch (IllegalArgumentException e) {
+                return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Gagal membuat pengguna: " + e.getMessage());
+            }
+        } else {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Invalid Pengguna input");
         }
     }
+
+
 
     @PutMapping("/{id}")
     public ResponseEntity<Pengguna> updatePengguna(@PathVariable Integer id, @RequestBody Pengguna newPengguna) {
@@ -82,6 +87,20 @@ public class PenggunaController {
     }
 
 }
+
+
+
+
+//    @PostMapping("/create")
+//    public ResponseEntity<Pengguna> createPengguna(@RequestBody Pengguna pengguna) {
+//        try {
+//            Pengguna createdPengguna = penggunaService.createPengguna(pengguna);
+//            return ResponseEntity.status(HttpStatus.CREATED).body(createdPengguna);
+//        } catch (IllegalArgumentException e) {
+//            return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
+//        }
+//    }
+
 
 
 //    @GetMapping("/all")
