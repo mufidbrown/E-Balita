@@ -6,7 +6,6 @@ import com.magang.plnicon.service.PmtService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import javax.persistence.EntityNotFoundException;
 import java.util.List;
 import java.util.Optional;
 
@@ -74,18 +73,47 @@ public class PmtServiceImpl implements PmtService {
         return null;
     }
 
-
     @Override
     public void deletePmt(Integer id) {
-        Optional<Pmt> existingPmtOptional = pmtRepository.findById(id);
-        if (existingPmtOptional.isEmpty()) {
-            throw new EntityNotFoundException("Puskesmas dengan ID " + id + " tidak ditemukan");
-            // Atau Anda bisa menentukan penanganan kesalahan yang sesuai
+        if (pmtRepository.existsById(id)) {
+            pmtRepository.deleteById(id);
+        } else {
+            throw new IllegalArgumentException("Pmt dengan ID " + id + " tidak ditemukan");
         }
-        pmtRepository.deleteById(id);
     }
 
+
+//    @Override
+//    public void deletePmt(Integer id) {
+//        Optional<Pmt> existingPmtOptional = pmtRepository.findById(id);
+//        if (existingPmtOptional.isEmpty()) {
+//            throw new EntityNotFoundException("Puskesmas dengan ID " + id + " tidak ditemukan");
+//            // Atau Anda bisa menentukan penanganan kesalahan yang sesuai
+//        }
+//        pmtRepository.deleteById(id);
+//    }
+
 }
+
+/*
+
+ini digunakan untuk update PMT serviceimpl
+    @Override
+    public Knowledge updateKnowledge(Integer id, Knowledge newKnowledge) {
+        Optional<Knowledge> existingKnowledgeOptional = knowledgeRepository.findById(id);
+        if (existingKnowledgeOptional.isPresent()) {
+            Knowledge existingKnowledge = existingKnowledgeOptional.get();
+            // Lakukan pembaruan pada atribut yang diperlukan
+            existingKnowledge.setTopik(newKnowledge.getTopik());
+            existingKnowledge.setKeterangan(newKnowledge.getKeterangan());
+            existingKnowledge.setDeskripsi(newKnowledge.getDeskripsi());
+
+            return knowledgeRepository.save(existingKnowledge);
+        } else {
+            throw new EntityNotFoundException("Knowledge dengan ID " + id + " tidak ditemukan");
+        }
+    }
+*/
 
 
 //    @Override

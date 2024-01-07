@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.util.Collections;
 import java.util.List;
@@ -52,14 +53,19 @@ public class PenggunaController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Pengguna> updatePengguna(@PathVariable Integer id, @RequestBody Pengguna pengguna) {
-        Pengguna updatedPengguna = penggunaService.updatePengguna(id, pengguna);
-        if (updatedPengguna != null) {
-            return ResponseEntity.ok(updatedPengguna);
-        } else {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+    public ResponseEntity<Pengguna> updatePengguna(@PathVariable Integer id, @RequestBody Pengguna newPengguna) {
+        try {
+            Pengguna updatedPengguna = penggunaService.updatePengguna(id, newPengguna);
+            if (updatedPengguna!= null) {
+                return ResponseEntity.ok(updatedPengguna);
+            } else {
+                throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Pengguna dengan ID " + id + " tidak ditemukan");
+            }
+        } catch (IllegalArgumentException e) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, e.getMessage());
         }
     }
+
 
     @DeleteMapping("/{id}")
     public ResponseEntity<String> deletePengguna(@PathVariable Integer id) {
@@ -71,6 +77,16 @@ public class PenggunaController {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
-    
+
 }
 
+
+//    @PutMapping("/{id}")
+//    public ResponseEntity<Pengguna> updatePengguna(@PathVariable Integer id, @RequestBody Pengguna pengguna) {
+//        Pengguna updatedPengguna = penggunaService.updatePengguna(id, pengguna);
+//        if (updatedPengguna != null) {
+//            return ResponseEntity.ok(updatedPengguna);
+//        } else {
+//            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+//        }
+//    }
