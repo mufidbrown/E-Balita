@@ -63,12 +63,14 @@ public class PenggunaController {
 
     @DeleteMapping("/{id}")
     public ResponseEntity<String> deletePengguna(@PathVariable Integer id) {
-        try {
+        Pengguna pengguna = penggunaService.getPenggunaById(id);
+        if (pengguna != null) {
             penggunaService.deletePengguna(id);
-            return ResponseEntity.ok("Pengguna dengan ID " + id + " berhasil dihapus");
-        } catch (IllegalArgumentException e) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+            return ResponseEntity.ok("Pmt dengan ID " + id + " berhasil dihapus");
+        } else {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
+    
 }
 
