@@ -9,7 +9,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
-import javax.persistence.EntityNotFoundException;
 import java.util.List;
 
 @RestController
@@ -33,25 +32,28 @@ public class PmtController {
         }
     }
 
+
     @GetMapping("/{id}")
     public ResponseEntity<Pmt> getPmtById(@PathVariable Integer id) {
-        try {
-            Pmt pmt = pmtService.getPmtById(id);
+        Pmt pmt = pmtService.getPmtById(id);
+        if (pmt != null) {
             return ResponseEntity.ok(pmt);
-        } catch (IllegalArgumentException e) {
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND, e.getMessage());
+        } else {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Pmt dengan ID " + id + " tidak ditemukan");
         }
     }
 
+
     @PostMapping("/create")
     public ResponseEntity<Pmt> createPmt(@RequestBody Pmt pmt) {
-        try {
-            Pmt createdPmt = pmtService.createPmt(pmt);
+        Pmt createdPmt = pmtService.createPmt(pmt);
+        if (createdPmt != null) {
             return ResponseEntity.status(HttpStatus.CREATED).body(createdPmt);
-        } catch (IllegalArgumentException e) {
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, e.getMessage());
+        } else {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Gagal membuat Pmt. Periksa kembali data yang diberikan.");
         }
     }
+
 
     @PutMapping("/{id}")
     public ResponseEntity<Pmt> updatePmt(@PathVariable Integer id, @RequestBody Pmt newPmt) {
@@ -67,14 +69,31 @@ public class PmtController {
         }
     }
 
+
     @DeleteMapping("/{id}")
-    public ResponseEntity<String> deletePmt(@PathVariable Integer id) {
-        try {
+    public ResponseEntity<Void> deletePmt(@PathVariable Integer id) {
+        Pmt pmt = pmtService.getPmtById(id);
+        if (pmt != null) {
             pmtService.deletePmt(id);
-            return ResponseEntity.ok("Pmt dengan ID " + id + " berhasil dihapus");
-        } catch (EntityNotFoundException e) {
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND, e.getMessage());
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        } else {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
+
+
+
+//    @DeleteMapping("/{id}")
+//    public ResponseEntity<String> deletePmt(@PathVariable Integer id) {
+//        try {
+//            pmtService.deletePmt(id);
+//            return ResponseEntity.ok("Pmt dengan ID " + id + " berhasil dihapus");
+//        } catch (EntityNotFoundException e) {
+//            throw new ResponseStatusException(HttpStatus.NOT_FOUND, e.getMessage());
+//        }
+//    }
+
+
+
 }
 
