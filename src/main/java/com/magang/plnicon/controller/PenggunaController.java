@@ -8,7 +8,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
-import java.util.Collections;
 import java.util.List;
 
 @RestController
@@ -23,14 +22,16 @@ public class PenggunaController {
     }
 
     @GetMapping("/all")
-    public ResponseEntity<List<Pengguna>> getAllPengguna() {
+    public ResponseEntity<?> getAllPengguna() {
         List<Pengguna> allPengguna = penggunaService.getAllPengguna();
         if (!allPengguna.isEmpty()) {
             return ResponseEntity.ok(allPengguna);
         } else {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(Collections.emptyList());
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Tidak ada pengguna yang ditemukan");
         }
     }
+
+
 
     @GetMapping("/{id}")
     public ResponseEntity<?> getPenggunaById(@PathVariable Integer id) {
@@ -81,6 +82,17 @@ public class PenggunaController {
     }
 
 }
+
+
+//    @GetMapping("/all")
+//    public ResponseEntity<List<Pengguna>> getAllPengguna() {
+//        List<Pengguna> allPengguna = penggunaService.getAllPengguna();
+//        if (!allPengguna.isEmpty()) {
+//            return ResponseEntity.ok(allPengguna);
+//        } else {
+//            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(Collections.emptyList());
+//        }
+//    }
 
 
 //    @GetMapping("/{id}")
