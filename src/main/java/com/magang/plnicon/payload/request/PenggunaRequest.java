@@ -10,7 +10,7 @@ import javax.validation.constraints.NotBlank;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class Pengguna {
+public class PenggunaRequest {
 
     @NotBlank
     private String nama_lengkap;
