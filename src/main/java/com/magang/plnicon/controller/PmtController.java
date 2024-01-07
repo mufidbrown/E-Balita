@@ -70,19 +70,24 @@ public class PmtController {
     }
 
 
+
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deletePmt(@PathVariable Integer id) {
+    public ResponseEntity<String> deletePmt(@PathVariable Integer id) {
         Pmt pmt = pmtService.getPmtById(id);
         if (pmt != null) {
             pmtService.deletePmt(id);
-            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+            return ResponseEntity.ok("Pmt dengan ID " + id + " berhasil dihapus");
         } else {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
 
+}
 
 
+
+
+//
 //    @DeleteMapping("/{id}")
 //    public ResponseEntity<String> deletePmt(@PathVariable Integer id) {
 //        try {
@@ -92,8 +97,4 @@ public class PmtController {
 //            throw new ResponseStatusException(HttpStatus.NOT_FOUND, e.getMessage());
 //        }
 //    }
-
-
-
-}
 
