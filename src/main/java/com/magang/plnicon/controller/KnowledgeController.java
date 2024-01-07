@@ -48,14 +48,20 @@ public class KnowledgeController {
 
 
     @PostMapping("/create")
-    public ResponseEntity<Knowledge> createKnowledge(@RequestBody Knowledge knowledge) {
-        if (knowledge.getId() != null) {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
+    public ResponseEntity<?> createKnowledge(@RequestBody Knowledge knowledge) {
+        if (knowledge != null) {
+            try {
+                Knowledge createdKnowledge = knowledgeService.createKnowledge(knowledge);
+                return ResponseEntity.status(HttpStatus.CREATED).body(createdKnowledge);
+            } catch (IllegalArgumentException e) {
+                return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Gagal membuat knowledge: " + e.getMessage());
+            }
         } else {
-            Knowledge createdKnowledge = knowledgeService.createKnowledge(knowledge);
-            return ResponseEntity.status(HttpStatus.CREATED).body(createdKnowledge);
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Invalid Knowledge input");
         }
     }
+
+
 
     @PutMapping("/{id}")
     public ResponseEntity<Knowledge> updateKnowledge(@PathVariable Integer id, @RequestBody Knowledge newKnowledge) {
@@ -91,6 +97,18 @@ public class KnowledgeController {
 
 
 }
+
+
+
+//    @PostMapping("/create")
+//    public ResponseEntity<Knowledge> createKnowledge(@RequestBody Knowledge knowledge) {
+//        if (knowledge.getId() != null) {
+//            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
+//        } else {
+//            Knowledge createdKnowledge = knowledgeService.createKnowledge(knowledge);
+//            return ResponseEntity.status(HttpStatus.CREATED).body(createdKnowledge);
+//        }
+//    }
 
 
 //    @GetMapping("/{id}")
