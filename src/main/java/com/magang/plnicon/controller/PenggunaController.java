@@ -33,14 +33,16 @@ public class PenggunaController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Pengguna> getPenggunaById(@PathVariable Integer id) {
+    public ResponseEntity<?> getPenggunaById(@PathVariable Integer id) {
         Pengguna pengguna = penggunaService.getPenggunaById(id);
         if (pengguna != null) {
             return ResponseEntity.ok(pengguna);
         } else {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Pengguna dengan ID " + id + " tidak ditemukan");
         }
     }
+
+
 
     @PostMapping("/create")
     public ResponseEntity<Pengguna> createPengguna(@RequestBody Pengguna pengguna) {
@@ -79,6 +81,18 @@ public class PenggunaController {
     }
 
 }
+
+
+//    @GetMapping("/{id}")
+//    public ResponseEntity<Pengguna> getPenggunaById(@PathVariable Integer id) {
+//        Pengguna pengguna = penggunaService.getPenggunaById(id);
+//        if (pengguna != null) {
+//            return ResponseEntity.ok(pengguna);
+//        } else {
+//            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+//        }
+//    }
+
 
 
 //    @PutMapping("/{id}")
