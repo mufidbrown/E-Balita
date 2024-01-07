@@ -33,14 +33,19 @@ public class KnowledgeController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Knowledge> getKnowledgeById(@PathVariable Integer id) {
-        Knowledge knowledge = knowledgeService.getKnowledgeById(id);
-        if (knowledge != null) {
-            return ResponseEntity.ok(knowledge);
+    public ResponseEntity<?> getKnowledgeById(@PathVariable Integer id) {
+        if (id != null) {
+            try {
+                Knowledge knowledge = knowledgeService.getKnowledgeById(id);
+                return ResponseEntity.ok(knowledge);
+            } catch (IllegalArgumentException ex) {
+                return ResponseEntity.status(HttpStatus.NOT_FOUND).body(ex.getMessage());
+            }
         } else {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Invalid ID input");
         }
     }
+
 
     @PostMapping("/create")
     public ResponseEntity<Knowledge> createKnowledge(@RequestBody Knowledge knowledge) {
@@ -86,6 +91,17 @@ public class KnowledgeController {
 
 
 }
+
+
+//    @GetMapping("/{id}")
+//    public ResponseEntity<Knowledge> getKnowledgeById(@PathVariable Integer id) {
+//        Knowledge knowledge = knowledgeService.getKnowledgeById(id);
+//        if (knowledge != null) {
+//            return ResponseEntity.ok(knowledge);
+//        } else {
+//            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
+//        }
+//    }
 
 
 //    @PutMapping("/{id}/update")
