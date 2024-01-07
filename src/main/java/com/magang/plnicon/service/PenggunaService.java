@@ -2,16 +2,14 @@ package com.magang.plnicon.service;
 
 
 import com.magang.plnicon.entity.Pengguna;
-import com.magang.plnicon.entity.Pmt;
-import com.magang.plnicon.payload.request.PenggunaRequest;
 
 import java.util.List;
 
 public interface PenggunaService {
 
-    List<PenggunaRequest> getAllPengguna();
+    List<Pengguna> getAllPengguna();
     Pengguna getPenggunaById(Integer id);
-    Pengguna createPengguna(Pmt pmt);
+    Pengguna createPengguna(Pengguna pengguna);
     Pengguna updatePengguna(Integer id, Pengguna pengguna);
     void deletePengguna(Integer id);
 
