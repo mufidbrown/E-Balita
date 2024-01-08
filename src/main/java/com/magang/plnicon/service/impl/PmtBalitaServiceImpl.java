@@ -1,6 +1,6 @@
 package com.magang.plnicon.service.impl;
 
-import com.magang.plnicon.entity.balita.PmtBalita;
+import com.magang.plnicon.entity.PmtBalita;
 import com.magang.plnicon.repository.PmtBalitaRepository;
 import com.magang.plnicon.service.PmtBalitaService;
 import org.springframework.beans.factory.annotation.Autowired;

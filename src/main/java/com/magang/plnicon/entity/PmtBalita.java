@@ -1,5 +1,4 @@
-package com.magang.plnicon.entity.master;
-
+package com.magang.plnicon.entity;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -7,15 +6,16 @@ import lombok.NoArgsConstructor;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "Knowledges")
+@Table(name = "Pmt_balita")
 @Data
 @NoArgsConstructor
-public class Knowledge {
+public class PmtBalita {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    private String topik;
+    private String nama_balita;
+    private String tanggal_pmt;
+    private String makanan_pmt;
     private String keterangan;
-    private String deskripsi;
 }

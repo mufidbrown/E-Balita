@@ -1,6 +1,6 @@
 package com.magang.plnicon.service;
 
-import com.magang.plnicon.entity.balita.PmtBalita;
+import com.magang.plnicon.entity.PmtBalita;
 
 import java.util.List;
 

@@ -1,7 +1,7 @@
 package com.magang.plnicon.controller;
 
 
-import com.magang.plnicon.entity.balita.PmtBalita;
+import com.magang.plnicon.entity.PmtBalita;
 import com.magang.plnicon.service.PmtBalitaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

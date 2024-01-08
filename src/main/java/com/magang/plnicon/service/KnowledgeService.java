@@ -1,6 +1,6 @@
 package com.magang.plnicon.service;
 
-import com.magang.plnicon.entity.master.Knowledge;
+import com.magang.plnicon.entity.Knowledge;
 
 import java.util.List;
 

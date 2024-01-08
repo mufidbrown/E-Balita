@@ -1,6 +1,6 @@
 package com.magang.plnicon.service;
 
-import com.magang.plnicon.entity.balita.TumbuhKembang;
+import com.magang.plnicon.entity.TumbuhKembang;
 
 import java.util.List;
 

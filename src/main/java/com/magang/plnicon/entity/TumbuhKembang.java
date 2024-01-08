@@ -1,4 +1,4 @@
-package com.magang.plnicon.entity.balita;
+package com.magang.plnicon.entity;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;

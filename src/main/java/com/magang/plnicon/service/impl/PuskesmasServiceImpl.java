@@ -1,6 +1,6 @@
 package com.magang.plnicon.service.impl;
 
-import com.magang.plnicon.entity.master.Puskesmas;
+import com.magang.plnicon.entity.Puskesmas;
 import com.magang.plnicon.repository.PuskesmasRepository;
 import com.magang.plnicon.service.PuskesmasService;
 import org.springframework.beans.factory.annotation.Autowired;

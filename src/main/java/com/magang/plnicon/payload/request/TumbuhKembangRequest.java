@@ -10,7 +10,7 @@ import javax.validation.constraints.NotBlank;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class TumbuhKembang {
+public class TumbuhKembangRequest {
 
     @NotBlank
     private String usia_bulan;
@@ -23,4 +23,5 @@ public class TumbuhKembang {
 
     @NotBlank
     private String hasil;
+
 }

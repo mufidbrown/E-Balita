@@ -1,6 +1,6 @@
 package com.magang.plnicon.service.impl;
 
-import com.magang.plnicon.entity.balita.TumbuhKembang;
+import com.magang.plnicon.entity.TumbuhKembang;
 import com.magang.plnicon.repository.TumbuhKembangRepository;
 import com.magang.plnicon.service.TumbuhKembangService;
 import org.springframework.beans.factory.annotation.Autowired;

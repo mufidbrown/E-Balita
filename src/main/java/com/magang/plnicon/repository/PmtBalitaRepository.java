@@ -1,6 +1,6 @@
 package com.magang.plnicon.repository;
 
-import com.magang.plnicon.entity.balita.PmtBalita;
+import com.magang.plnicon.entity.PmtBalita;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

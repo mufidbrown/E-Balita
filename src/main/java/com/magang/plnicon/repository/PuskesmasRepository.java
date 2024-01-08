@@ -1,6 +1,6 @@
 package com.magang.plnicon.repository;
 
-import com.magang.plnicon.entity.master.Puskesmas;
+import com.magang.plnicon.entity.Puskesmas;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

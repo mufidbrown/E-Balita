@@ -1,6 +1,6 @@
 package com.magang.plnicon.service;
 
-import com.magang.plnicon.entity.master.Posyandu;
+import com.magang.plnicon.entity.Posyandu;
 
 import java.util.List;
 

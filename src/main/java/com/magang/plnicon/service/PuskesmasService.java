@@ -1,6 +1,6 @@
 package com.magang.plnicon.service;
 
-import com.magang.plnicon.entity.master.Puskesmas;
+import com.magang.plnicon.entity.Puskesmas;
 
 import java.util.List;
 

@@ -1,6 +1,6 @@
 package com.magang.plnicon.controller;
 
-import com.magang.plnicon.entity.master.Posyandu;
+import com.magang.plnicon.entity.Posyandu;
 import com.magang.plnicon.service.PosyanduService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
