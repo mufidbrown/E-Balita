@@ -7,7 +7,7 @@ import lombok.NoArgsConstructor;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "Pmt")
+@Table(name = "PmtBalita")
 @Data
 @NoArgsConstructor
 public class Pmt {
