@@ -1,7 +1,7 @@
 package com.magang.plnicon.service.impl;
 
 
-import com.magang.plnicon.entity.Pengguna;
+import com.magang.plnicon.entity.master.Pengguna;
 import com.magang.plnicon.repository.PenggunaRepository;
 import com.magang.plnicon.service.PenggunaService;
 import org.springframework.beans.factory.annotation.Autowired;

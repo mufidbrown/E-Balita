@@ -1,7 +1,7 @@
 package com.magang.plnicon.controller;
 
 
-import com.magang.plnicon.entity.Pmt;
+import com.magang.plnicon.entity.master.Pmt;
 import com.magang.plnicon.service.PmtService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

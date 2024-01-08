@@ -1,7 +1,7 @@
 package com.magang.plnicon.service;
 
 
-import com.magang.plnicon.entity.Pengguna;
+import com.magang.plnicon.entity.master.Pengguna;
 
 import java.util.List;
 

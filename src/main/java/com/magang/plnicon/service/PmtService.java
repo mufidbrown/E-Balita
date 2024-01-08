@@ -1,6 +1,6 @@
 package com.magang.plnicon.service;
 
-import com.magang.plnicon.entity.Pmt;
+import com.magang.plnicon.entity.master.Pmt;
 
 import java.util.List;
 

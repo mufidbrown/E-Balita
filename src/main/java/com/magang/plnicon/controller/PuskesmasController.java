@@ -1,6 +1,6 @@
 package com.magang.plnicon.controller;
 
-import com.magang.plnicon.entity.Puskesmas;
+import com.magang.plnicon.entity.master.Puskesmas;
 import com.magang.plnicon.service.PuskesmasService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

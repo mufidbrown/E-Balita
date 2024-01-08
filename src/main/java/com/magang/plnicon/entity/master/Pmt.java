@@ -1,4 +1,4 @@
-package com.magang.plnicon.entity;
+package com.magang.plnicon.entity.master;
 
 
 import lombok.Data;

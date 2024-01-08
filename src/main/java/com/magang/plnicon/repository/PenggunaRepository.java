@@ -1,6 +1,6 @@
 package com.magang.plnicon.repository;
 
-import com.magang.plnicon.entity.Pengguna;
+import com.magang.plnicon.entity.master.Pengguna;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

@@ -1,6 +1,6 @@
 package com.magang.plnicon.service.impl;
 
-import com.magang.plnicon.entity.Pmt;
+import com.magang.plnicon.entity.master.Pmt;
 import com.magang.plnicon.repository.PmtRepository;
 import com.magang.plnicon.service.PmtService;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -1,4 +1,23 @@
 package com.magang.plnicon.entity.balita;
 
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+import javax.persistence.*;
+
+
+@Entity
+@Table(name = "Pmt_balita")
+@Data
+@NoArgsConstructor
 public class TumbuhKembang {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
+    private String usia_bulan;
+    private String tanggal_sampel;
+    private String jumlah_indikator;
+    private String hasil;
+
 }

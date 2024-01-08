@@ -1,6 +1,6 @@
 package com.magang.plnicon.controller;
 
-import com.magang.plnicon.entity.Knowledge;
+import com.magang.plnicon.entity.master.Knowledge;
 import com.magang.plnicon.service.KnowledgeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

@@ -1,6 +1,6 @@
 package com.magang.plnicon.controller;
 
-import com.magang.plnicon.entity.Pengguna;
+import com.magang.plnicon.entity.master.Pengguna;
 import com.magang.plnicon.service.PenggunaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
