@@ -28,7 +28,7 @@ public class PmtController {
         if (!allPmt.isEmpty()) {
             return ResponseEntity.ok(allPmt);
         } else {
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "PmtBalita tidak ditemukan dalam database");
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Pmt tidak ditemukan dalam database");
         }
     }
 
@@ -39,7 +39,7 @@ public class PmtController {
         if (pmt != null) {
             return ResponseEntity.ok(pmt);
         } else {
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "PmtBalita dengan ID " + id + " tidak ditemukan");
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Pmt dengan ID " + id + " tidak ditemukan");
         }
     }
 
@@ -50,7 +50,7 @@ public class PmtController {
         if (createdPmt != null) {
             return ResponseEntity.status(HttpStatus.CREATED).body(createdPmt);
         } else {
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Gagal membuat PmtBalita. Periksa kembali data yang diberikan.");
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Gagal membuat Pmt. Periksa kembali data yang diberikan.");
         }
     }
 
@@ -62,7 +62,7 @@ public class PmtController {
             if (updatedPmt != null) {
                 return ResponseEntity.ok(updatedPmt);
             } else {
-                throw new ResponseStatusException(HttpStatus.NOT_FOUND, "PmtBalita dengan ID " + id + " tidak ditemukan");
+                throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Pmt dengan ID " + id + " tidak ditemukan");
             }
         } catch (IllegalArgumentException e) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, e.getMessage());
@@ -76,7 +76,7 @@ public class PmtController {
         Pmt pmt = pmtService.getPmtById(id);
         if (pmt != null) {
             pmtService.deletePmt(id);
-            return ResponseEntity.ok("PmtBalita dengan ID " + id + " berhasil dihapus");
+            return ResponseEntity.ok("Pmt dengan ID " + id + " berhasil dihapus");
         } else {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
