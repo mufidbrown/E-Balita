@@ -71,7 +71,7 @@ public class PmtServiceImpl implements PmtService {
 
             return pmtRepository.save(existingPmt);
         } else {
-            throw new EntityNotFoundException("Knowledge dengan ID " + id + " tidak ditemukan");
+            throw new EntityNotFoundException("Pmt dengan ID " + id + " tidak ditemukan");
         }
     }
 
