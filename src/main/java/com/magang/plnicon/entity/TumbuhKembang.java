@@ -20,4 +20,8 @@ public class TumbuhKembang {
     private String jumlah_indikator;
     private String hasil;
 
+    @ManyToOne
+    @JoinColumn(name = "laporan_balita_id")
+    private LaporanBalita laporanBalita;
+
 }

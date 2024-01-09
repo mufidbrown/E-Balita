@@ -20,4 +20,8 @@ public class ObatCacing {
     private String nama_obat;
     private String keterangan;
 
+    @ManyToOne
+    @JoinColumn(name = "laporan_balita_id")
+    private LaporanBalita laporanBalita;
+
 }

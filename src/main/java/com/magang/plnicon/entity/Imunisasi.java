@@ -21,6 +21,10 @@ public class Imunisasi {
     private String jenis_imunisasi;
     private String keterangan;
 
+    @ManyToOne
+    @JoinColumn(name = "laporan_balita_id")
+    private LaporanBalita laporanBalita;
+
 }
 
 

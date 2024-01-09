@@ -22,6 +22,10 @@ public class Vitamin {
     private String jumlah_vitamin;
     private String keterangan;
 
+    @ManyToOne
+    @JoinColumn(name = "laporan_balita_id")
+    private LaporanBalita laporanBalita;
+
 
 }
 
