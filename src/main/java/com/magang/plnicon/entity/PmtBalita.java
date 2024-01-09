@@ -19,7 +19,14 @@ public class PmtBalita {
     private String makanan_pmt;
     private String keterangan;
 
-    @ManyToOne
-    @JoinColumn(name = "laporan_balita_id")
-    private LaporanBalita laporanBalita;
+
+
+//    @ManyToOne
+//    @JoinColumn(name = "id_laporan")
+//    private LaporanBalita laporanBalita;
 }
+
+
+//    @ManyToOne
+//    @JoinColumn(name = "id_laporan_balitas")
+//    private LaporanBalita laporanBalita;

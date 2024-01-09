@@ -4,11 +4,10 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import java.util.List;
 
 
 @Entity
-@Table(name = "LaporanBalita")
+@Table(name = "LaporanBalitas")
 @Data
 @NoArgsConstructor
 public class LaporanBalita {
@@ -29,10 +28,56 @@ public class LaporanBalita {
     private String puskesmas;
     private String status;
 
-    @OneToMany(mappedBy = "laporanBalita")
-    private List<Antropometri> antropometriList;
 
-    @OneToMany(mappedBy = "laporanBalita")
-    private List<Imunisasi> imunisasiList;
+//    @OneToMany(mappedBy = "laporanBalita")
+//    private List<TumbuhKembang> tumbuhKembangList;
+//
+//    @OneToMany(mappedBy = "laporanBalita")
+//    private List<PmtBalita> pmtBalitaList;
+
 
 }
+
+
+
+
+//    @OneToMany(mappedBy = "laporanBalita")
+//    private List<Antropometri> antropometriList;
+//
+//    @OneToMany(mappedBy = "laporanBalita")
+//    private List<Imunisasi> imunisasiList;
+
+
+
+//    @ManyToOne
+//    @JoinColumn(name = "id_antropometris")
+//    private Antropometri antropometri;
+//
+//    @ManyToOne
+//    @JoinColumn(name = "id_balitas")
+//    private Balita balita;
+//
+//    @ManyToOne
+//    @JoinColumn(name = "id_dokumens")
+//    private Dokumen dokumen;
+//
+//    @ManyToOne
+//    @JoinColumn(name = "id_imunisasis")
+//    private Imunisasi imunisasi;
+//
+//    @ManyToOne
+//    @JoinColumn(name = "id_obat_cacings")
+//    private ObatCacing obatCacing;
+//
+//    @ManyToOne
+//    @JoinColumn(name = "id_pmt_balitas")
+//    private PmtBalita pmtBalita;
+//
+//    @ManyToOne
+//    @JoinColumn(name = "id_tumbuh_kembangs")
+//    private TumbuhKembang tumbuhKembang;
+
+
+//    @ManyToOne
+//    @JoinColumn(name = "id_vitamins")
+//    private Vitamin vitamin;

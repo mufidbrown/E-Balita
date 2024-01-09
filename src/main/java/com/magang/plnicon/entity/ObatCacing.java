@@ -6,7 +6,7 @@ import lombok.NoArgsConstructor;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "Obat_Cacing")
+@Table(name = "Obat_Cacings")
 @Data
 @NoArgsConstructor
 public class ObatCacing {
@@ -20,8 +20,8 @@ public class ObatCacing {
     private String nama_obat;
     private String keterangan;
 
-    @ManyToOne
-    @JoinColumn(name = "laporan_balita_id")
-    private LaporanBalita laporanBalita;
+//    @ManyToOne
+//    @JoinColumn(name = "id_laporan_balitas")
+//    private LaporanBalita laporanBalita;
 
 }

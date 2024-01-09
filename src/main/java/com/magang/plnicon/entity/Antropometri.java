@@ -7,7 +7,7 @@ import javax.persistence.*;
 
 
 @Entity
-@Table(name = "Antropometri")
+@Table(name = "Antropometris")
 @Data
 @NoArgsConstructor
 public class Antropometri {
@@ -28,9 +28,9 @@ public class Antropometri {
     private String foto;
     private String keterangan;
 
-    @ManyToOne
-    @JoinColumn(name = "laporan_balita_id")
-    private LaporanBalita laporanBalita;
+//    @ManyToOne
+//    @JoinColumn(name = "id_laporan_balitas")
+//    private LaporanBalita laporanBalita;
 
 }
 

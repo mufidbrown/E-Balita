@@ -7,7 +7,7 @@ import javax.persistence.*;
 
 
 @Entity
-@Table(name = "Balita")
+@Table(name = "Balitas")
 @Data
 @NoArgsConstructor
 public class Balita {

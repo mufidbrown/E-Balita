@@ -7,7 +7,7 @@ import lombok.NoArgsConstructor;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "Dokumen")
+@Table(name = "Dokumens")
 @Data
 @NoArgsConstructor
 public class Dokumen {
@@ -22,8 +22,8 @@ public class Dokumen {
     private String keterangan;
     private String upload_by;
 
-    @ManyToOne
-    @JoinColumn(name = "laporan_balita_id")
-    private LaporanBalita laporanBalita;
+//    @ManyToOne
+//    @JoinColumn(name = "id_laporan_balitas")
+//    private LaporanBalita laporanBalita;
 
 }

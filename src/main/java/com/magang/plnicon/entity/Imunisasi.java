@@ -7,7 +7,7 @@ import javax.persistence.*;
 
 
 @Entity
-@Table(name = "Imunisasi")
+@Table(name = "Imunisasis")
 @Data
 @NoArgsConstructor
 public class Imunisasi {
@@ -21,9 +21,9 @@ public class Imunisasi {
     private String jenis_imunisasi;
     private String keterangan;
 
-    @ManyToOne
-    @JoinColumn(name = "laporan_balita_id")
-    private LaporanBalita laporanBalita;
+//    @ManyToOne
+//    @JoinColumn(name = "id_laporan_balitas")
+//    private LaporanBalita laporanBalita;
 
 }
 
