@@ -80,7 +80,7 @@ public class PenggunaController {
         Pengguna pengguna = penggunaService.getPenggunaById(id);
         if (pengguna != null) {
             penggunaService.deletePengguna(id);
-            return ResponseEntity.ok("PmtBalita dengan ID " + id + " berhasil dihapus");
+            return ResponseEntity.ok("Pengguna dengan ID " + id + " berhasil dihapus");
         } else {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
