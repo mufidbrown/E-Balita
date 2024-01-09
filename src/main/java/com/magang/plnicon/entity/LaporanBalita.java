@@ -29,11 +29,14 @@ public class LaporanBalita {
     private String status;
 
 
-//    @OneToMany(mappedBy = "laporanBalita")
-//    private List<TumbuhKembang> tumbuhKembangList;
-//
-//    @OneToMany(mappedBy = "laporanBalita")
-//    private List<PmtBalita> pmtBalitaList;
+    @ManyToOne
+    @JoinColumn(name = "id_tumbuh_kembangs")
+    private TumbuhKembang tumbuhKembang;
+
+
+    @ManyToOne
+    @JoinColumn(name = "id_pmt_balitas")
+    private PmtBalita pmtBalita;
 
 
 }

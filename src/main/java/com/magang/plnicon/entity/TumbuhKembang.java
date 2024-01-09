@@ -21,7 +21,9 @@ public class TumbuhKembang {
     private String hasil;
 
 //    @ManyToOne
-//    @JoinColumn(name = "id_laporan_balitas")
+//    @JoinColumn(name = "laporan_balita_id")
 //    private LaporanBalita laporanBalita;
+
+
 
 }
