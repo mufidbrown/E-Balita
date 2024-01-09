@@ -22,4 +22,8 @@ public class Dokumen {
     private String keterangan;
     private String upload_by;
 
+    @ManyToOne
+    @JoinColumn(name = "laporan_balita_id")
+    private LaporanBalita laporanBalita;
+
 }
