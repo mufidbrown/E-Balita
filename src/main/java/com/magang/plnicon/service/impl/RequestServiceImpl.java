@@ -28,12 +28,14 @@ public class RequestServiceImpl implements RequestService {
     }
 
     @Override
-    public Request createRequest(String description) {
-        Request request = new Request();
-        request.setDescription(description);
-        request.setStatus(RequestStatus.PENDING);
-        return requestRepository.save(request);
+    public Request createRequest(Request request) {
+        if (request.getId() != null) {
+            throw new IllegalArgumentException("Tidak dapat membuat pengguna dengan ID yang sudah ditentukan");
+        } else {
+            return requestRepository.save(request);
+        }
     }
+
 
     @Override
     public List<Request> getPendingRequests() {

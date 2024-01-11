@@ -6,6 +6,7 @@ import com.magang.plnicon.entity.Role;
 import com.magang.plnicon.entity.User;
 import com.magang.plnicon.exception.RefreshTokenException;
 import com.magang.plnicon.exception.RoleException;
+import com.magang.plnicon.jwt.JwtUtils;
 import com.magang.plnicon.payload.request.LoginRequest;
 import com.magang.plnicon.payload.request.RoleRequest;
 import com.magang.plnicon.payload.request.SignupRequest;
@@ -14,7 +15,6 @@ import com.magang.plnicon.payload.response.JWTResponse;
 import com.magang.plnicon.payload.response.MessageResponse;
 import com.magang.plnicon.payload.response.TokenRefreshResponse;
 import com.magang.plnicon.security.CustomUserDetails;
-import com.magang.plnicon.jwt.JwtUtils;
 import com.magang.plnicon.service.impl.RefreshTokenService;
 import com.magang.plnicon.service.impl.RoleService;
 import com.magang.plnicon.service.impl.UserService;
@@ -27,10 +27,7 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import springfox.documentation.annotations.ApiIgnore;
 
 import java.security.Principal;
@@ -42,6 +39,9 @@ import java.util.stream.Collectors;
 @RestController
 @RequestMapping("/api/auth")
 public class AuthController {
+
+//    @Autowired
+//    private RequestService requestService;
 
     private static final Logger LOGGER = LoggerFactory.getLogger(AuthController.class);
 
@@ -88,7 +88,8 @@ public class AuthController {
 
             default:
 
-                role = new Role(ERole.ROLE_USER);;
+                role = new Role(ERole.ROLE_USER);
+                ;
         }
 
         roleService.saveRole(role);
@@ -114,15 +115,14 @@ public class AuthController {
 //        String approval_status = signUpRequest.getApproval_status();
 
 
-
         Set<String> strRoles = signUpRequest.getRoles();
         Set<Role> roles = new HashSet<>();
 
-        if(userService.existsByUsername(username)){
+        if (userService.existsByUsername(username)) {
             return ResponseEntity.badRequest().body(new MessageResponse("Error: Username is already taken!"));
         }
 
-        if(userService.existsByEmail(email)){
+        if (userService.existsByEmail(email)) {
             return ResponseEntity.badRequest().body(new MessageResponse("Error: Email is already taken!"));
         }
 
@@ -139,8 +139,6 @@ public class AuthController {
 //        user.setApproval_status(approval_status);
 
 
-
-
         if (strRoles != null) {
             strRoles.forEach(role -> {
                 LOGGER.info("AuthController | registerUser | role : " + role);
@@ -149,11 +147,11 @@ public class AuthController {
 
                         Role adminRole = null;
 
-                        if(roleService.findByName(ERole.ROLE_ADMIN).isEmpty()){
+                        if (roleService.findByName(ERole.ROLE_ADMIN).isEmpty()) {
                             adminRole = new Role(ERole.ROLE_ADMIN);
-                        }else{
+                        } else {
                             adminRole = roleService.findByName(ERole.ROLE_ADMIN)
-                                        .orElseThrow(() -> new RoleException("Error: Admin Role is not found."));
+                                    .orElseThrow(() -> new RoleException("Error: Admin Role is not found."));
                         }
 
                         roles.add(adminRole);
@@ -163,9 +161,9 @@ public class AuthController {
 
                         Role moderatorRole = null;
 
-                        if(roleService.findByName(ERole.ROLE_MODERATOR).isEmpty()){
+                        if (roleService.findByName(ERole.ROLE_MODERATOR).isEmpty()) {
                             moderatorRole = new Role(ERole.ROLE_MODERATOR);
-                        }else{
+                        } else {
                             moderatorRole = roleService.findByName(ERole.ROLE_MODERATOR)
                                     .orElseThrow(() -> new RoleException("Error: Moderator Role is not found."));
                         }
@@ -178,9 +176,9 @@ public class AuthController {
 
                         Role userRole = null;
 
-                        if(roleService.findByName(ERole.ROLE_USER).isEmpty()){
+                        if (roleService.findByName(ERole.ROLE_USER).isEmpty()) {
                             userRole = new Role(ERole.ROLE_USER);
-                        }else{
+                        } else {
                             userRole = roleService.findByName(ERole.ROLE_USER)
                                     .orElseThrow(() -> new RoleException("Error: User Role is not found."));
                         }
@@ -190,7 +188,7 @@ public class AuthController {
                 }
 
             });
-        }else{
+        } else {
 
             roleService.findByName(ERole.ROLE_USER).ifPresentOrElse(roles::add, () -> roles.add(new Role(ERole.ROLE_USER)));
         }
@@ -214,7 +212,7 @@ public class AuthController {
         LOGGER.info("AuthController | authenticateUser | username : " + username);
         LOGGER.info("AuthController | authenticateUser | password : " + password);
 
-        UsernamePasswordAuthenticationToken usernamePasswordAuthenticationToken = new UsernamePasswordAuthenticationToken(username,password);
+        UsernamePasswordAuthenticationToken usernamePasswordAuthenticationToken = new UsernamePasswordAuthenticationToken(username, password);
 
         LOGGER.info("AuthController | authenticateUser | usernamePasswordAuthenticationToken : " + usernamePasswordAuthenticationToken.toString());
 
@@ -261,9 +259,9 @@ public class AuthController {
 
         int deletedValue = refreshTokenService.deleteByUserId(userId);
 
-        if(deletedValue == 1){
+        if (deletedValue == 1) {
             return ResponseEntity.ok(new MessageResponse("Log out successful!"));
-        }else{
+        } else {
             return ResponseEntity.ok(new MessageResponse("You're already logout"));
         }
 
@@ -298,4 +296,11 @@ public class AuthController {
         return ResponseEntity.ok(new TokenRefreshResponse(newToken, requestRefreshToken));
 
     }
+
+
+//    @PutMapping("/{userId}")
+//    public ResponseEntity<User> updateUser(@PathVariable Integer userId, @RequestBody User userDetails) {
+//        User updatedUser = userService.updateUser(userId, userDetails);
+//        return updatedUser != null ? ResponseEntity.ok(updatedUser) : ResponseEntity.notFound().build();
+//    }
 }

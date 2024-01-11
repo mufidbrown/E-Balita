@@ -26,7 +26,7 @@ public class User implements Serializable {
     private String provinsi;
     private String dinkes_kabupaten;
     private String dinkes_provinsi;
-    private String approval_status;
+//    private String approval_status;
 
 
     @ManyToMany(cascade = CascadeType.MERGE,fetch = FetchType.EAGER)
@@ -35,5 +35,26 @@ public class User implements Serializable {
             inverseJoinColumns = @JoinColumn(name = "role_id"))
     private Set<Role> roles = new HashSet<>();
 
-
 }
+
+
+
+/*    ini optional
+            bisa approve langsung, atau approve nya via method PUT*/
+
+/*    selain itu User juga bisa melakukan pengajuan setelah login,
+        melalui form/page tersendiri untuk pengajuan, di page tersebut user bisa memantau sewaktu2*/
+
+
+
+
+//    @Enumerated(EnumType.STRING)
+//    private RequestStatus status;
+
+//    @ManyToOne
+//    @JoinColumn(name = "id_requests")
+//    private Request request;
+
+//    @ManyToOne
+//    @JoinColumn(name = "status_requests")
+//    private Request request;

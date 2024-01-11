@@ -29,15 +29,19 @@ public class RequestController {
         }
 
 
-        @PostMapping("/create")
-        public ResponseEntity<String> createRequest(@RequestParam String description) {
-            Request createdRequest = requestService.createRequest(description);
-            if (createdRequest != null) {
-                return ResponseEntity.ok("Permintaan dibuat dengan ID: " + createdRequest.getId());
-            } else {
-                return ResponseEntity.badRequest().body("Gagal membuat permintaan.");
+    @PostMapping("/create")
+    public ResponseEntity<?> createRequest(@RequestBody Request request) {
+        if (request != null) {
+            try {
+                Request createdRequest = requestService.createRequest(request);
+                return ResponseEntity.status(HttpStatus.CREATED).body(createdRequest);
+            } catch (IllegalArgumentException e) {
+                return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Gagal membuat Request: " + e.getMessage());
             }
+        } else {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Invalid Request input");
         }
+    }
 
         @GetMapping("/pending")
         public List<Request> getPendingRequests() {

@@ -20,4 +20,21 @@ public class Request {
 
     @Enumerated(EnumType.STRING)
     private RequestStatus status;
+
+    @OneToOne
+    @JoinColumn(name = "users_id")
+    private User user;
+
+
+    //@OneToMany
+    //@JoinColumn(name = "users_id")
+    //private User user;
+
+/*
+    Jadi nanti dibuatkan sebuah tampilan Front end khusus halaman request ini
+*/
+
+    /*  jadi alurnya seperti ini:  selain itu User juga bisa melakukan pengajuan setelah login,
+        melalui form/page tersendiri untuk pengajuan, di page tersebut user bisa memantau sewaktu2*/
+
 }

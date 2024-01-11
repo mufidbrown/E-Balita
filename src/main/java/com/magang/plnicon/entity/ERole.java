@@ -7,5 +7,9 @@ public enum ERole {
 //    ROLE_AHLI_GIZI,         //puskesmas
 //    ROLE_QUALITY_ASSURANCE,  //pusat
     ROLE_MODERATOR,
-    ROLE_ADMIN             //pusat
+    ROLE_ADMIN  ,           //pusat
+
+
+
+
     }

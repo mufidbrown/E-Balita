@@ -8,7 +8,7 @@ public interface RequestService {
     List<Request> getPendingRequests();
     Request acceptRequest(Integer requestId);
     Request rejectRequest(Integer requestId);
-    Request createRequest(String description);
+    Request createRequest(Request request);
     List<Request> getAllRequest();
 
 }

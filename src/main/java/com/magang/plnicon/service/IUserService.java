@@ -11,4 +11,7 @@ public interface IUserService {
     Boolean existsByUsername(String username);
     Boolean existsByEmail(String email);
     User findById(int userId);
+
+//    User updateUser(Integer userId, User userDetails);
+
 }
