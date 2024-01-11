@@ -25,6 +25,9 @@ public class Request {
     @JoinColumn(name = "users_id")
     private User user;
 
+/*    jadi user mengajukan request tanpa "Status": ;
+    kemudian si Admin melanjutkan pengajuan dari user tersebut dengan menggunakan controller put reject, accepted, & pending*/
+
 
     //@OneToMany
     //@JoinColumn(name = "users_id")
