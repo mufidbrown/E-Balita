@@ -28,4 +28,16 @@ public class Balita {
     private String puskesmas;
     private String status;
 
+    /*@ManyToOne
+    @JoinColumn(name = "tindak_lanjuts_id")
+    private TindakLanjutPuskesmas tindakLanjutPuskesmas;*/
+
+   /* @ManyToOne
+    @JoinColumn(name = "tindakan")
+    private TindakLanjutPuskesmas tindakLanjutPuskesmas;
+
+    @ManyToOne
+    @JoinColumn(name = "id_pmt_balitas")
+    private PmtBalita pmtBalita;*/
+
 }

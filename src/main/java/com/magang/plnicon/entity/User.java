@@ -20,6 +20,7 @@ public class User implements Serializable {
     private String username;
     private String email;
     private String password;
+    private String posyandu;
     private String kelurahan;
     private String kecamatan;
     private String kabupaten;

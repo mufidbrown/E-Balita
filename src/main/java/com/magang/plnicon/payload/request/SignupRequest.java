@@ -33,6 +33,10 @@ public class SignupRequest {
 
     @NotBlank
     @Size(min = 3, max = 20)
+    private String posyandu;
+
+    @NotBlank
+    @Size(min = 3, max = 20)
     private String kecamatan;
 
     @NotBlank
