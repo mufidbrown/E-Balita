@@ -26,12 +26,14 @@ public class TindakLanjutPuskesmas {
     //action:Sudah ditangani
 
 
-//    @ManyToOne
-//    @JoinColumn(name = "id_balitas")
-//    private Balita balita;
-
     @OneToOne
     @JoinColumn(name = "id_balitas")
     private Balita balita;
 
 }
+
+
+
+//    @ManyToOne
+//    @JoinColumn(name = "id_balitas")
+//    private Balita balita;
