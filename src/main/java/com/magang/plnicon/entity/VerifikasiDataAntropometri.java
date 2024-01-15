@@ -26,8 +26,16 @@ public class VerifikasiDataAntropometri {
     private Integer id;
 
     @ManyToOne
-    @JoinColumn(name = "antropometri_id")
+    @JoinColumn(name = "antropometris_id")
     private Antropometri antropometri;
+
+    @ManyToOne
+    @JoinColumn(name = "id_balitas")
+    private Balita balita;
+
+   /* @ManyToOne
+    @JoinColumn(name = "balitas_id")
+    private Balita balita;*/
 
     private Boolean isValid;
     private String status;
