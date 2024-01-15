@@ -27,6 +27,11 @@ public class User implements Serializable {
     private String provinsi;
     private String dinkes_kabupaten;
     private String dinkes_provinsi;
+
+    //ini tambahan 15/01/2024
+    private boolean active;
+
+
 //    private String approval_status;
 
 
