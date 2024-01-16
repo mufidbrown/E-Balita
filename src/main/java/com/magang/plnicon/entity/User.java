@@ -27,7 +27,11 @@ public class User implements Serializable {
     private String provinsi;
     private String dinkes_kabupaten;
     private String dinkes_provinsi;
+
+    @Column(name = "active", columnDefinition = "BIT DEFAULT 0", nullable = false)
     private boolean active;
+
+
 
 //    private String approval_status;
 
