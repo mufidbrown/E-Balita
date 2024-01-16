@@ -17,4 +17,5 @@ public class AdminApproval {
     private Integer userId;
     private boolean approved;
 
+
 }

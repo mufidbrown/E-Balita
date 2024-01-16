@@ -18,6 +18,8 @@ public interface UserRepository extends JpaRepository<User, Integer> {
 
     User findById(int userId);
 
+
+
 //    User updateUser(Integer userId, User userDetails);
 
 
