@@ -16,15 +16,14 @@ public enum ERole {
 
     */
 
-    ROLE_ADMIN  ,
-
+    ROLE_ADMIN,
     ROLE_AHLI_GIZI,
-
-
-
-    ROLE_USER,
-    ROLE_MODERATOR,
-//    ROLE_ADMIN  ,
+    ROLE_KABUPATEN,
+    ROLE_KADER,
+    ROLE_KECAMATAN,
+    ROLE_KELURAHAN,
+    ROLE_PROVINSI,
+    ROLE_USER
 
 }
 

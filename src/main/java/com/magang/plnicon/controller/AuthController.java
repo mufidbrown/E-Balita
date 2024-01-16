@@ -81,10 +81,48 @@ public class AuthController {
 
                 break;
 
-            case "ROLE_MODERATOR":
 
-                role = new Role(ERole.ROLE_MODERATOR);
+            case "ROLE_AHLI_GIZI":
+
+                role = new Role(ERole.ROLE_AHLI_GIZI);
+
                 break;
+
+
+            case "ROLE_KABUPATEN":
+
+                role = new Role(ERole.ROLE_KABUPATEN);
+
+                break;
+
+
+            case "ROLE_KADER":
+
+                role = new Role(ERole.ROLE_KADER);
+
+                break;
+
+
+            case " ROLE_KECAMATAN":
+
+                role = new Role(ERole. ROLE_KECAMATAN);
+
+                break;
+
+
+            case "ROLE_KELURAHAN":
+
+                role = new Role(ERole.ROLE_KELURAHAN);
+
+                break;
+
+
+            case "ROLE_PROVINSI":
+
+                role = new Role(ERole.ROLE_PROVINSI);
+
+                break;
+
 
             default:
 
@@ -157,20 +195,101 @@ public class AuthController {
                         roles.add(adminRole);
                         break;
 
-                    case "ROLE_MODERATOR":
 
-                        Role moderatorRole = null;
+                    case "ROLE_AHLI_GIZI":
 
-                        if (roleService.findByName(ERole.ROLE_MODERATOR).isEmpty()) {
-                            moderatorRole = new Role(ERole.ROLE_MODERATOR);
+                        Role ahliGiziRole = null;
+
+                        if (roleService.findByName(ERole.ROLE_AHLI_GIZI).isEmpty()) {
+                            ahliGiziRole = new Role(ERole.ROLE_AHLI_GIZI);
                         } else {
-                            moderatorRole = roleService.findByName(ERole.ROLE_MODERATOR)
-                                    .orElseThrow(() -> new RoleException("Error: Moderator Role is not found."));
+                            ahliGiziRole = roleService.findByName(ERole.ROLE_AHLI_GIZI)
+                                    .orElseThrow(() -> new RoleException("Error: Ahli Gizi Role is not found."));
                         }
 
-                        roles.add(moderatorRole);
+                        roles.add(ahliGiziRole);
+                        break;
+
+
+                    case "ROLE_KABUPATEN":
+
+                        Role kabupatenRole = null;
+
+                        if (roleService.findByName(ERole.ROLE_KABUPATEN).isEmpty()) {
+                            kabupatenRole = new Role(ERole.ROLE_KABUPATEN);
+                        } else {
+                            kabupatenRole = roleService.findByName(ERole.ROLE_KABUPATEN)
+                                    .orElseThrow(() -> new RoleException("Error: Kabupaten Role is not found."));
+                        }
+
+                        roles.add(kabupatenRole);
 
                         break;
+
+
+                    case "ROLE_KADER":
+
+                        Role kaderRole = null;
+
+                        if (roleService.findByName(ERole.ROLE_KADER).isEmpty()) {
+                            kaderRole = new Role(ERole.ROLE_KADER);
+                        } else {
+                            kaderRole = roleService.findByName(ERole.ROLE_KADER)
+                                    .orElseThrow(() -> new RoleException("Error: Kader Role is not found."));
+                        }
+
+                        roles.add(kaderRole);
+
+                        break;
+
+
+                    case "ROLE_KECAMATAN":
+
+                        Role kecamatanRole = null;
+
+                        if (roleService.findByName(ERole.ROLE_KECAMATAN).isEmpty()) {
+                            kecamatanRole = new Role(ERole.ROLE_KECAMATAN);
+                        } else {
+                            kecamatanRole = roleService.findByName(ERole.ROLE_KECAMATAN)
+                                    .orElseThrow(() -> new RoleException("Error: Kecamatan Role is not found."));
+                        }
+
+                        roles.add(kecamatanRole);
+
+                        break;
+
+
+                    case "ROLE_KELURAHAN":
+
+                        Role kelurahanRole = null;
+
+                        if (roleService.findByName(ERole.ROLE_KELURAHAN).isEmpty()) {
+                            kelurahanRole = new Role(ERole.ROLE_KELURAHAN);
+                        } else {
+                            kelurahanRole = roleService.findByName(ERole.ROLE_KELURAHAN)
+                                    .orElseThrow(() -> new RoleException("Error: Kelurahan Role is not found."));
+                        }
+
+                        roles.add(kelurahanRole);
+
+                        break;
+
+
+                    case "ROLE_PROVINSI":
+
+                        Role provinsiRole = null;
+
+                        if (roleService.findByName(ERole.ROLE_PROVINSI).isEmpty()) {
+                            provinsiRole = new Role(ERole.ROLE_PROVINSI);
+                        } else {
+                            provinsiRole = roleService.findByName(ERole.ROLE_PROVINSI)
+                                    .orElseThrow(() -> new RoleException("Error: Provinsi Role is not found."));
+                        }
+
+                        roles.add(provinsiRole);
+
+                        break;
+
 
                     default:
 
@@ -298,9 +417,5 @@ public class AuthController {
     }
 
 
-//    @PutMapping("/{userId}")
-//    public ResponseEntity<User> updateUser(@PathVariable Integer userId, @RequestBody User userDetails) {
-//        User updatedUser = userService.updateUser(userId, userDetails);
-//        return updatedUser != null ? ResponseEntity.ok(updatedUser) : ResponseEntity.notFound().build();
-//    }
+
 }
