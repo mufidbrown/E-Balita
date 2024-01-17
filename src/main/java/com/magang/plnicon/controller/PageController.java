@@ -20,6 +20,22 @@ public class PageController {
     @Autowired
     DataDAO dataDAO;
 
+
+//    private final PuskesmasService puskesmasService;
+//
+//    public PageController(PuskesmasService puskesmasService, VitaminService vitaminService) {
+//        this.puskesmasService = puskesmasService;
+//        this.vitaminService = vitaminService;
+//    }
+//
+//    private final VitaminService vitaminService;
+//
+//    @Autowired
+//    public VitaminController(VitaminService vitaminService) {
+//        this.vitaminService = vitaminService;
+//    }
+
+
     @RequestMapping("/")
     public String showHome(){
         return "index";
@@ -40,6 +56,26 @@ public class PageController {
         jsonObject.add("series", jsonArraySeries);
         return jsonObject.toString();
     }
+
+//    @GetMapping("/puskesmas")
+//    @PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
+//    public ResponseEntity<List<Puskesmas>> getAllPuskesmas() {
+//        List<Puskesmas> allPuskesmas = puskesmasService.getAllPuskesmas();
+//        return new ResponseEntity<>(allPuskesmas, HttpStatus.OK);
+//    }
+
+
+
+
+//    @GetMapping("/all")
+//    public ResponseEntity<List<Vitamin>> getAllVitamin() {
+//        List<Vitamin> allVitamin = vitaminService.getAllVitamin();
+//        if (!allVitamin.isEmpty()) {
+//            return ResponseEntity.ok(allVitamin);
+//        } else {
+//            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Vitamin tidak ditemukan dalam database");
+//        }
+//    }
 
 
 
