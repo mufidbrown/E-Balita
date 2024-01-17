@@ -15,6 +15,7 @@ public class UserService implements IUserService {
 
     UserRepository userRepository;
 
+
     @Autowired
     public UserService(UserRepository userRepository) {
         this.userRepository = userRepository;
@@ -46,15 +47,11 @@ public class UserService implements IUserService {
     }
 
 
-//    @Override
-//    public User updateUser(Integer userId, User userDetails) {
-//        User existingUser = userRepository.findById(userId).orElse(null);
-//        if (existingUser != null) {
-//            BeanUtils.copyProperties(userDetails, existingUser, "id");
-//            return userRepository.save(existingUser);
-//        }
-//        return null;
-//    }
+
+
 }
+
+
+
 
 

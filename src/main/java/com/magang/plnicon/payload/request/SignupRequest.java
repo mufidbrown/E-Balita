@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.util.Set;
 
@@ -55,7 +56,7 @@ public class SignupRequest {
     @Size(min = 3, max = 30)
     private String dinkes_provinsi;
 
-    @NotBlank
+    @NotNull
     private Boolean active;
 
     private Set<String> roles;

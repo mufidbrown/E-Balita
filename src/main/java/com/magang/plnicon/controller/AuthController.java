@@ -27,7 +27,10 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 import springfox.documentation.annotations.ApiIgnore;
 
 import java.security.Principal;
@@ -40,8 +43,7 @@ import java.util.stream.Collectors;
 @RequestMapping("/api/auth")
 public class AuthController {
 
-//    @Autowired
-//    private RequestService requestService;
+
 
     private static final Logger LOGGER = LoggerFactory.getLogger(AuthController.class);
 
@@ -105,7 +107,7 @@ public class AuthController {
 
             case " ROLE_KECAMATAN":
 
-                role = new Role(ERole. ROLE_KECAMATAN);
+                role = new Role(ERole.ROLE_KECAMATAN);
 
                 break;
 
@@ -143,13 +145,14 @@ public class AuthController {
         String username = signUpRequest.getUsername();
         String email = signUpRequest.getEmail();
         String password = signUpRequest.getPassword();
-
+        String posyandu = signUpRequest.getPosyandu();
         String kelurahan = signUpRequest.getKelurahan();
         String kecamatan = signUpRequest.getKecamatan();
         String kabupaten = signUpRequest.getKabupaten();
         String provinsi = signUpRequest.getProvinsi();
         String dinkes_kabupaten = signUpRequest.getDinkes_kabupaten();
         String dinkes_provinsi = signUpRequest.getDinkes_provinsi();
+        Boolean active = signUpRequest.getActive();
 //        String approval_status = signUpRequest.getApproval_status();
 
 
@@ -168,12 +171,14 @@ public class AuthController {
         user.setEmail(email);
         user.setUsername(username);
         user.setPassword(encoder.encode(password));
+        user.setPosyandu(posyandu);
         user.setKelurahan(kelurahan);
         user.setKecamatan(kecamatan);
         user.setKabupaten(kabupaten);
         user.setProvinsi(provinsi);
         user.setDinkes_kabupaten(dinkes_kabupaten);
         user.setDinkes_provinsi(dinkes_provinsi);
+        user.setActive(active);
 //        user.setApproval_status(approval_status);
 
 
@@ -416,6 +421,49 @@ public class AuthController {
 
     }
 
-
-
 }
+
+
+//
+//    @PostMapping("/{userId}")
+//    public ResponseEntity<String> activate(@PathVariable Integer userId) {
+//        if (userId == null) {
+//            return ResponseEntity.badRequest().body("User ID cannot be null");
+//        }
+//
+//        activationService.activate(userId);
+//        return ResponseEntity.ok("User activation request processed successfully.");
+//    }
+//
+//    @PutMapping("/activate/{userId}")
+//    public ResponseEntity<Void> activateUser(@PathVariable Integer userId) {
+//        userService.activateUser(userId);
+//        return new ResponseEntity<>(HttpStatus.OK);
+//    }
+
+//terbaru
+//    @PostMapping("/{userId}")
+//    public ResponseEntity<String> activateUser(@PathVariable Integer userId) {
+//        if (userId == null) {
+//            return ResponseEntity.badRequest().body("User ID cannot be null");
+//        }
+//
+//        activationService.activate(userId);
+//        return ResponseEntity.ok("User activation request processed successfully.");
+//    }
+
+
+//    @PostMapping("/create")
+//    public void approveActivation(@RequestBody ApprovalRequest approvalRequest) {
+//        activationService.approveActivation(approvalRequest.getUserId());
+//    }
+
+//    @PostMapping("/activate/{userId}")
+//    public ResponseEntity<String> activateUser(@PathVariable Integer userId) {
+//        userService.activateUser(userId);
+//        return ResponseEntity.ok("User activated successfully.");
+//    }
+
+
+
+

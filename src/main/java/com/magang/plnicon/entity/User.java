@@ -31,7 +31,18 @@ public class User implements Serializable {
     @Column(name = "active", columnDefinition = "BIT DEFAULT 0", nullable = false)
     private boolean active;
 
+//    @OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
+//    private Account account;
 
+//    @OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
+////    @JoinColumn(name = "activation_id")
+//    private Activation activation;
+
+/*
+
+    Yang Bertugas Approve & Active adalah ADMIN "Has Authority"
+
+*/
 
 //    private String approval_status;
 
