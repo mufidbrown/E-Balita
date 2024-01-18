@@ -1,4 +1,4 @@
-# E-Balita Monitoring Stunting Spring Boot
+# E-Balita Monitoring Stunting Java Spring Boot
 
 ### 📖 Information
 
