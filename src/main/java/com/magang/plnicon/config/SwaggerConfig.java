@@ -25,7 +25,7 @@ public class SwaggerConfig extends WebMvcConfigurationSupport {
     @Bean
     public Docket api() {
         return new Docket(DocumentationType.SWAGGER_2).select()
-                .apis(RequestHandlerSelectors.basePackage("com.refreshtokenjwt.app"))
+                .apis(RequestHandlerSelectors.basePackage("com.magang.plnicon"))
                 .paths(PathSelectors.regex("/.*"))
                 .build().apiInfo(apiEndPointsInfo())
                 .securitySchemes(Arrays.asList(apiKey()))
@@ -35,9 +35,9 @@ public class SwaggerConfig extends WebMvcConfigurationSupport {
     }
 
     private ApiInfo apiEndPointsInfo() {
-        return new ApiInfoBuilder().title("Refresh Token with JWT in Spring Boot")
-                .description("The usage of refreshing token with JWT in Spring Boot")
-                .contact(new Contact("Noyan Germiyanoğlu", "github.com/Rapter1990", "sngermiyanoglu@hotmail.com"))
+        return new ApiInfoBuilder().title("E-Balita Monitoring Stunting Spring Boot")
+                .description("Ilham Mufid Magang PLN Icon Plus")
+                .contact(new Contact("Ilham Mufid", "github.com/mufidbrown", "mufiddev@gmail.com"))
                 .license("Apache 2.0")
                 .licenseUrl("http://www.apache.org/licenses/LICENSE-2.0.html")
                 .version("1.12.3")
