@@ -31,7 +31,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import springfox.documentation.annotations.ApiIgnore;
+//import springfox.documentation.annotations.ApiIgnore;
 
 import java.security.Principal;
 import java.util.HashSet;
@@ -136,6 +136,73 @@ public class AuthController {
 
         return ResponseEntity.badRequest().body(new MessageResponse("Role: " + roleName + "saved "));
     }
+
+/*
+    String roleName = roleRequest.getRoleName();
+    Role role = null;
+
+        switch (roleName) {
+        case "ROLE_ADMIN":
+
+            role = new Role(ERole.ROLE_ADMIN);
+
+            break;
+
+
+        case "ROLE_AHLI_GIZI":
+
+            role = new Role(ERole.ROLE_AHLI_GIZI);
+
+            break;
+
+
+        case "ROLE_KABUPATEN":
+
+            role = new Role(ERole.ROLE_KABUPATEN);
+
+            break;
+
+
+        case "ROLE_KADER":
+
+            role = new Role(ERole.ROLE_KADER);
+
+            break;
+
+
+        case " ROLE_KECAMATAN":
+
+            role = new Role(ERole.ROLE_KECAMATAN);
+
+            break;
+
+
+        case "ROLE_KELURAHAN":
+
+            role = new Role(ERole.ROLE_KELURAHAN);
+
+            break;
+
+
+        case "ROLE_PROVINSI":
+
+            role = new Role(ERole.ROLE_PROVINSI);
+
+            break;
+
+
+        default:
+
+            role = new Role(ERole.ROLE_USER);
+            ;
+    }
+
+        roleService.saveRole(role);
+
+        return ResponseEntity.badRequest().body(new MessageResponse("Role: " + roleName + "saved "));
+}*/
+
+
 
     @PostMapping("/signup")
     public ResponseEntity<?> registerUser(@RequestBody SignupRequest signUpRequest) {
@@ -369,8 +436,9 @@ public class AuthController {
         return ResponseEntity.ok(jwtResponse);
     }
 
-    @PostMapping("/logout")
-    public ResponseEntity<?> logoutUser(@ApiIgnore Principal principalUser) {
+
+    @PostMapping("/logout")           //    @ApiIgnore
+    public ResponseEntity<?> logoutUser( Principal principalUser) {
 
         LOGGER.info("AuthController | logoutUser is started");
 
