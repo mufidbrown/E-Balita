@@ -75,7 +75,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                         "/api/v1/laporan/**",
                         "/api/v1/monitoringtindakan/**",
                         "/api/v1/pengguna/**",
-                        "/api/v1/pmtBalita/**",
+                        "/api/v1/pmtbalita/**",
                         "/api/v1/pmt/**",
                         "/api/v1/posyandu/**",
                         "/api/v1/puskesmas/**",
