@@ -12,7 +12,7 @@ import java.util.Collections;
 import java.util.List;
 
 @RestController
-@RequestMapping("/knowledge")
+@RequestMapping("/knowledge/auth")
 public class KnowledgeController {
 
     private final KnowledgeService knowledgeService;

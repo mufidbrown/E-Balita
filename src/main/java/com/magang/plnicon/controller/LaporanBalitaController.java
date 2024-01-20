@@ -12,7 +12,7 @@ import java.util.List;
 
 
 @RestController
-@RequestMapping("/laporan")
+@RequestMapping("/laporan/auth")
 public class LaporanBalitaController {
 
     private final LaporanBalitaService laporanBalitaService;

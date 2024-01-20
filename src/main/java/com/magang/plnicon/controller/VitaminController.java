@@ -12,7 +12,7 @@ import org.springframework.web.server.ResponseStatusException;
 import java.util.List;
 
 @RestController
-@RequestMapping("/vitamin")
+@RequestMapping("/vitamin/auth")
 public class VitaminController {
 
     private final VitaminService vitaminService;

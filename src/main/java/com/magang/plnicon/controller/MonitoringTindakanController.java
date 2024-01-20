@@ -11,7 +11,7 @@ import org.springframework.web.server.ResponseStatusException;
 import java.util.List;
 
 @RestController
-@RequestMapping("/monitoringtindakan")
+@RequestMapping("/monitoringtindakan/auth")
 public class MonitoringTindakanController {
 
     private final MonitoringTindakanService monitoringTindakanService;

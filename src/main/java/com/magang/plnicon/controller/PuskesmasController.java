@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/puskesmas")
+@RequestMapping("/puskesmas/auth")
 public class PuskesmasController {
 
     private final PuskesmasService puskesmasService;

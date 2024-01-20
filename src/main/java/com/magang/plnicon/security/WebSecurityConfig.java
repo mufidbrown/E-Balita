@@ -67,7 +67,25 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                         "/swagger-resources/configuration/security",
 
                         "/api/pages/**",
-                        "/balita/auth/**"
+                        "/antropometri/auth/**",
+                        "/balita/auth/**",
+                        "/dokumen/auth/**",
+                        "/imunisasi/auth/**",
+                        "/knowledge/auth/**",
+                        "/laporan/auth/**",
+                        "/monitoringtindakan/auth/**",
+                        "/pengguna/auth/**",
+                        "/pmtBalita/auth/**",
+                        "/pmt/auth/**",
+                        "/posyandu/auth/**",
+                        "/puskesmas/auth/**",
+                        "/admin/requests/auth/**",
+                        "/tindaklanjut/auth/**",
+                        "/tumbuhkembang/auth/**",
+                        "/verifikasidataantropometri/auth**",
+                        "/vitamin/auth/**"
+
+
 //                        "/docs.html",
 //                        "/my-api/**",
 //                        "/auth/**",

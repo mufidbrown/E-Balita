@@ -12,7 +12,7 @@ import org.springframework.web.server.ResponseStatusException;
 import java.util.List;
 
 @RestController
-@RequestMapping("/dokumen")
+@RequestMapping("/dokumen/auth")
 public class DokumenController {
 
     private final DokumenService dokumenService;

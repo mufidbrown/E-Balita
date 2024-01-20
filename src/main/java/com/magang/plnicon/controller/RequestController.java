@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/admin/requests")
+@RequestMapping("/admin/requests/auth")
 public class RequestController {
 
         @Autowired
