@@ -12,7 +12,7 @@ import org.springframework.web.server.ResponseStatusException;
 import java.util.List;
 
 @RestController
-@RequestMapping("/tindaklanjut/auth")
+@RequestMapping("/api/v1/tindaklanjut")
 public class TindakLanjutPuskesmasController {
 
     private final TindakLanjutPuskesmasService tindakLanjutPuskesmasService;

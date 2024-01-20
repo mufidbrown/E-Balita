@@ -11,7 +11,7 @@ import org.springframework.web.server.ResponseStatusException;
 import java.util.List;
 
 @RestController
-@RequestMapping("/pengguna/auth")
+@RequestMapping("/api/v1/pengguna")
 public class PenggunaController {
 
     private final PenggunaService penggunaService;

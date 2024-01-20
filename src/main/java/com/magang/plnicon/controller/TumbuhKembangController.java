@@ -12,7 +12,7 @@ import org.springframework.web.server.ResponseStatusException;
 import java.util.List;
 
 @RestController
-@RequestMapping("/tumbuhKembang/auth")
+@RequestMapping("/api/v1/tumbuhkembang")
 public class TumbuhKembangController {
 
     private final TumbuhKembangService tumbuhKembangService;

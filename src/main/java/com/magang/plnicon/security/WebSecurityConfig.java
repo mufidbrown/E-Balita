@@ -55,7 +55,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
 
                 .authorizeRequests().antMatchers(
-                        "/api/auth/**",
+                        "/api/v1/auth/**",
                         "/v2/api-docs",
                         "/configuration/ui",
                         "/swagger-resources",
@@ -67,23 +67,23 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                         "/swagger-resources/configuration/security",
 
                         "/api/pages/**",
-                        "/antropometri/auth/**",
-                        "/balita/auth/**",
-                        "/dokumen/auth/**",
-                        "/imunisasi/auth/**",
-                        "/knowledge/auth/**",
-                        "/laporan/auth/**",
-                        "/monitoringtindakan/auth/**",
-                        "/pengguna/auth/**",
-                        "/pmtBalita/auth/**",
-                        "/pmt/auth/**",
-                        "/posyandu/auth/**",
-                        "/puskesmas/auth/**",
-                        "/admin/requests/auth/**",
-                        "/tindaklanjut/auth/**",
-                        "/tumbuhkembang/auth/**",
-                        "/verifikasidataantropometri/auth**",
-                        "/vitamin/auth/**"
+                        "/api/v1/antropometri/**",
+                        "/api/v1/balita/**",
+                        "/api/v1/dokumen/**",
+                        "/api/v1/imunisasi/**",
+                        "/api/v1/knowledge/**",
+                        "/api/v1/laporan/**",
+                        "/api/v1/monitoringtindakan/**",
+                        "/api/v1/pengguna/**",
+                        "/api/v1/pmtBalita/**",
+                        "/api/v1/pmt/**",
+                        "/api/v1/posyandu/**",
+                        "/api/v1/puskesmas/**",
+                        "/api/v1/admin/requests/**",
+                        "/api/v1/tindaklanjut/**",
+                        "/api/v1/tumbuhkembang/**",
+                        "/api/v1/verifikasidataantropometri/**",
+                        "/api/v1/vitamin/**"
 
 
 //                        "/docs.html",

@@ -12,7 +12,7 @@ import org.springframework.web.server.ResponseStatusException;
 import java.util.List;
 
 @RestController
-@RequestMapping("/verifikasidataantropometri/auth")
+@RequestMapping("/api/v1/verifikasidataantropometri")
 public class VerifikasiDataAntropometriController {
 
     private final VerifikasiDataAntropometriService verifikasiDataAntropometriService;

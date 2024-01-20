@@ -12,7 +12,7 @@ import org.springframework.web.server.ResponseStatusException;
 import java.util.List;
 
 @RestController
-@RequestMapping("/imunisasi/auth")
+@RequestMapping("/api/v1/imunisasi")
 public class ImunisasiController {
 
     private final ImunisasiService imunisasiService;

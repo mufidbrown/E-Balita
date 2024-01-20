@@ -12,7 +12,7 @@ import org.springframework.web.server.ResponseStatusException;
 import java.util.List;
 
 @RestController
-@RequestMapping("/antropometri/auth")
+@RequestMapping("/api/v1/antropometri")
 public class AntropometriController {
 
     private final AntropometriService antropometriService;

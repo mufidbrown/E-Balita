@@ -12,7 +12,7 @@ import org.springframework.web.server.ResponseStatusException;
 import java.util.List;
 
 @RestController
-@RequestMapping("/pmt/auth")
+@RequestMapping("/api/v1/pmt")
 public class PmtController {
 
     private final PmtService pmtService;

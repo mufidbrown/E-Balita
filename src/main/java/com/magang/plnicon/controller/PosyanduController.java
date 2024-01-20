@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/posyandu/auth")
+@RequestMapping("/api/v1/posyandu")
 public class PosyanduController {
 
     private final PosyanduService posyanduService;

@@ -12,7 +12,7 @@ import org.springframework.web.server.ResponseStatusException;
 import java.util.List;
 
 @RestController
-@RequestMapping("/balita/auth")
+@RequestMapping("/api/v1/balita")
 public class BalitaController {
 
     private final BalitaService balitaService;
