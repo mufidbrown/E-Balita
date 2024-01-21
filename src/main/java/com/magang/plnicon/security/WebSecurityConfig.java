@@ -54,7 +54,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .exceptionHandling().authenticationEntryPoint(unauthorizedHandler).and()
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
 
-                .authorizeRequests().antMatchers(
+                .authorizeRequests()
+                .antMatchers(
                         "/api/v1/auth/**",
                         "/v2/api-docs",
                         "/configuration/ui",
@@ -64,9 +65,10 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                         "/webjars/**",
                         "/swagger-resources/configuration/ui",
                         "/swagger-ui.html",
-                        "/swagger-resources/configuration/security",
+                        "/swagger-resources/configuration/security"
+//                        "/api/pages/**",
 
-                        "/api/pages/**",
+                       /*
                         "/api/v1/antropometri/**",
                         "/api/v1/balita/**",
                         "/api/v1/dokumen/**",
@@ -84,13 +86,81 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                         "/api/v1/tumbuhkembang/**",
                         "/api/v1/verifikasidataantropometri/**",
                         "/api/v1/vitamin/**"
+                        */
 
-
-//                        "/docs.html",
-//                        "/my-api/**",
-//                        "/auth/**",
-//                        "/swagger-ui/**"
                 ).permitAll()
+
+                .antMatchers(
+                        "/api/v1/antropometri/**",
+                        "/api/v1/balita/**",
+                        "/api/v1/dokumen/**",
+                        "/api/v1/imunisasi/**",
+                        "/api/v1/knowledge/**",
+                        "/api/v1/laporan/**",
+                        "/api/v1/monitoringtindakan/**",
+                        "/api/v1/pengguna/**",
+                        "/api/v1/pmtbalita/**",
+                        "/api/v1/pmt/**",
+                        "/api/v1/posyandu/**",
+                        "/api/v1/puskesmas/**",
+                        "/api/v1/admin/requests/**",
+                        "/api/v1/tindaklanjut/**",
+                        "/api/v1/tumbuhkembang/**",
+                        "/api/v1/verifikasidataantropometri/**",
+                        "/api/v1/vitamin/**"
+                ).hasRole("ADMIN")
+
+                .antMatchers(
+                        "/api/v1/antropometri/**",
+                        "/api/v1/balita/**",
+                        "/api/v1/dokumen/**",
+                        "/api/v1/imunisasi/**",
+                        "/api/v1/knowledge/**",
+                        "/api/v1/laporan/**",
+                        "/api/v1/monitoringtindakan/**",
+                        "/api/v1/pengguna/**",
+                        "/api/v1/pmtbalita/**",
+                        "/api/v1/pmt/**",
+                        "/api/v1/posyandu/**",
+                        "/api/v1/puskesmas/**",
+                        "/api/v1/admin/requests/**",
+                        "/api/v1/tindaklanjut/**",
+                        "/api/v1/tumbuhkembang/**",
+                        "/api/v1/verifikasidataantropometri/**",
+                        "/api/v1/vitamin/**"
+                ).hasRole("USER")
+
+                .antMatchers(
+                        "/api/v1/antropometri/**",
+                        "/api/v1/balita/**",
+                        "/api/v1/dokumen/**",
+                        "/api/v1/imunisasi/**",
+                        "/api/v1/knowledge/**",
+                        "/api/v1/laporan/**",
+                        "/api/v1/monitoringtindakan/**",
+                        "/api/v1/pengguna/**",
+                        "/api/v1/pmtbalita/**",
+                        "/api/v1/pmt/**",
+                        "/api/v1/posyandu/**",
+                        "/api/v1/puskesmas/**",
+                        "/api/v1/admin/requests/**",
+                        "/api/v1/tindaklanjut/**",
+                        "/api/v1/tumbuhkembang/**",
+                        "/api/v1/verifikasidataantropometri/**",
+                        "/api/v1/vitamin/**"
+                ).authenticated()
+
+                .antMatchers("/admin/**").hasRole("ADMIN")
+
+
+/*
+                DARIPADA Membuat seperti ini.antMatchers("/api/v1/balita/**").hasRole("ADMIN", "USER")
+                Mending membuat peran hashrole di AuthController
+
+*/
+
+
+
                 .antMatchers("/api/pages/**").permitAll()
                 .anyRequest().authenticated();
 
