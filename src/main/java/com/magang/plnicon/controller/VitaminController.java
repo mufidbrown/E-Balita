@@ -3,7 +3,7 @@ package com.magang.plnicon.controller;
 
 import com.magang.plnicon.api.BaseResponse;
 import com.magang.plnicon.entity.Vitamin;
-import com.magang.plnicon.service.VitaminService;
+import com.magang.plnicon.service.vitamin.VitaminService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -89,20 +89,20 @@ public class VitaminController {
 */
 
 
-    @GetMapping("/pegawai/v1")
+    @GetMapping("/vitamin/v1")
     public ResponseEntity<BaseResponse<List<Vitamin>>> getAllVitamin2() {
         List<Vitamin> vitamin = vitaminService.getAllVitamin();
-        return ResponseEntity.ok(BaseResponse.ok("Daftar Semua Pegawai", vitamin));
+        return ResponseEntity.ok(BaseResponse.ok("Daftar Semua Vitamin", vitamin));
 
     }
 
-    @GetMapping("/pegawai/v1/{id}")
+    @GetMapping("/vitamin/v1/{id}")
     public ResponseEntity<BaseResponse<Vitamin>> getVitaminById2(@PathVariable("id") Integer id) {
         Vitamin vitamin = vitaminService.getVitaminById(id);
         if (vitamin != null) {
-            return ResponseEntity.ok(BaseResponse.ok("Pegawai Ditemukan", vitamin));
+            return ResponseEntity.ok(BaseResponse.ok("Vitamin Ditemukan", vitamin));
         } else {
-            return ResponseEntity.ok(BaseResponse.error("Pegawai Tidak Ditemukan"));
+            return ResponseEntity.ok(BaseResponse.error("Vitamin Tidak Ditemukan"));
         }
     }
 

@@ -1,5 +1,6 @@
-package com.magang.plnicon.service;
+package com.magang.plnicon.service.vitamin;
 
+import com.magang.plnicon.api.BaseResponse;
 import com.magang.plnicon.entity.Vitamin;
 
 import java.util.List;
@@ -11,5 +12,9 @@ public interface VitaminService {
     Vitamin createVitamin(Vitamin vitamin);
     Vitamin updateVitamin(Integer id, Vitamin vitamin);
     void deleteVitamin(Integer id);
+
+    BaseResponse<?> test();
+
+    BaseResponse<?> testParameter(Integer idVitamin);
 
 }

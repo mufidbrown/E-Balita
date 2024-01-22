@@ -1,22 +1,32 @@
-package com.magang.plnicon.service.impl;
+package com.magang.plnicon.service.vitamin;
 
+import com.magang.plnicon.api.BaseResponse;
 import com.magang.plnicon.entity.Vitamin;
+import com.magang.plnicon.model.VitaminResponse;
 import com.magang.plnicon.repository.VitaminRepository;
-import com.magang.plnicon.service.VitaminService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.persistence.EntityManager;
 import javax.persistence.EntityNotFoundException;
+import javax.persistence.Query;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
 @Service
+@RequiredArgsConstructor
 public class VitaminServiceImpl implements VitaminService {
+
+
+    private EntityManager entityManager;
 
     private final VitaminRepository vitaminRepository;
 
     @Autowired
-    public VitaminServiceImpl(VitaminRepository vitaminRepository) {
+    public VitaminServiceImpl(EntityManager entityManager, VitaminRepository vitaminRepository) {
+        this.entityManager = entityManager;
         this.vitaminRepository = vitaminRepository;
     }
 
@@ -88,4 +98,50 @@ public class VitaminServiceImpl implements VitaminService {
             throw new IllegalArgumentException("Pmt dengan ID " + id + " tidak ditemukan");
         }
     }
+
+
+
+
+
+
+
+
+
+
+
+
+    @Override
+    public BaseResponse<?> test() {
+        Query query = entityManager.createNativeQuery("SELECT nama_balita, tanggal_vitamin, usia_bulan, jenis_vitamin, jumlah_vitamin, keterangan  from vitamins v WHERE id =  1");
+        List<?> list = Arrays.asList((Object[]) query.getSingleResult());
+        VitaminResponse vitaminResponse = VitaminResponse.builder()
+                .nama_balita(list.get(0).toString())
+                .tanggal_vitamin(list.get(1).toString())
+                .usia_bulan(list.get(2).toString())
+                .jenis_vitamin(list.get(3).toString())
+                .jumlah_vitamin(list.get(4).toString())
+                .keterangan(list.get(5).toString())
+                .build();
+        return BaseResponse.ok(vitaminResponse);
+        // PegawaiServiceImpl di panggil/test tahap akhir di TestPegawaiController
+    }
+
+
+    @Override
+    public BaseResponse<?> testParameter(Integer id) {
+        Query query = entityManager.createNativeQuery("SELECT nama_balita, tanggal_vitamin, usia_bulan, jenis_vitamin, jumlah_vitamin, keterangan  from vitamins v WHERE id =  ?1");
+        query.setParameter(1, id);
+        List<?> list = Arrays.asList((Object[]) query.getSingleResult());
+        VitaminResponse vitaminResponse = VitaminResponse.builder()
+                .nama_balita(list.get(0).toString())
+                .tanggal_vitamin(list.get(1).toString())
+                .usia_bulan(list.get(2).toString())
+                .jenis_vitamin(list.get(3).toString())
+                .jumlah_vitamin(list.get(4).toString())
+                .keterangan(list.get(5).toString())
+                .build();
+        return BaseResponse.ok(vitaminResponse);
+
+    }
+
 }
