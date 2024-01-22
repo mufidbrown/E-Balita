@@ -1,6 +1,7 @@
 package com.magang.plnicon.controller;
 
 
+import com.magang.plnicon.api.BaseResponse;
 import com.magang.plnicon.entity.Vitamin;
 import com.magang.plnicon.service.VitaminService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -79,6 +80,29 @@ public class VitaminController {
             return ResponseEntity.ok("Vitamin dengan ID " + id + " berhasil dihapus");
         } else {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+    }
+
+
+/*
+            -----------------------DIBAWAH INI BASERESPONSE------------------------
+*/
+
+
+    @GetMapping("/pegawai/v1")
+    public ResponseEntity<BaseResponse<List<Vitamin>>> getAllVitamin2() {
+        List<Vitamin> vitamin = vitaminService.getAllVitamin();
+        return ResponseEntity.ok(BaseResponse.ok("Daftar Semua Pegawai", vitamin));
+
+    }
+
+    @GetMapping("/pegawai/v1/{id}")
+    public ResponseEntity<BaseResponse<Vitamin>> getVitaminById2(@PathVariable("id") Integer id) {
+        Vitamin vitamin = vitaminService.getVitaminById(id);
+        if (vitamin != null) {
+            return ResponseEntity.ok(BaseResponse.ok("Pegawai Ditemukan", vitamin));
+        } else {
+            return ResponseEntity.ok(BaseResponse.error("Pegawai Tidak Ditemukan"));
         }
     }
 

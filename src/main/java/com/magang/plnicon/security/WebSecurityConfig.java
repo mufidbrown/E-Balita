@@ -90,7 +90,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
                 ).permitAll()
 
-                .antMatchers(
+                /*.antMatchers(
                         "/api/v1/antropometri/**",
                         "/api/v1/balita/**",
                         "/api/v1/dokumen/**",
@@ -152,7 +152,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
                 .antMatchers("/admin/**").hasRole("ADMIN")
 
-
+*/
 /*
                 DARIPADA Membuat seperti ini.antMatchers("/api/v1/balita/**").hasRole("ADMIN", "USER")
                 Mending membuat peran hashrole di AuthController
