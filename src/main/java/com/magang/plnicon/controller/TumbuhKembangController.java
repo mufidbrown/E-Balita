@@ -1,8 +1,9 @@
 package com.magang.plnicon.controller;
 
 
+import com.magang.plnicon.api.BaseResponse;
 import com.magang.plnicon.entity.TumbuhKembang;
-import com.magang.plnicon.service.TumbuhKembangService;
+import com.magang.plnicon.service.tumbuhkembang.TumbuhKembangService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -86,4 +87,28 @@ public class TumbuhKembangController {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
+
+
+    /*
+            -----------------------BASERESPONSE------------------------
+*/
+
+
+    @GetMapping("/vitamin/v1")
+    public ResponseEntity<BaseResponse<List<TumbuhKembang>>> getAllTumbuhKembang2() {
+        List<TumbuhKembang> tumbuhKembang = tumbuhKembangService.getAllTumbuhKembang();
+        return ResponseEntity.ok(BaseResponse.ok("Daftar Semua TumbuhKembang", tumbuhKembang));
+
+    }
+
+    @GetMapping("/vitamin/v1/{id}")
+    public ResponseEntity<BaseResponse<TumbuhKembang>> getVTumbuhKembangById2(@PathVariable("id") Integer id) {
+        TumbuhKembang tumbuhKembang = tumbuhKembangService.getTumbuhKembangById(id);
+        if (tumbuhKembang != null) {
+            return ResponseEntity.ok(BaseResponse.ok("TumbuhKembang Ditemukan", tumbuhKembang));
+        } else {
+            return ResponseEntity.ok(BaseResponse.error("TumbuhKembang Tidak Ditemukan"));
+        }
+    }
+
 }

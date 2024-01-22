@@ -1,8 +1,7 @@
-package com.magang.plnicon.service.impl;
+package com.magang.plnicon.service.tumbuhkembang;
 
 import com.magang.plnicon.entity.TumbuhKembang;
 import com.magang.plnicon.repository.TumbuhKembangRepository;
-import com.magang.plnicon.service.TumbuhKembangService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

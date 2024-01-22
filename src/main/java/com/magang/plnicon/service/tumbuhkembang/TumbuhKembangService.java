@@ -1,4 +1,4 @@
-package com.magang.plnicon.service;
+package com.magang.plnicon.service.tumbuhkembang;
 
 import com.magang.plnicon.entity.TumbuhKembang;
 
