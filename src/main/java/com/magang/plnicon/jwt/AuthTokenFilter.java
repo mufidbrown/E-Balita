@@ -46,12 +46,15 @@ public class AuthTokenFilter extends OncePerRequestFilter {
 
             String jwt = parseJwt(request);
             LOGGER.error("AuthTokenFilter | doFilterInternal | jwt: {}", jwt);
-
+    LOGGER.info("SFLKJS======{}",jwt );
             if (jwt != null && jwtUtils.validateJwtToken(jwt)) {
 
                 String username = jwtUtils.getUserNameFromJwtToken(jwt);
+                LOGGER.info("SFLKJS======{}",jwt );
 
                 UserDetails userDetails = customUserDetailsService.loadUserByUsername(username);
+                LOGGER.info("SFLKJS======{}",username );
+
                 UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(
                         userDetails, null, userDetails.getAuthorities());
                 authentication.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
@@ -70,7 +73,7 @@ public class AuthTokenFilter extends OncePerRequestFilter {
 
         String headerAuth = request.getHeader("Authorization");
 
-        LOGGER.info("AuthTokenFilter | parseJwt | headerAuth: {}", headerAuth);
+        LOGGER.info("===CCC====: {}", headerAuth);
 
         if (StringUtils.hasText(headerAuth) && headerAuth.startsWith("Bearer ")) {
 
