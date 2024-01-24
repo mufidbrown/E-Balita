@@ -18,6 +18,7 @@ public class VitaminController {
 
     private final VitaminService vitaminService;
 
+
     @Autowired
     public VitaminController(VitaminService vitaminService) {
         this.vitaminService = vitaminService;

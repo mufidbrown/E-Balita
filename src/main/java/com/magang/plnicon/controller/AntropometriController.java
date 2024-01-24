@@ -86,5 +86,5 @@ public class AntropometriController {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
-
 }
+

@@ -1,6 +1,10 @@
-package com.magang.plnicon.service.excel;
+package com.magang.plnicon.service;
 
-import com.magang.plnicon.entity.Vitamin;
+import com.magang.plnicon.entity.Customer;
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.xssf.usermodel.XSSFSheet;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
@@ -11,14 +15,13 @@ import java.util.List;
 import java.util.Objects;
 
 public class ExcelUploadService {
-
     public static boolean isValidExcelFile(MultipartFile file){
         return Objects.equals(file.getContentType(), "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet");
 
     }
 
-    public static List<Vitamin> getCustomersDataFromExcel(InputStream inputStream){
-        List<Vitamin> customers = new ArrayList<>();
+    public static List<Customer> getCustomersDataFromExcel(InputStream inputStream){
+        List<Customer> customers = new ArrayList<>();
 
         try {
             XSSFWorkbook workbook = new XSSFWorkbook(inputStream);

@@ -4,22 +4,18 @@ import com.magang.plnicon.api.BaseResponse;
 import com.magang.plnicon.entity.Vitamin;
 import com.magang.plnicon.model.VitaminResponse;
 import com.magang.plnicon.repository.VitaminRepository;
-import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.multipart.MultipartFile;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityNotFoundException;
 import javax.persistence.Query;
-import java.io.IOException;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
 @Service
-@AllArgsConstructor
 @RequiredArgsConstructor
 public class VitaminServiceImpl implements VitaminService {
 
@@ -100,17 +96,6 @@ public class VitaminServiceImpl implements VitaminService {
             vitaminRepository.deleteById(id);
         } else {
             throw new IllegalArgumentException("Pmt dengan ID " + id + " tidak ditemukan");
-        }
-    }
-
-    public void saveVitaminsToDatabase(MultipartFile file){
-        if (ExcelUploadService.isValidExcelFile(file)){
-            try {
-                List<Customer> customers = ExcelUploadService.getCustomersDataFromExcel(file.getInputStream());
-                this.customerRepository.saveAll(customers);
-            } catch (IOException e) {
-                throw new IllegalArgumentException("The file is not a valid excel file");
-            }
         }
     }
 
