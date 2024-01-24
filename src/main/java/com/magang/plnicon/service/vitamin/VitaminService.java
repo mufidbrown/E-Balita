@@ -17,4 +17,6 @@ public interface VitaminService {
 
     BaseResponse<?> testParameter(Integer idVitamin);
 
+    void exportToExcel(List<Vitamin> dataVitaminList);
+
 }

@@ -5,12 +5,19 @@ import com.magang.plnicon.entity.Vitamin;
 import com.magang.plnicon.model.VitaminResponse;
 import com.magang.plnicon.repository.VitaminRepository;
 import lombok.RequiredArgsConstructor;
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.ss.usermodel.Sheet;
+import org.apache.poi.ss.usermodel.Workbook;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityNotFoundException;
 import javax.persistence.Query;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
@@ -19,14 +26,13 @@ import java.util.Optional;
 @RequiredArgsConstructor
 public class VitaminServiceImpl implements VitaminService {
 
-
     private EntityManager entityManager;
 
     private final VitaminRepository vitaminRepository;
 
     @Autowired
     public VitaminServiceImpl(EntityManager entityManager, VitaminRepository vitaminRepository) {
-        this.entityManager = entityManager;
+//        this.entityManager = entityManager;
         this.vitaminRepository = vitaminRepository;
     }
 
@@ -73,7 +79,6 @@ public class VitaminServiceImpl implements VitaminService {
         Optional<Vitamin> existingVitaminOptional = vitaminRepository.findById(id);
         if (existingVitaminOptional.isPresent()) {
             Vitamin existingVitamin = existingVitaminOptional.get();
-            // Lakukan pembaruan pada atribut yang diperlukan
             existingVitamin.setNama_balita(newVitamin.getNama_balita());
             existingVitamin.setTanggal_vitamin(newVitamin.getTanggal_vitamin());
             existingVitamin.setUsia_bulan(newVitamin.getUsia_bulan());
@@ -100,13 +105,41 @@ public class VitaminServiceImpl implements VitaminService {
     }
 
 
+    @Override
+    public void exportToExcel(List<Vitamin> dataVitaminList) {
+        Workbook workbook = new XSSFWorkbook();
+        Sheet sheet = workbook.createSheet("Data Vitamin");
 
+        // Header
+        Row headerRow = sheet.createRow(0);
+        String[] columns = {"ID", "Nama Balita", "Tanggal Vitamin", "Usia Bulan", "Jenis Vitamin", "Jumlah Vitamin", "Keterangan"};
 
+        for (int i = 0; i < columns.length; i++) {
+            Cell cell = headerRow.createCell(i);
+            cell.setCellValue(columns[i]);
+        }
 
+        // Data
+        int rowNum = 1;
+        for (Vitamin dataVitamin : dataVitaminList) {
+            Row row = sheet.createRow(rowNum++);
 
+            row.createCell(0).setCellValue(dataVitamin.getId());
+            row.createCell(1).setCellValue(dataVitamin.getNama_balita());
+            row.createCell(2).setCellValue(dataVitamin.getTanggal_vitamin());
+            row.createCell(3).setCellValue(dataVitamin.getUsia_bulan());
+            row.createCell(4).setCellValue(dataVitamin.getJenis_vitamin());
+            row.createCell(5).setCellValue(dataVitamin.getJumlah_vitamin());
+            row.createCell(6).setCellValue(dataVitamin.getKeterangan());
+        }
 
-
-
+        // Save to file
+        try (FileOutputStream fileOut = new FileOutputStream("DataVitamin.xlsx")) {
+            workbook.write(fileOut);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 
 
 
@@ -145,3 +178,5 @@ public class VitaminServiceImpl implements VitaminService {
     }
 
 }
+
+

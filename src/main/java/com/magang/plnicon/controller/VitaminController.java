@@ -16,8 +16,8 @@ import java.util.List;
 @RequestMapping("/api/v1/vitamin")
 public class VitaminController {
 
+    @Autowired
     private final VitaminService vitaminService;
-
 
     @Autowired
     public VitaminController(VitaminService vitaminService) {
@@ -84,6 +84,20 @@ public class VitaminController {
         }
     }
 
+    @GetMapping("/export-to-excel")
+    public ResponseEntity<String> exportToExcel() {
+        try {
+            List<Vitamin> dataVitaminList = vitaminService.getAllVitamin();
+            vitaminService.exportToExcel(dataVitaminList);
+            return ResponseEntity.ok("Data berhasil di export ke Excel.");
+
+        } catch (Exception e) {
+            return ResponseEntity.status(500).body("Error export data ke Excel: " + e.getMessage());
+        }
+    }
+
+
+
 
 /*
             -----------------------BASERESPONSE------------------------
@@ -108,3 +122,4 @@ public class VitaminController {
     }
 
 }
+
