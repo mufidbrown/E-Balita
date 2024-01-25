@@ -100,6 +100,23 @@ public class KnowledgeServiceImpl implements KnowledgeService {
         file.transferTo(new File(fullPath));
         return knowledgeRepository.save(knowledge);
     }
+}
+
+
+/*    @Override
+    public Knowledge updateKnowledge(Integer id, Knowledge newKnowledge) {
+        Optional<Knowledge> existingKnowledgeOptional = knowledgeRepository.findById(id);
+        if (existingKnowledgeOptional.isPresent()) {
+            Knowledge existingKnowledge = existingKnowledgeOptional.get();
+            // Lakukan pembaruan pada atribut yang diperlukan
+            existingKnowledge.setTopik(newKnowledge.getTopik());
+            existingKnowledge.setKeterangan(newKnowledge.getKeterangan());
+            existingKnowledge.setDeskripsi(newKnowledge.getDeskripsi());
+
+            return knowledgeRepository.save(existingKnowledge);
+        }
+        return null;
+    }*/
 
 //    public byte[] downloadImage(String fileName) throws IOException{
 //        Optional<ProductImage> imageObject = imageRepo.findByName(fileName);
@@ -107,7 +124,7 @@ public class KnowledgeServiceImpl implements KnowledgeService {
 //        return Files.readAllBytes(new File(fullPath).toPath());
 //    }
 
-}
+
 
 
 
@@ -138,4 +155,16 @@ public class KnowledgeServiceImpl implements KnowledgeService {
 //        }
 //        knowledgeRepository.deleteById(id);
 //    }
+
+
+
+
+
+
+
+
+
+
+
+
 

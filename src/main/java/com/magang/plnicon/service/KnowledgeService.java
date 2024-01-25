@@ -8,6 +8,7 @@ import java.util.List;
 
 public interface KnowledgeService {
 
+
     List<Knowledge> getAllKnowledge();
     Knowledge getKnowledgeById(Integer id);
     Knowledge createKnowledge(Knowledge knowledge);
@@ -15,6 +16,4 @@ public interface KnowledgeService {
     void deleteKnowledge(Integer id);
 
     Knowledge uploadImage(MultipartFile file) throws IOException;
-
-//    byte[] downloadImage(String fileName) throws IOException;
 }

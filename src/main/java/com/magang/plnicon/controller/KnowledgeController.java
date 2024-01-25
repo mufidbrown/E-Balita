@@ -50,57 +50,19 @@ public class KnowledgeController {
     }
 
 
-//    @PostMapping("/create")
-//    public ResponseEntity<?> createKnowledge(@RequestBody Knowledge knowledge) {
-//        if (knowledge != null) {
-//            try {
-//                Knowledge createdKnowledge = knowledgeService.createKnowledge(knowledge);
-//                return ResponseEntity.status(HttpStatus.CREATED).body(createdKnowledge);
-//            } catch (IllegalArgumentException e) {
-//                return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Gagal membuat knowledge: " + e.getMessage());
-//            }
-//        } else {
-//            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Invalid Knowledge input");
-//        }
-//    }
-
-
     @PostMapping("/create")
-    public ResponseEntity<?> createKnowledgeOrUploadImage(
-            @RequestParam(name = "operation", defaultValue = "knowledge") String operation,
-            @RequestBody(required = false) Knowledge knowledge,
-            @RequestParam(name = "file", required = false) MultipartFile file) {
-
-        switch (operation.toLowerCase()) {
-            case "knowledge":
-                if (knowledge != null) {
-                    try {
-                        Knowledge createdKnowledge = knowledgeService.createKnowledge(knowledge);
-                        return ResponseEntity.status(HttpStatus.CREATED).body(createdKnowledge);
-                    } catch (IllegalArgumentException e) {
-                        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Gagal membuat knowledge: " + e.getMessage());
-                    }
-                } else {
-                    return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Invalid Knowledge input");
-                }
-
-            case "image":
-                if (file != null) {
-                    try {
-                        Knowledge knowledge = knowledgeService.uploadImage(file);
-                        return ResponseEntity.status(HttpStatus.CREATED).body("Image uploaded successfully with ID: " + uploadedImage.getId());
-                    } catch (IOException e) {
-                        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Failed to upload image: " + e.getMessage());
-                    }
-                } else {
-                    return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Invalid Image input");
-                }
-
-            default:
-                return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Invalid operation");
+    public ResponseEntity<?> createKnowledge(@RequestBody Knowledge knowledge) {
+        if (knowledge != null) {
+            try {
+                Knowledge createdKnowledge = knowledgeService.createKnowledge(knowledge);
+                return ResponseEntity.status(HttpStatus.CREATED).body(createdKnowledge);
+            } catch (IllegalArgumentException e) {
+                return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Gagal membuat knowledge: " + e.getMessage());
+            }
+        } else {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Invalid Knowledge input");
         }
     }
-}
 
 
 
@@ -120,7 +82,7 @@ public class KnowledgeController {
 
 
 
-//    ini bagus untuk jadi referensi logic pengkodingan saya
+    //    ini bagus untuk jadi referensi logic pengkodingan saya
     @DeleteMapping("/{id}/delete")
     public ResponseEntity<String> deleteKnowledge(@PathVariable Integer id) {
         if (id != null) {
@@ -137,17 +99,15 @@ public class KnowledgeController {
     }
 
 
-//    @PostMapping("/upload")
-//    public ResponseEntity<String> uploadImage(@RequestParam("file") MultipartFile file) {
-//        try {
-//            Knowledge uploadedImage = knowledgeService.uploadImage(file);
-//            return ResponseEntity.status(HttpStatus.CREATED).body("Image uploaded successfully with ID: " + uploadedImage.getId());
-//        } catch (IOException e) {
-//            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Failed to upload image: " + e.getMessage());
-//        }
-//    }
-
-
+    @PostMapping("/upload")
+    public ResponseEntity<String> uploadImage(@RequestParam("file") MultipartFile file) {
+        try {
+            Knowledge uploadedImage = knowledgeService.uploadImage(file);
+            return ResponseEntity.status(HttpStatus.CREATED).body("Image uploaded successfully with ID: " + uploadedImage.getId());
+        } catch (IOException e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Failed to upload image: " + e.getMessage());
+        }
+    }
 
 
 
