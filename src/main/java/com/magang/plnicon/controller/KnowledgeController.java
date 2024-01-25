@@ -1,5 +1,6 @@
 package com.magang.plnicon.controller;
 
+import com.magang.plnicon.api.BaseResponse;
 import com.magang.plnicon.entity.Knowledge;
 import com.magang.plnicon.service.KnowledgeService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -92,6 +93,28 @@ public class KnowledgeController {
             }
         } else {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Invalid ID input");
+        }
+    }
+
+
+        /*
+            -----------------------BASERESPONSE------------------------
+*/
+
+
+    @GetMapping("/vitamin/v1")
+    public ResponseEntity<BaseResponse<List<Knowledge>>> getAllKnowledge2() {
+        List<Knowledge> knowledge = knowledgeService.getAllKnowledge();
+        return ResponseEntity.ok(BaseResponse.ok("Daftar Semua Knowledge", knowledge));
+    }
+
+    @GetMapping("/vitamin/v1/{id}")
+    public ResponseEntity<BaseResponse<Knowledge>> getKnowledgeById2(@PathVariable("id") Integer id) {
+        Knowledge knowledge = knowledgeService.getKnowledgeById(id);
+        if (knowledge != null) {
+            return ResponseEntity.ok(BaseResponse.ok("Knowledge Ditemukan", knowledge));
+        } else {
+            return ResponseEntity.ok(BaseResponse.error("Knowledge Tidak Ditemukan"));
         }
     }
 

@@ -102,7 +102,7 @@ public class TumbuhKembangController {
     }
 
     @GetMapping("/vitamin/v1/{id}")
-    public ResponseEntity<BaseResponse<TumbuhKembang>> getVTumbuhKembangById2(@PathVariable("id") Integer id) {
+    public ResponseEntity<BaseResponse<TumbuhKembang>> getTumbuhKembangById2(@PathVariable("id") Integer id) {
         TumbuhKembang tumbuhKembang = tumbuhKembangService.getTumbuhKembangById(id);
         if (tumbuhKembang != null) {
             return ResponseEntity.ok(BaseResponse.ok("TumbuhKembang Ditemukan", tumbuhKembang));
