@@ -5,15 +5,22 @@ import com.magang.plnicon.repository.KnowledgeRepository;
 import com.magang.plnicon.service.KnowledgeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.persistence.EntityNotFoundException;
+import java.io.File;
+import java.io.IOException;
 import java.util.List;
 import java.util.Optional;
+
 
 @Service
 public class KnowledgeServiceImpl implements KnowledgeService {
 
     private final KnowledgeRepository knowledgeRepository;
+
+    private final String PATH = "C:\\UploadJPG\\";
+
 
     @Autowired
     public KnowledgeServiceImpl(KnowledgeRepository knowledgeRepository) {
@@ -81,6 +88,24 @@ public class KnowledgeServiceImpl implements KnowledgeService {
             throw new EntityNotFoundException("Knowledge dengan ID " + id + " tidak ditemukan");
         }
     }
+
+
+    public Knowledge uploadImage(MultipartFile file) throws IOException {
+        String fullPath = PATH+file.getOriginalFilename();
+        Knowledge knowledge = new Knowledge();
+        knowledge.setName(file.getOriginalFilename());
+        knowledge.setType(file.getContentType());
+        knowledge.setImagePath(fullPath);
+
+        file.transferTo(new File(fullPath));
+        return knowledgeRepository.save(knowledge);
+    }
+
+//    public byte[] downloadImage(String fileName) throws IOException{
+//        Optional<ProductImage> imageObject = imageRepo.findByName(fileName);
+//        String fullPath = imageObject.get().getImagePath();
+//        return Files.readAllBytes(new File(fullPath).toPath());
+//    }
 
 }
 

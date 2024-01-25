@@ -7,8 +7,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.server.ResponseStatusException;
 
+import java.io.IOException;
 import java.util.Collections;
 import java.util.List;
 
@@ -48,19 +50,57 @@ public class KnowledgeController {
     }
 
 
+//    @PostMapping("/create")
+//    public ResponseEntity<?> createKnowledge(@RequestBody Knowledge knowledge) {
+//        if (knowledge != null) {
+//            try {
+//                Knowledge createdKnowledge = knowledgeService.createKnowledge(knowledge);
+//                return ResponseEntity.status(HttpStatus.CREATED).body(createdKnowledge);
+//            } catch (IllegalArgumentException e) {
+//                return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Gagal membuat knowledge: " + e.getMessage());
+//            }
+//        } else {
+//            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Invalid Knowledge input");
+//        }
+//    }
+
+
     @PostMapping("/create")
-    public ResponseEntity<?> createKnowledge(@RequestBody Knowledge knowledge) {
-        if (knowledge != null) {
-            try {
-                Knowledge createdKnowledge = knowledgeService.createKnowledge(knowledge);
-                return ResponseEntity.status(HttpStatus.CREATED).body(createdKnowledge);
-            } catch (IllegalArgumentException e) {
-                return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Gagal membuat knowledge: " + e.getMessage());
-            }
-        } else {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Invalid Knowledge input");
+    public ResponseEntity<?> createKnowledgeOrUploadImage(
+            @RequestParam(name = "operation", defaultValue = "knowledge") String operation,
+            @RequestBody(required = false) Knowledge knowledge,
+            @RequestParam(name = "file", required = false) MultipartFile file) {
+
+        switch (operation.toLowerCase()) {
+            case "knowledge":
+                if (knowledge != null) {
+                    try {
+                        Knowledge createdKnowledge = knowledgeService.createKnowledge(knowledge);
+                        return ResponseEntity.status(HttpStatus.CREATED).body(createdKnowledge);
+                    } catch (IllegalArgumentException e) {
+                        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Gagal membuat knowledge: " + e.getMessage());
+                    }
+                } else {
+                    return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Invalid Knowledge input");
+                }
+
+            case "image":
+                if (file != null) {
+                    try {
+                        Knowledge knowledge = knowledgeService.uploadImage(file);
+                        return ResponseEntity.status(HttpStatus.CREATED).body("Image uploaded successfully with ID: " + uploadedImage.getId());
+                    } catch (IOException e) {
+                        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Failed to upload image: " + e.getMessage());
+                    }
+                } else {
+                    return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Invalid Image input");
+                }
+
+            default:
+                return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Invalid operation");
         }
     }
+}
 
 
 
@@ -97,6 +137,20 @@ public class KnowledgeController {
     }
 
 
+//    @PostMapping("/upload")
+//    public ResponseEntity<String> uploadImage(@RequestParam("file") MultipartFile file) {
+//        try {
+//            Knowledge uploadedImage = knowledgeService.uploadImage(file);
+//            return ResponseEntity.status(HttpStatus.CREATED).body("Image uploaded successfully with ID: " + uploadedImage.getId());
+//        } catch (IOException e) {
+//            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Failed to upload image: " + e.getMessage());
+//        }
+//    }
+
+
+
+
+
         /*
             -----------------------BASERESPONSE------------------------
 */
@@ -117,6 +171,9 @@ public class KnowledgeController {
             return ResponseEntity.ok(BaseResponse.error("Knowledge Tidak Ditemukan"));
         }
     }
+
+
+
 
 
 }
