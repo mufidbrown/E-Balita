@@ -22,4 +22,8 @@ public class Puskesmas {
     private String kabupaten;
     private String provinsi;
     private String status;
+
+    @ManyToOne
+    @JoinColumn(name = "users_id")
+    private User user;
 }

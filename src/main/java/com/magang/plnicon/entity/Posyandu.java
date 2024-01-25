@@ -28,4 +28,7 @@ public class Posyandu {
     private String provinsi;
     private String status;
 
+    @ManyToOne
+    @JoinColumn(name = "users_id")
+    private User user;
 }

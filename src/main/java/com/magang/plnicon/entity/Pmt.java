@@ -19,4 +19,8 @@ public class Pmt {
     private String kalori_pmt;
     private String keterangan;
     private String status;
+
+    @ManyToOne
+    @JoinColumn(name = "users_id")
+    private User user;
 }
