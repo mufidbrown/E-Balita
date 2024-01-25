@@ -18,4 +18,14 @@ public class TopikForum {
     private String judul;
     private String keterangan;
 
+    @ManyToOne
+    @JoinColumn(name = "knowledges_id")
+    private Knowledge knowledge;
+    
+
+//    @ManyToMany
+//    private Set<Knowledge> knowledgeList;
+
+
+
 }

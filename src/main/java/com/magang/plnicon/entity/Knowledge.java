@@ -12,10 +12,18 @@ import javax.persistence.*;
 @NoArgsConstructor
 public class Knowledge {
 
+/*
+    knowledge musti ada upload file
+*/
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private String topik;
     private String keterangan;
     private String deskripsi;
+
+//    @ManyToMany(mappedBy = "knowledgeList")
+//    private Set<TopikForum> topikForums;
+
 }
