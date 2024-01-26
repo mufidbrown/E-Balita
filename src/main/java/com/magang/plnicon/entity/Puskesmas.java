@@ -4,7 +4,6 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import java.util.List;
 
 
 @Entity
@@ -29,6 +28,6 @@ public class Puskesmas {
     private User user;
 
 
-    @OneToMany(mappedBy = "puskesmas")
-    private List<Balita> balitas;
+//    @OneToMany(mappedBy = "puskesmas")
+//    private List<Balita> balitas;
 }

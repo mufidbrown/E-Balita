@@ -6,7 +6,6 @@ import lombok.NoArgsConstructor;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -34,9 +33,17 @@ public class User implements Serializable {
 
 
 
+//
+//    @OneToMany(mappedBy = "user")
+//    private List<Balita> balitas;
 
-    @OneToMany(mappedBy = "user")
-    private List<Balita> balitas;
+
+
+
+
+
+
+
 
 //    @OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
 //    private Account account;

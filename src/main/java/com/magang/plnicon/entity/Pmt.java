@@ -5,7 +5,6 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import java.util.List;
 
 @Entity
 @Table(name = "Pmts")
@@ -25,6 +24,6 @@ public class Pmt {
     @JoinColumn(name = "users_id")
     private User user;
 
-    @OneToMany(mappedBy = "pmt")
-    private List<Balita> balitas;
+//    @OneToMany(mappedBy = "pmt")
+//    private List<Balita> balitas;
 }
