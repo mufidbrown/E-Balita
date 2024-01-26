@@ -1,6 +1,7 @@
 package com.magang.plnicon.controller;
 
 
+import com.magang.plnicon.api.BaseResponse;
 import com.magang.plnicon.entity.Balita;
 import com.magang.plnicon.service.BalitaService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -84,6 +85,29 @@ public class BalitaController {
             return ResponseEntity.ok("Balita dengan ID " + id + " berhasil dihapus");
         } else {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+    }
+
+
+    /*
+            -----------------------BASERESPONSE------------------------
+*/
+
+
+    @GetMapping("/vitamin/v1")
+    public ResponseEntity<BaseResponse<List<Balita>>> getAllBalita2() {
+        List<Balita> balita = balitaService.getAllBalita();
+        return ResponseEntity.ok(BaseResponse.ok("Daftar Semua Balita", balita));
+
+    }
+
+    @GetMapping("/vitamin/v1/{id}")
+    public ResponseEntity<BaseResponse<Balita>> getBalitaById2(@PathVariable("id") Integer id) {
+        Balita balita = balitaService.getBalitaById(id);
+        if (balita != null) {
+            return ResponseEntity.ok(BaseResponse.ok("Balita Ditemukan", balita));
+        } else {
+            return ResponseEntity.ok(BaseResponse.error("Balita Tidak Ditemukan"));
         }
     }
 

@@ -92,7 +92,7 @@ public class ImunisasiController {
     @GetMapping("/vitamin/v1")
     public ResponseEntity<BaseResponse<List<Imunisasi>>> getAllImunisasi2() {
         List<Imunisasi> imunisasi = imunisasiService.getAllImunisasi();
-        return ResponseEntity.ok(BaseResponse.ok("Daftar Semua Vitamin", imunisasi));
+        return ResponseEntity.ok(BaseResponse.ok("Daftar Semua Imunisasi", imunisasi));
 
     }
 
@@ -100,9 +100,9 @@ public class ImunisasiController {
     public ResponseEntity<BaseResponse<Imunisasi>> getImunisasiById2(@PathVariable("id") Integer id) {
         Imunisasi imunisasi = imunisasiService.getImunisasiById(id);
         if (imunisasi != null) {
-            return ResponseEntity.ok(BaseResponse.ok("Vitamin Ditemukan", imunisasi));
+            return ResponseEntity.ok(BaseResponse.ok("Imunisasi Ditemukan", imunisasi));
         } else {
-            return ResponseEntity.ok(BaseResponse.error("Vitamin Tidak Ditemukan"));
+            return ResponseEntity.ok(BaseResponse.error("Imunisasi Tidak Ditemukan"));
         }
     }
 
