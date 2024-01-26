@@ -17,7 +17,6 @@ public class MonitoringStunting {
 
         @Id
         @GeneratedValue(strategy = GenerationType.IDENTITY)
-        @Column(name = "id_transaksi")
         private Integer id;
         private String hasilPantau;
         private String tindakan;
