@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -30,6 +31,12 @@ public class User implements Serializable {
 
     @Column(name = "active", columnDefinition = "BIT DEFAULT 0", nullable = false)
     private boolean active;
+
+
+
+
+    @OneToMany(mappedBy = "user")
+    private List<Balita> balitas;
 
 //    @OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
 //    private Account account;

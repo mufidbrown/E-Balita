@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "Posyandus")
@@ -31,4 +32,7 @@ public class Posyandu {
     @ManyToOne
     @JoinColumn(name = "users_id")
     private User user;
+
+    @OneToMany(mappedBy = "posyandu")
+    private List<Balita> balitas;
 }

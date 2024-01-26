@@ -39,11 +39,11 @@ public class BalitaRequest {
     @NotBlank
     private String no_handphone;
 
-    @NotBlank
-    private String posyandu;
-
-    @NotBlank
-    private String puskesmas;
+//    @NotBlank
+//    private String posyandu;
+//
+//    @NotBlank
+//    private String puskesmas;
 
     @NotBlank
     private String status;

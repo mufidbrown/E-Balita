@@ -24,9 +24,24 @@ public class Balita {
     private String nama_ayah;
     private String nama_ibu;
     private String no_handphone;
-    private String posyandu;
-    private String puskesmas;
+
     private String status;
+
+    @ManyToOne
+    @JoinColumn(name = "puskesmas_id")
+    private Puskesmas puskesmas;
+
+    @ManyToOne
+    @JoinColumn(name = "posyandus_id")
+    private Posyandu posyandu;
+
+    @ManyToOne
+    @JoinColumn(name = "pmts_id")
+    private Pmt pmt;
+
+    @ManyToOne
+    @JoinColumn(name = "users_id")
+    private User user;
 
     /*@ManyToOne
     @JoinColumn(name = "tindak_lanjuts_id")
@@ -41,3 +56,6 @@ public class Balita {
     private PmtBalita pmtBalita;*/
 
 }
+
+//    private String posyandu;
+//    private String puskesmas;
