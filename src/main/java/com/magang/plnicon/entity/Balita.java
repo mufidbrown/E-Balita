@@ -4,6 +4,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.List;
 
 
 @Entity
@@ -42,6 +43,10 @@ public class Balita {
     @ManyToOne
     @JoinColumn(name = "users_id")
     private User user;
+
+    @OneToMany(mappedBy = "balita")
+    private List<MonitoringStunting> monitoringStuntings;
+
 
     /*@ManyToOne
     @JoinColumn(name = "tindak_lanjuts_id")

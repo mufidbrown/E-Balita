@@ -18,22 +18,28 @@ public class MonitoringStunting {
         @Id
         @GeneratedValue(strategy = GenerationType.IDENTITY)
         @Column(name = "id_transaksi")
-        private Integer idTransaksi;
+        private Integer id;
+        private String hasilPantau;
+        private String tindakan;
 
         @ManyToOne
-        @JoinColumn(name = "id_puskesmas", nullable = false)
-        private Puskesmas puskesmas;
-
-        @ManyToOne
-        @JoinColumn(name = "id_posyandu", nullable = false)
-        private Posyandu posyandu;
-
-        @ManyToOne
-        @JoinColumn(name = "id_pmt", nullable = false)
-        private Pmt pmt;
-
-        @ManyToOne
-        @JoinColumn(name = "id_pengguna", nullable = false)
-        private Pengguna pengguna;
+        @JoinColumn(name = "balitas_id")
+        private Balita balita;
+//
+//        @ManyToOne
+//        @JoinColumn(name = "id_puskesmas", nullable = false)
+//        private Puskesmas puskesmas;
+//
+//        @ManyToOne
+//        @JoinColumn(name = "id_posyandu", nullable = false)
+//        private Posyandu posyandu;
+//
+//        @ManyToOne
+//        @JoinColumn(name = "id_pmt", nullable = false)
+//        private Pmt pmt;
+//
+//        @ManyToOne
+//        @JoinColumn(name = "id_pengguna", nullable = false)
+//        private Pengguna pengguna;
 
 }
