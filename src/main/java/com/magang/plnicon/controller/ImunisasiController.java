@@ -1,6 +1,7 @@
 package com.magang.plnicon.controller;
 
 
+import com.magang.plnicon.api.BaseResponse;
 import com.magang.plnicon.entity.Imunisasi;
 import com.magang.plnicon.service.ImunisasiService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -81,5 +82,29 @@ public class ImunisasiController {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
+
+
+    /*
+            -----------------------BASERESPONSE------------------------
+*/
+
+
+    @GetMapping("/vitamin/v1")
+    public ResponseEntity<BaseResponse<List<Imunisasi>>> getAllImunisasi2() {
+        List<Imunisasi> imunisasi = imunisasiService.getAllImunisasi();
+        return ResponseEntity.ok(BaseResponse.ok("Daftar Semua Vitamin", imunisasi));
+
+    }
+
+    @GetMapping("/vitamin/v1/{id}")
+    public ResponseEntity<BaseResponse<Imunisasi>> getImunisasiById2(@PathVariable("id") Integer id) {
+        Imunisasi imunisasi = imunisasiService.getImunisasiById(id);
+        if (imunisasi != null) {
+            return ResponseEntity.ok(BaseResponse.ok("Vitamin Ditemukan", imunisasi));
+        } else {
+            return ResponseEntity.ok(BaseResponse.error("Vitamin Tidak Ditemukan"));
+        }
+    }
+
 
 }
