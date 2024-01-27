@@ -492,46 +492,5 @@ public class AuthController {
 }
 
 
-//
-//    @PostMapping("/{userId}")
-//    public ResponseEntity<String> activate(@PathVariable Integer userId) {
-//        if (userId == null) {
-//            return ResponseEntity.badRequest().body("User ID cannot be null");
-//        }
-//
-//        activationService.activate(userId);
-//        return ResponseEntity.ok("User activation request processed successfully.");
-//    }
-//
-//    @PutMapping("/activate/{userId}")
-//    public ResponseEntity<Void> activateUser(@PathVariable Integer userId) {
-//        userService.activateUser(userId);
-//        return new ResponseEntity<>(HttpStatus.OK);
-//    }
-
-//terbaru
-//    @PostMapping("/{userId}")
-//    public ResponseEntity<String> activateUser(@PathVariable Integer userId) {
-//        if (userId == null) {
-//            return ResponseEntity.badRequest().body("User ID cannot be null");
-//        }
-//
-//        activationService.activate(userId);
-//        return ResponseEntity.ok("User activation request processed successfully.");
-//    }
-
-
-//    @PostMapping("/create")
-//    public void approveActivation(@RequestBody ApprovalRequest approvalRequest) {
-//        activationService.approveActivation(approvalRequest.getUserId());
-//    }
-
-//    @PostMapping("/activate/{userId}")
-//    public ResponseEntity<String> activateUser(@PathVariable Integer userId) {
-//        userService.activateUser(userId);
-//        return ResponseEntity.ok("User activated successfully.");
-//    }
-
-
 
 
