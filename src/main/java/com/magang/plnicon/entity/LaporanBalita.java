@@ -28,15 +28,20 @@ public class LaporanBalita {
     private String puskesmas;
     private String status;
 
-
     @ManyToOne
-    @JoinColumn(name = "id_tumbuh_kembangs")
-    private TumbuhKembang tumbuhKembang;
+    @JoinColumn(name = "balitas_id")
+    private Balita balita;
+
+//    @ManyToOne
+//    @JoinColumn(name = "id_tumbuh_kembangs")
+//    private TumbuhKembang tumbuhKembang;
+//
+//
+//    @ManyToOne
+//    @JoinColumn(name = "id_pmt_balitas")
+//    private PmtBalita pmtBalita;
 
 
-    @ManyToOne
-    @JoinColumn(name = "id_pmt_balitas")
-    private PmtBalita pmtBalita;
 
 
 }
