@@ -29,18 +29,9 @@ public class Antropometri {
     private String foto;
     private String keterangan;
 
-
-    /*@ManyToOne
-    @JoinColumn(name = "balitas_id")
-    private Balita balita;*/
+//    antropometri ambil nama sama tanggal lahir, usia balita, berarti one to many
 
 
 }
 
-
-/*
-    @ManyToOne
-    @JoinColumn(name = "id_laporan_balitas")
-    private LaporanBalita laporanBalita;
-*/
 

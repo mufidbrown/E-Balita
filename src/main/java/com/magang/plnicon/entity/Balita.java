@@ -28,6 +28,30 @@ public class Balita {
     private String status;
 
     @ManyToOne
+    @JoinColumn(name = "antropometris_id")
+    private Antropometri antropometri;
+
+    @ManyToOne
+    @JoinColumn(name = "imunisasis_id")
+    private Imunisasi imunisasi;
+
+    @ManyToOne
+    @JoinColumn(name = "vitamins_id")
+    private Vitamin vitamin;
+
+    @ManyToOne
+    @JoinColumn(name = "pmts_id")
+    private Pmt pmt;
+
+    @ManyToOne
+    @JoinColumn(name = "tumbuh_kembangs_id")
+    private TumbuhKembang tumbuhKembang;
+
+    @ManyToOne
+    @JoinColumn(name = "dokumens_id")
+    private Dokumen dokumen;
+
+    @ManyToOne
     @JoinColumn(name = "puskesmas_id")
     private Puskesmas puskesmas;
 
@@ -36,12 +60,10 @@ public class Balita {
     private Posyandu posyandu;
 
     @ManyToOne
-    @JoinColumn(name = "pmts_id")
-    private Pmt pmt;
-
-    @ManyToOne
     @JoinColumn(name = "users_id")
     private User user;
+
+
 
 //    @OneToMany(mappedBy = "balita")
 //    private List<MonitoringStunting> monitoringStuntings;

@@ -23,4 +23,5 @@ public class Customer {
     private String lastName;
     private String country;
     private Integer telephone;
+
 }

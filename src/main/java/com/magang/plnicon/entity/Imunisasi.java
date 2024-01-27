@@ -21,6 +21,8 @@ public class Imunisasi {
     private String jenis_imunisasi;
     private String keterangan;
 
+//    imunisasi ambil nama sama tanggal lahir balita, berarti one to many
+
 //    @ManyToOne
 //    @JoinColumn(name = "id_laporan_balitas")
 //    private LaporanBalita laporanBalita;
