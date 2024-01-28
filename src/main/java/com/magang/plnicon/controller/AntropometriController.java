@@ -6,6 +6,7 @@ import com.magang.plnicon.service.AntropometriService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
@@ -23,6 +24,7 @@ public class AntropometriController {
     }
 
     @GetMapping("/all")
+    @PreAuthorize("hasAuthority('ROLE_KADER')")
     public ResponseEntity<?> getAllAntropometri() {
         List<Antropometri> allAntropometri = antropometriService.getAllAntropometri();
         if (!allAntropometri.isEmpty()) {
@@ -35,6 +37,7 @@ public class AntropometriController {
 
 
     @GetMapping("/{id}")
+    @PreAuthorize("hasAuthority('ROLE_KADER')")
     public ResponseEntity<?> getAntropometriById(@PathVariable Integer id) {
         Antropometri antropometri = antropometriService.getAntropometriById(id);
         if (antropometri != null) {
@@ -46,6 +49,7 @@ public class AntropometriController {
 
 
     @PostMapping("/create")
+    @PreAuthorize("hasAuthority('ROLE_KADER')")
     public ResponseEntity<?> createAntropometri(@RequestBody Antropometri antropometri) {
         if (antropometri != null) {
             try {
@@ -62,6 +66,7 @@ public class AntropometriController {
 
 
     @PutMapping("/{id}")
+    @PreAuthorize("hasAuthority('ROLE_KADER')")
     public ResponseEntity<Antropometri> updateAntropometri(@PathVariable Integer id, @RequestBody Antropometri newAntropometri) {
         try {
             Antropometri updatedAntropometri = antropometriService.updateAntropometri(id, newAntropometri);
@@ -77,6 +82,7 @@ public class AntropometriController {
 
 
     @DeleteMapping("/{id}")
+    @PreAuthorize("hasAuthority('ROLE_KADER')")
     public ResponseEntity<String> deleteAntropometri(@PathVariable Integer id) {
         Antropometri antropometri = antropometriService.getAntropometriById(id);
         if (antropometri != null) {

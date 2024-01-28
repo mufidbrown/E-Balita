@@ -6,6 +6,7 @@ import com.magang.plnicon.service.PmtService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
@@ -23,6 +24,7 @@ public class PmtController {
     }
 
     @GetMapping("/all")
+    @PreAuthorize("hasAuthority('ROLE_ADMIN')")
     public ResponseEntity<List<Pmt>> getAllPmt() {
         List<Pmt> allPmt = pmtService.getAllPmt();
         if (!allPmt.isEmpty()) {
@@ -34,6 +36,7 @@ public class PmtController {
 
 
     @GetMapping("/{id}")
+    @PreAuthorize("hasAuthority('ROLE_ADMIN')")
     public ResponseEntity<Pmt> getPmtById(@PathVariable Integer id) {
         Pmt pmt = pmtService.getPmtById(id);
         if (pmt != null) {
@@ -45,6 +48,7 @@ public class PmtController {
 
 
     @PostMapping("/create")
+    @PreAuthorize("hasAuthority('ROLE_ADMIN')")
     public ResponseEntity<Pmt> createPmt(@RequestBody Pmt pmt) {
         Pmt createdPmt = pmtService.createPmt(pmt);
         if (createdPmt != null) {
@@ -56,6 +60,7 @@ public class PmtController {
 
 
     @PutMapping("/{id}")
+    @PreAuthorize("hasAuthority('ROLE_ADMIN')")
     public ResponseEntity<Pmt> updatePmt(@PathVariable Integer id, @RequestBody Pmt newPmt) {
         try {
             Pmt updatedPmt = pmtService.updatePmt(id, newPmt);
@@ -72,6 +77,7 @@ public class PmtController {
 
 
     @DeleteMapping("/{id}")
+    @PreAuthorize("hasAuthority('ROLE_ADMIN')")
     public ResponseEntity<String> deletePmt(@PathVariable Integer id) {
         Pmt pmt = pmtService.getPmtById(id);
         if (pmt != null) {
@@ -83,9 +89,6 @@ public class PmtController {
     }
 
 }
-
-
-
 
 //
 //    @DeleteMapping("/{id}")
