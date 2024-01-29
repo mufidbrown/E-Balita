@@ -25,7 +25,7 @@ public class BalitaController {
     }
 
     @GetMapping("/all")
-    @PreAuthorize("hasAuthority('ROLE_AHLI_GIZI')")
+    @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_AHLI_GIZI', 'ROLE_KADER')")
     public ResponseEntity<?> getAllBalita() {
         List<Balita> allBalita = balitaService.getAllBalita();
         if (!allBalita.isEmpty()) {
@@ -38,7 +38,7 @@ public class BalitaController {
 
 
     @GetMapping("/{id}")
-    @PreAuthorize("hasAuthority('ROLE_AHLI_GIZI')")
+    @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_AHLI_GIZI', 'ROLE_KADER')")
     public ResponseEntity<?> getBalitaById(@PathVariable Integer id) {
         Balita balita = balitaService.getBalitaById(id);
         if (balita != null) {
@@ -50,7 +50,7 @@ public class BalitaController {
 
 
     @PostMapping("/create")
-    @PreAuthorize("hasAuthority('ROLE_AHLI_GIZI')")
+    @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_AHLI_GIZI', 'ROLE_KADER')")
     public ResponseEntity<?> createBalita(@RequestBody Balita balita) {
         if (balita != null) {
             try {
@@ -67,7 +67,7 @@ public class BalitaController {
 
 
     @PutMapping("/{id}")
-    @PreAuthorize("hasAuthority('ROLE_AHLI_GIZI')")
+    @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_AHLI_GIZI', 'ROLE_KADER')")
     public ResponseEntity<Balita> updateBalita(@PathVariable Integer id, @RequestBody Balita newBalita) {
         try {
             Balita updatedBalita = balitaService.updateBalita(id, newBalita);
@@ -83,7 +83,7 @@ public class BalitaController {
 
 
     @DeleteMapping("/{id}")
-    @PreAuthorize("hasAuthority('ROLE_AHLI_GIZI')")
+    @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_AHLI_GIZI', 'ROLE_KADER')")
     public ResponseEntity<String> deleteBalita(@PathVariable Integer id) {
         Balita balita = balitaService.getBalitaById(id);
         if (balita != null) {

@@ -22,14 +22,14 @@ public class PosyanduController {
     }
 
     @GetMapping
-    @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_AHLI_GIZI')")
+    @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_AHLI_GIZI', 'ROLE_KADER')")
     public ResponseEntity<List<Posyandu>> getAllPosyandu() {
         List<Posyandu> posyandus = posyanduService.getAllPosyandu();
         return new ResponseEntity<>(posyandus, HttpStatus.OK);
     }
 
     @GetMapping("/{id}")
-    @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_AHLI_GIZI')")
+    @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_AHLI_GIZI', 'ROLE_KADER')")
     public ResponseEntity<Posyandu> getPosyanduById(@PathVariable Integer id) {
         Posyandu posyandu = posyanduService.getPosyanduById(id);
         if (posyandu != null) {
@@ -40,14 +40,14 @@ public class PosyanduController {
     }
 
     @PostMapping
-    @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_AHLI_GIZI')")
+    @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_AHLI_GIZI', 'ROLE_KADER')")
     public ResponseEntity<Posyandu> createPosyandu(@RequestBody Posyandu posyandu) {
         Posyandu createdPosyandu = posyanduService.createPosyandu(posyandu);
         return new ResponseEntity<>(createdPosyandu, HttpStatus.CREATED);
     }
 
     @PutMapping("/{id}")
-    @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_AHLI_GIZI')")
+    @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_AHLI_GIZI', 'ROLE_KADER')")
     public ResponseEntity<Posyandu> updatePosyandu(@PathVariable Integer id, @RequestBody Posyandu posyandu) {
         Posyandu updatedPosyandu = posyanduService.updatePosyandu(id, posyandu);
         if (updatedPosyandu != null) {
@@ -58,7 +58,7 @@ public class PosyanduController {
     }
 
     @DeleteMapping("/{id}")
-    @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_AHLI_GIZI')")
+    @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_AHLI_GIZI', 'ROLE_KADER')")
     public ResponseEntity<Void> deletePosyandu(@PathVariable Integer id) {
         posyanduService.deletePosyandu(id);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
