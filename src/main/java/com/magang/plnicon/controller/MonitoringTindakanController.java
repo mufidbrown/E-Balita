@@ -5,6 +5,7 @@ import com.magang.plnicon.service.MonitoringTindakanService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
@@ -22,6 +23,7 @@ public class MonitoringTindakanController {
     }
 
     @GetMapping("/all")
+    @PreAuthorize("hasAuthority('ROLE_ADMIN')")
     public ResponseEntity<?> getAllMonitoringTindakan() {
         List<MonitoringTindakan> allMonitoringTindakan = monitoringTindakanService.getAllMonitoringTindakan();
         if (!allMonitoringTindakan.isEmpty()) {
@@ -34,6 +36,7 @@ public class MonitoringTindakanController {
 
 
     @GetMapping("/{id}")
+    @PreAuthorize("hasAuthority('ROLE_ADMIN')")
     public ResponseEntity<?> getMonitoringTindakanById(@PathVariable Integer id) {
         MonitoringTindakan monitoringTindakan = monitoringTindakanService.getMonitoringTindakanById(id);
         if (monitoringTindakan != null) {
@@ -45,6 +48,7 @@ public class MonitoringTindakanController {
 
 
     @PostMapping("/create")
+    @PreAuthorize("hasAuthority('ROLE_ADMIN')")
     public ResponseEntity<?> createMonitoringTindakan(@RequestBody MonitoringTindakan monitoringTindakan) {
         if (monitoringTindakan != null) {
             try {
@@ -61,6 +65,7 @@ public class MonitoringTindakanController {
 
 
     @PutMapping("/{id}")
+    @PreAuthorize("hasAuthority('ROLE_ADMIN')")
     public ResponseEntity<MonitoringTindakan> updateMonitoringTindakan(@PathVariable Integer id, @RequestBody MonitoringTindakan newMonitoringTindakan) {
         try {
             MonitoringTindakan updatedMonitoringTindakan = monitoringTindakanService.updateMonitoringTindakan(id, newMonitoringTindakan);
@@ -76,6 +81,7 @@ public class MonitoringTindakanController {
 
 
     @DeleteMapping("/{id}")
+    @PreAuthorize("hasAuthority('ROLE_ADMIN')")
     public ResponseEntity<String> deleteMonitoringTindakan(@PathVariable Integer id) {
         MonitoringTindakan monitoringTindakan = monitoringTindakanService.getMonitoringTindakanById(id);
         if (monitoringTindakan != null) {

@@ -6,6 +6,7 @@ import com.magang.plnicon.service.KnowledgeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.server.ResponseStatusException;
@@ -26,6 +27,7 @@ public class KnowledgeController {
     }
 
     @GetMapping("/all")
+    @PreAuthorize("hasAuthority('ROLE_ADMIN')")
     public ResponseEntity<List<Knowledge>> getAllKnowledge() {
         List<Knowledge> allKnowledge = knowledgeService.getAllKnowledge();
         if (!allKnowledge.isEmpty()) {
@@ -36,6 +38,7 @@ public class KnowledgeController {
     }
 
     @GetMapping("/{id}")
+    @PreAuthorize("hasAuthority('ROLE_ADMIN')")
     public ResponseEntity<?> getKnowledgeById(@PathVariable Integer id) {
         if (id != null) {
             try {
@@ -51,6 +54,7 @@ public class KnowledgeController {
 
 
     @PostMapping("/create")
+    @PreAuthorize("hasAuthority('ROLE_ADMIN')")
     public ResponseEntity<?> createKnowledge(@RequestBody Knowledge knowledge) {
         if (knowledge != null) {
             try {
@@ -67,6 +71,7 @@ public class KnowledgeController {
 
 
     @PutMapping("/{id}")
+    @PreAuthorize("hasAuthority('ROLE_ADMIN')")
     public ResponseEntity<Knowledge> updateKnowledge(@PathVariable Integer id, @RequestBody Knowledge newKnowledge) {
         try {
             Knowledge updatedKnowledge = knowledgeService.updateKnowledge(id, newKnowledge);
@@ -84,6 +89,7 @@ public class KnowledgeController {
 
     //    ini bagus untuk jadi referensi logic pengkodingan saya
     @DeleteMapping("/{id}/delete")
+    @PreAuthorize("hasAuthority('ROLE_ADMIN')")
     public ResponseEntity<String> deleteKnowledge(@PathVariable Integer id) {
         if (id != null) {
             Knowledge knowledge = knowledgeService.getKnowledgeById(id);
@@ -100,6 +106,7 @@ public class KnowledgeController {
 
 
     @PostMapping("/upload")
+    @PreAuthorize("hasAuthority('ROLE_ADMIN')")
     public ResponseEntity<String> uploadImage(@RequestParam("file") MultipartFile file) {
         try {
             Knowledge uploadedImage = knowledgeService.uploadImage(file);

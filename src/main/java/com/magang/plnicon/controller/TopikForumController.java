@@ -6,6 +6,7 @@ import com.magang.plnicon.service.TopikForumService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
@@ -23,6 +24,7 @@ public class TopikForumController {
     }
 
     @GetMapping("/all")
+    @PreAuthorize("hasAuthority('ROLE_ADMIN')")
     public ResponseEntity<?> getAllTopikForum() {
         List<TopikForum> allTopikForum = topikForumService.getAllTopikForum();
         if (!allTopikForum.isEmpty()) {
@@ -35,6 +37,7 @@ public class TopikForumController {
 
 
     @GetMapping("/{id}")
+    @PreAuthorize("hasAuthority('ROLE_ADMIN')")
     public ResponseEntity<?> getTopikForumById(@PathVariable Integer id) {
         TopikForum topikForum = topikForumService.getTopikForumById(id);
         if (topikForum != null) {
@@ -46,6 +49,7 @@ public class TopikForumController {
 
 
     @PostMapping("/create")
+    @PreAuthorize("hasAuthority('ROLE_ADMIN')")
     public ResponseEntity<?> createPengguna(@RequestBody TopikForum topikForum) {
         if (topikForum != null) {
             try {
@@ -62,6 +66,7 @@ public class TopikForumController {
 
 
     @PutMapping("/{id}")
+    @PreAuthorize("hasAuthority('ROLE_ADMIN')")
     public ResponseEntity<TopikForum> updateTopikForum(@PathVariable Integer id, @RequestBody TopikForum newTopikForum) {
         try {
             TopikForum updatedTopikForum = topikForumService.updateTopikForum(id, newTopikForum);
@@ -77,6 +82,7 @@ public class TopikForumController {
 
 
     @DeleteMapping("/{id}")
+    @PreAuthorize("hasAuthority('ROLE_ADMIN')")
     public ResponseEntity<String> deleteTopikForum(@PathVariable Integer id) {
         TopikForum topikForum = topikForumService.getTopikForumById(id);
         if (topikForum != null) {

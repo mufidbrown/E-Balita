@@ -6,6 +6,7 @@ import com.magang.plnicon.service.MonitoringStuntingService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
@@ -23,6 +24,7 @@ public class MonitoringStuntingController {
     }
 
     @GetMapping("/all")
+    @PreAuthorize("hasAuthority('ROLE_ADMIN')")
     public ResponseEntity<?> getAllMonitoringStunting() {
         List<MonitoringStunting> allMonitoringStunting = monitoringStuntingService.getAllMonitoringStunting();
         if (!allMonitoringStunting.isEmpty()) {
@@ -35,6 +37,7 @@ public class MonitoringStuntingController {
 
 
     @GetMapping("/{id}")
+    @PreAuthorize("hasAuthority('ROLE_ADMIN')")
     public ResponseEntity<?> getMonitoringStuntingById(@PathVariable Integer id) {
         MonitoringStunting monitoringStunting = monitoringStuntingService.getMonitoringStuntingById(id);
         if (monitoringStunting != null) {
@@ -46,6 +49,7 @@ public class MonitoringStuntingController {
 
 
     @PostMapping("/create")
+    @PreAuthorize("hasAuthority('ROLE_ADMIN')")
     public ResponseEntity<?> createMonitoringStunting(@RequestBody MonitoringStunting monitoringStunting) {
         if (monitoringStunting != null) {
             try {
@@ -62,6 +66,7 @@ public class MonitoringStuntingController {
 
 
     @PutMapping("/{id}")
+    @PreAuthorize("hasAuthority('ROLE_ADMIN')")
     public ResponseEntity<MonitoringStunting> updateMonitoringStunting(@PathVariable Integer id, @RequestBody MonitoringStunting newMonitoringStunting) {
         try {
             MonitoringStunting updatedMonitoringStunting = monitoringStuntingService.updateMonitoringStunting(id, newMonitoringStunting);
@@ -77,6 +82,7 @@ public class MonitoringStuntingController {
 
 
     @DeleteMapping("/{id}")
+    @PreAuthorize("hasAuthority('ROLE_ADMIN')")
     public ResponseEntity<String> deleteMonitoringStunting(@PathVariable Integer id) {
         MonitoringStunting monitoringStunting = monitoringStuntingService.getMonitoringStuntingById(id);
         if (monitoringStunting != null) {
