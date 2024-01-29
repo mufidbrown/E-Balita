@@ -7,6 +7,7 @@ import com.magang.plnicon.service.ImunisasiService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
@@ -24,6 +25,7 @@ public class ImunisasiController {
     }
 
     @GetMapping("/all")
+    @PreAuthorize("hasAuthority('ROLE_KADER')")
     public ResponseEntity<List<Imunisasi>> getAllPmt() {
         List<Imunisasi> allImunisasi = imunisasiService.getAllImunisasi();
         if (!allImunisasi.isEmpty()) {
@@ -35,6 +37,7 @@ public class ImunisasiController {
 
 
     @GetMapping("/{id}")
+    @PreAuthorize("hasAuthority('ROLE_KADER')")
     public ResponseEntity<Imunisasi> getImunisasiById(@PathVariable Integer id) {
         Imunisasi imunisasi = imunisasiService.getImunisasiById(id);
         if (imunisasi != null) {
@@ -46,6 +49,7 @@ public class ImunisasiController {
 
 
     @PostMapping("/create")
+    @PreAuthorize("hasAuthority('ROLE_KADER')")
     public ResponseEntity<Imunisasi> createImunisasi(@RequestBody Imunisasi imunisasi) {
         Imunisasi createdImunisasi = imunisasiService.createImunisasi(imunisasi);
         if (createdImunisasi != null) {
@@ -57,6 +61,7 @@ public class ImunisasiController {
 
 
     @PutMapping("/{id}")
+    @PreAuthorize("hasAuthority('ROLE_KADER')")
     public ResponseEntity<Imunisasi> updateImunisasi(@PathVariable Integer id, @RequestBody Imunisasi newImunisasi) {
         try {
             Imunisasi updatedImunisasi = imunisasiService.updateImunisasi(id, newImunisasi);
@@ -73,6 +78,7 @@ public class ImunisasiController {
 
 
     @DeleteMapping("/{id}")
+    @PreAuthorize("hasAuthority('ROLE_KADER')")
     public ResponseEntity<String> deleteImunisasi(@PathVariable Integer id) {
         Imunisasi imunisasi = imunisasiService.getImunisasiById(id);
         if (imunisasi != null) {

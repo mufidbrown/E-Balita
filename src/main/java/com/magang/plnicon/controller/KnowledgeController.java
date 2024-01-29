@@ -27,7 +27,7 @@ public class KnowledgeController {
     }
 
     @GetMapping("/all")
-    @PreAuthorize("hasAuthority('ROLE_ADMIN')")
+    @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_KADER')")
     public ResponseEntity<List<Knowledge>> getAllKnowledge() {
         List<Knowledge> allKnowledge = knowledgeService.getAllKnowledge();
         if (!allKnowledge.isEmpty()) {
@@ -38,7 +38,7 @@ public class KnowledgeController {
     }
 
     @GetMapping("/{id}")
-    @PreAuthorize("hasAuthority('ROLE_ADMIN')")
+    @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_KADER')")
     public ResponseEntity<?> getKnowledgeById(@PathVariable Integer id) {
         if (id != null) {
             try {
@@ -54,7 +54,7 @@ public class KnowledgeController {
 
 
     @PostMapping("/create")
-    @PreAuthorize("hasAuthority('ROLE_ADMIN')")
+    @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_KADER')")
     public ResponseEntity<?> createKnowledge(@RequestBody Knowledge knowledge) {
         if (knowledge != null) {
             try {
@@ -71,7 +71,7 @@ public class KnowledgeController {
 
 
     @PutMapping("/{id}")
-    @PreAuthorize("hasAuthority('ROLE_ADMIN')")
+    @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_KADER')")
     public ResponseEntity<Knowledge> updateKnowledge(@PathVariable Integer id, @RequestBody Knowledge newKnowledge) {
         try {
             Knowledge updatedKnowledge = knowledgeService.updateKnowledge(id, newKnowledge);
@@ -89,7 +89,7 @@ public class KnowledgeController {
 
     //    ini bagus untuk jadi referensi logic pengkodingan saya
     @DeleteMapping("/{id}/delete")
-    @PreAuthorize("hasAuthority('ROLE_ADMIN')")
+    @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_KADER')")
     public ResponseEntity<String> deleteKnowledge(@PathVariable Integer id) {
         if (id != null) {
             Knowledge knowledge = knowledgeService.getKnowledgeById(id);
@@ -106,7 +106,7 @@ public class KnowledgeController {
 
 
     @PostMapping("/upload")
-    @PreAuthorize("hasAuthority('ROLE_ADMIN')")
+    @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_KADER')")
     public ResponseEntity<String> uploadImage(@RequestParam("file") MultipartFile file) {
         try {
             Knowledge uploadedImage = knowledgeService.uploadImage(file);

@@ -6,6 +6,7 @@ import com.magang.plnicon.service.DokumenService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
@@ -23,6 +24,7 @@ public class DokumenController {
     }
 
     @GetMapping("/all")
+    @PreAuthorize("hasAuthority('ROLE_KADER')")
     public ResponseEntity<?> getAllDokumen() {
         List<Dokumen> allDokumen = dokumenService.getAllDokumen();
         if (!allDokumen.isEmpty()) {
@@ -35,6 +37,7 @@ public class DokumenController {
 
 
     @GetMapping("/{id}")
+    @PreAuthorize("hasAuthority('ROLE_KADER')")
     public ResponseEntity<?> getDokumenById(@PathVariable Integer id) {
         Dokumen dokumen = dokumenService.getDokumenById(id);
         if (dokumen != null) {
@@ -46,6 +49,7 @@ public class DokumenController {
 
 
     @PostMapping("/create")
+    @PreAuthorize("hasAuthority('ROLE_KADER')")
     public ResponseEntity<?> createDokumen(@RequestBody Dokumen dokumen) {
         if (dokumen != null) {
             try {
@@ -62,6 +66,7 @@ public class DokumenController {
 
 
     @PutMapping("/{id}")
+    @PreAuthorize("hasAuthority('ROLE_KADER')")
     public ResponseEntity<Dokumen> updateDokumen(@PathVariable Integer id, @RequestBody Dokumen newDokumen) {
         try {
             Dokumen updatedDokumen = dokumenService.updateDokumen(id, newDokumen);
@@ -77,6 +82,7 @@ public class DokumenController {
 
 
     @DeleteMapping("/{id}")
+    @PreAuthorize("hasAuthority('ROLE_KADER')")
     public ResponseEntity<String> deleteDokumen(@PathVariable Integer id) {
         Dokumen dokumen = dokumenService.getDokumenById(id);
         if (dokumen != null) {

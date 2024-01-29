@@ -7,6 +7,7 @@ import com.magang.plnicon.service.vitamin.VitaminService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
@@ -25,6 +26,7 @@ public class VitaminController {
     }
 
     @GetMapping("/all")
+    @PreAuthorize("hasAuthority('ROLE_KADER')")
     public ResponseEntity<List<Vitamin>> getAllVitamin() {
         List<Vitamin> allVitamin = vitaminService.getAllVitamin();
         if (!allVitamin.isEmpty()) {
@@ -36,6 +38,7 @@ public class VitaminController {
 
 
     @GetMapping("/{id}")
+    @PreAuthorize("hasAuthority('ROLE_KADER')")
     public ResponseEntity<Vitamin> getVitaminById(@PathVariable Integer id) {
         Vitamin vitamin = vitaminService.getVitaminById(id);
         if (vitamin != null) {
@@ -47,6 +50,7 @@ public class VitaminController {
 
 
     @PostMapping("/create")
+    @PreAuthorize("hasAuthority('ROLE_KADER')")
     public ResponseEntity<Vitamin> createPmt(@RequestBody Vitamin vitamin) {
         Vitamin createdVitamin = vitaminService.createVitamin(vitamin);
         if (createdVitamin != null) {
@@ -58,6 +62,7 @@ public class VitaminController {
 
 
     @PutMapping("/{id}")
+    @PreAuthorize("hasAuthority('ROLE_KADER')")
     public ResponseEntity<Vitamin> updateVitamin(@PathVariable Integer id, @RequestBody Vitamin newVitamin) {
         try {
             Vitamin updatedVitamin = vitaminService.updateVitamin(id, newVitamin);
@@ -74,6 +79,7 @@ public class VitaminController {
 
 
     @DeleteMapping("/{id}")
+    @PreAuthorize("hasAuthority('ROLE_KADER')")
     public ResponseEntity<String> deleteVitamin(@PathVariable Integer id) {
         Vitamin vitamin = vitaminService.getVitaminById(id);
         if (vitamin != null) {
@@ -85,6 +91,7 @@ public class VitaminController {
     }
 
     @GetMapping("/export-to-excel")
+    @PreAuthorize("hasAuthority('ROLE_KADER')")
     public ResponseEntity<String> exportToExcel() {
         try {
             List<Vitamin> dataVitaminList = vitaminService.getAllVitamin();

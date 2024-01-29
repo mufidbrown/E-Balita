@@ -7,6 +7,7 @@ import com.magang.plnicon.service.tumbuhkembang.TumbuhKembangService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
@@ -24,6 +25,7 @@ public class TumbuhKembangController {
     }
 
     @GetMapping("/all")
+    @PreAuthorize("hasAuthority('ROLE_KADER')")
     public ResponseEntity<?> getAllTumbuhKembang() {
         List<TumbuhKembang> allTumbuhKembang = tumbuhKembangService.getAllTumbuhKembang();
         if (!allTumbuhKembang.isEmpty()) {
@@ -36,6 +38,7 @@ public class TumbuhKembangController {
 
 
     @GetMapping("/{id}")
+    @PreAuthorize("hasAuthority('ROLE_KADER')")
     public ResponseEntity<?> getTumbuhKembangById(@PathVariable Integer id) {
         TumbuhKembang tumbuhKembang = tumbuhKembangService.getTumbuhKembangById(id);
         if (tumbuhKembang != null) {
@@ -47,6 +50,7 @@ public class TumbuhKembangController {
 
 
     @PostMapping("/create")
+    @PreAuthorize("hasAuthority('ROLE_KADER')")
     public ResponseEntity<?> createTumbuhKembang(@RequestBody TumbuhKembang tumbuhKembang) {
         if (tumbuhKembang != null) {
             try {
@@ -63,6 +67,7 @@ public class TumbuhKembangController {
 
 
     @PutMapping("/{id}")
+    @PreAuthorize("hasAuthority('ROLE_KADER')")
     public ResponseEntity<TumbuhKembang> updateTumbuhKembang(@PathVariable Integer id, @RequestBody TumbuhKembang newTumbuhKembang) {
         try {
             TumbuhKembang updatedTumbuhKembang = tumbuhKembangService.updateTumbuhKembang(id, newTumbuhKembang);
@@ -78,6 +83,7 @@ public class TumbuhKembangController {
 
 
     @DeleteMapping("/{id}")
+    @PreAuthorize("hasAuthority('ROLE_KADER')")
     public ResponseEntity<String> deleteTumbuhKembang(@PathVariable Integer id) {
         TumbuhKembang tumbuhKembang = tumbuhKembangService.getTumbuhKembangById(id);
         if (tumbuhKembang != null) {
