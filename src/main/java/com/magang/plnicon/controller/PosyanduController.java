@@ -22,14 +22,14 @@ public class PosyanduController {
     }
 
     @GetMapping
-    @PreAuthorize("hasAuthority('ROLE_ADMIN')")
+    @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_AHLI_GIZI')")
     public ResponseEntity<List<Posyandu>> getAllPosyandu() {
         List<Posyandu> posyandus = posyanduService.getAllPosyandu();
         return new ResponseEntity<>(posyandus, HttpStatus.OK);
     }
 
     @GetMapping("/{id}")
-    @PreAuthorize("hasAuthority('ROLE_ADMIN')")
+    @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_AHLI_GIZI')")
     public ResponseEntity<Posyandu> getPosyanduById(@PathVariable Integer id) {
         Posyandu posyandu = posyanduService.getPosyanduById(id);
         if (posyandu != null) {
@@ -40,14 +40,14 @@ public class PosyanduController {
     }
 
     @PostMapping
-    @PreAuthorize("hasAuthority('ROLE_ADMIN')")
+    @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_AHLI_GIZI')")
     public ResponseEntity<Posyandu> createPosyandu(@RequestBody Posyandu posyandu) {
         Posyandu createdPosyandu = posyanduService.createPosyandu(posyandu);
         return new ResponseEntity<>(createdPosyandu, HttpStatus.CREATED);
     }
 
     @PutMapping("/{id}")
-    @PreAuthorize("hasAuthority('ROLE_ADMIN')")
+    @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_AHLI_GIZI')")
     public ResponseEntity<Posyandu> updatePosyandu(@PathVariable Integer id, @RequestBody Posyandu posyandu) {
         Posyandu updatedPosyandu = posyanduService.updatePosyandu(id, posyandu);
         if (updatedPosyandu != null) {
@@ -58,7 +58,7 @@ public class PosyanduController {
     }
 
     @DeleteMapping("/{id}")
-    @PreAuthorize("hasAuthority('ROLE_ADMIN')")
+    @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_AHLI_GIZI')")
     public ResponseEntity<Void> deletePosyandu(@PathVariable Integer id) {
         posyanduService.deletePosyandu(id);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);

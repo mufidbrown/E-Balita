@@ -23,7 +23,7 @@ public class MonitoringTindakanController {
     }
 
     @GetMapping("/all")
-    @PreAuthorize("hasAuthority('ROLE_ADMIN')")
+    @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_AHLI_GIZI')")
     public ResponseEntity<?> getAllMonitoringTindakan() {
         List<MonitoringTindakan> allMonitoringTindakan = monitoringTindakanService.getAllMonitoringTindakan();
         if (!allMonitoringTindakan.isEmpty()) {
@@ -36,7 +36,7 @@ public class MonitoringTindakanController {
 
 
     @GetMapping("/{id}")
-    @PreAuthorize("hasAuthority('ROLE_ADMIN')")
+    @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_AHLI_GIZI')")
     public ResponseEntity<?> getMonitoringTindakanById(@PathVariable Integer id) {
         MonitoringTindakan monitoringTindakan = monitoringTindakanService.getMonitoringTindakanById(id);
         if (monitoringTindakan != null) {
@@ -48,7 +48,7 @@ public class MonitoringTindakanController {
 
 
     @PostMapping("/create")
-    @PreAuthorize("hasAuthority('ROLE_ADMIN')")
+    @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_AHLI_GIZI')")
     public ResponseEntity<?> createMonitoringTindakan(@RequestBody MonitoringTindakan monitoringTindakan) {
         if (monitoringTindakan != null) {
             try {
@@ -65,7 +65,7 @@ public class MonitoringTindakanController {
 
 
     @PutMapping("/{id}")
-    @PreAuthorize("hasAuthority('ROLE_ADMIN')")
+    @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_AHLI_GIZI')")
     public ResponseEntity<MonitoringTindakan> updateMonitoringTindakan(@PathVariable Integer id, @RequestBody MonitoringTindakan newMonitoringTindakan) {
         try {
             MonitoringTindakan updatedMonitoringTindakan = monitoringTindakanService.updateMonitoringTindakan(id, newMonitoringTindakan);
@@ -81,7 +81,7 @@ public class MonitoringTindakanController {
 
 
     @DeleteMapping("/{id}")
-    @PreAuthorize("hasAuthority('ROLE_ADMIN')")
+    @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_AHLI_GIZI')")
     public ResponseEntity<String> deleteMonitoringTindakan(@PathVariable Integer id) {
         MonitoringTindakan monitoringTindakan = monitoringTindakanService.getMonitoringTindakanById(id);
         if (monitoringTindakan != null) {

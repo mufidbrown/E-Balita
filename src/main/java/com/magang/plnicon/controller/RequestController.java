@@ -6,6 +6,7 @@ import com.magang.plnicon.service.RequestService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -19,6 +20,7 @@ public class RequestController {
 
 
         @GetMapping("/all")
+        @PreAuthorize("hasAuthority('ROLE_AHLI_GIZI')")
         public ResponseEntity<?> getAllRequest() {
             List<Request> allRequest = requestService.getAllRequest();
             if (!allRequest.isEmpty()) {
@@ -30,6 +32,7 @@ public class RequestController {
 
 
     @PostMapping("/create")
+    @PreAuthorize("hasAuthority('ROLE_AHLI_GIZI')")
     public ResponseEntity<?> createRequest(@RequestBody Request request) {
         if (request != null) {
             try {
@@ -44,11 +47,13 @@ public class RequestController {
     }
 
         @GetMapping("/pending")
+        @PreAuthorize("hasAuthority('ROLE_AHLI_GIZI')")
         public List<Request> getPendingRequests() {
             return requestService.getPendingRequests();
         }
 
         @PutMapping("/accept/{requestId}")
+        @PreAuthorize("hasAuthority('ROLE_AHLI_GIZI')")
         public ResponseEntity<String> acceptRequest(@PathVariable Integer requestId) {
             Request acceptedRequest = requestService.acceptRequest(requestId);
             if (acceptedRequest != null) {
@@ -59,6 +64,7 @@ public class RequestController {
         }
 
         @PutMapping("/reject/{requestId}")
+        @PreAuthorize("hasAuthority('ROLE_AHLI_GIZI')")
         public ResponseEntity<String> rejectRequest(@PathVariable Integer requestId) {
             Request rejectedRequest = requestService.rejectRequest(requestId);
             if (rejectedRequest != null) {

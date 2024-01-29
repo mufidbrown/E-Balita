@@ -6,6 +6,7 @@ import com.magang.plnicon.service.VerifikasiDataAntropometriService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
@@ -23,6 +24,7 @@ public class VerifikasiDataAntropometriController {
     }
 
     @GetMapping("/all")
+    @PreAuthorize("hasAuthority('ROLE_AHLI_GIZI')")
     public ResponseEntity<?> getAllVerifikasiDataAntropometri() {
         List<VerifikasiDataAntropometri> allVerifikasiDataAntropometri = verifikasiDataAntropometriService.getAllVerifikasiDataAntropometri();
         if (!allVerifikasiDataAntropometri.isEmpty()) {
@@ -35,6 +37,7 @@ public class VerifikasiDataAntropometriController {
 
 
     @GetMapping("/{id}")
+    @PreAuthorize("hasAuthority('ROLE_AHLI_GIZI')")
     public ResponseEntity<?> getPenggunaById(@PathVariable Integer id) {
         VerifikasiDataAntropometri verifikasiDataAntropometri = verifikasiDataAntropometriService.getVerifikasiDataAntropometriById(id);
         if (verifikasiDataAntropometri != null) {
@@ -46,6 +49,7 @@ public class VerifikasiDataAntropometriController {
 
 
     @PostMapping("/create")
+    @PreAuthorize("hasAuthority('ROLE_AHLI_GIZI')")
     public ResponseEntity<?> createVerifikasiDataAntropometri(@RequestBody VerifikasiDataAntropometri verifikasiDataAntropometri) {
         if (verifikasiDataAntropometri != null) {
             try {
@@ -62,6 +66,7 @@ public class VerifikasiDataAntropometriController {
 
 
     @PutMapping("/{id}")
+    @PreAuthorize("hasAuthority('ROLE_AHLI_GIZI')")
     public ResponseEntity<VerifikasiDataAntropometri> updateVerifikasiDataAntropometri(@PathVariable Integer id, @RequestBody VerifikasiDataAntropometri newVerifikasiDataAntropometri) {
         try {
             VerifikasiDataAntropometri updatedVerifikasiDataAntropometri = verifikasiDataAntropometriService.updateVerifikasiDataAntropometri(id, newVerifikasiDataAntropometri);
@@ -77,6 +82,7 @@ public class VerifikasiDataAntropometriController {
 
 
     @DeleteMapping("/{id}")
+    @PreAuthorize("hasAuthority('ROLE_AHLI_GIZI')")
     public ResponseEntity<String> deleteVerifikasiDataAntropometri(@PathVariable Integer id) {
         VerifikasiDataAntropometri verifikasiDataAntropometri = verifikasiDataAntropometriService.getVerifikasiDataAntropometriById(id);
         if (verifikasiDataAntropometri != null) {

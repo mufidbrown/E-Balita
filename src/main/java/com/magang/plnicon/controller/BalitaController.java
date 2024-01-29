@@ -7,6 +7,7 @@ import com.magang.plnicon.service.BalitaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
@@ -24,6 +25,7 @@ public class BalitaController {
     }
 
     @GetMapping("/all")
+    @PreAuthorize("hasAuthority('ROLE_AHLI_GIZI')")
     public ResponseEntity<?> getAllBalita() {
         List<Balita> allBalita = balitaService.getAllBalita();
         if (!allBalita.isEmpty()) {
@@ -36,6 +38,7 @@ public class BalitaController {
 
 
     @GetMapping("/{id}")
+    @PreAuthorize("hasAuthority('ROLE_AHLI_GIZI')")
     public ResponseEntity<?> getBalitaById(@PathVariable Integer id) {
         Balita balita = balitaService.getBalitaById(id);
         if (balita != null) {
@@ -47,6 +50,7 @@ public class BalitaController {
 
 
     @PostMapping("/create")
+    @PreAuthorize("hasAuthority('ROLE_AHLI_GIZI')")
     public ResponseEntity<?> createBalita(@RequestBody Balita balita) {
         if (balita != null) {
             try {
@@ -63,6 +67,7 @@ public class BalitaController {
 
 
     @PutMapping("/{id}")
+    @PreAuthorize("hasAuthority('ROLE_AHLI_GIZI')")
     public ResponseEntity<Balita> updateBalita(@PathVariable Integer id, @RequestBody Balita newBalita) {
         try {
             Balita updatedBalita = balitaService.updateBalita(id, newBalita);
@@ -78,6 +83,7 @@ public class BalitaController {
 
 
     @DeleteMapping("/{id}")
+    @PreAuthorize("hasAuthority('ROLE_AHLI_GIZI')")
     public ResponseEntity<String> deleteBalita(@PathVariable Integer id) {
         Balita balita = balitaService.getBalitaById(id);
         if (balita != null) {
