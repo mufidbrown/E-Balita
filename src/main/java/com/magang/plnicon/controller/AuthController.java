@@ -22,7 +22,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -32,7 +31,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-//import springfox.documentation.annotations.ApiIgnore;
 
 import java.security.Principal;
 import java.util.HashSet;
@@ -72,7 +70,6 @@ public class AuthController {
     }
 
     @PostMapping("/addrole")
-    @PreAuthorize("hasAuthority('ROLE_ADMIN')")
     public ResponseEntity<?> addRole(@RequestBody RoleRequest roleRequest) {
 
         String roleName = roleRequest.getRoleName();
@@ -207,7 +204,6 @@ public class AuthController {
 
 
     @PostMapping("/signup")
-    @PreAuthorize("hasAuthority('ROLE_ADMIN')")
     public ResponseEntity<?> registerUser(@RequestBody SignupRequest signUpRequest) {
 
         LOGGER.info("AuthController | registerUser is started");
@@ -396,7 +392,6 @@ public class AuthController {
     }
 
     @PostMapping("/signin")
-    @PreAuthorize("hasAuthority('ROLE_ADMIN')")
     public ResponseEntity<?> authenticateUser(@RequestBody LoginRequest loginRequest) {
 
         LOGGER.info("AuthController | authenticateUser is started");
@@ -442,7 +437,6 @@ public class AuthController {
 
 
     @PostMapping("/logout")
-    @PreAuthorize("hasAuthority('ROLE_ADMIN')")//    @ApiIgnore
     public ResponseEntity<?> logoutUser( Principal principalUser) {
 
         LOGGER.info("AuthController | logoutUser is started");
@@ -465,7 +459,6 @@ public class AuthController {
     }
 
     @PostMapping("/refreshtoken")
-    @PreAuthorize("hasAuthority('ROLE_ADMIN')")
     public ResponseEntity<?> refreshtoken(@RequestBody TokenRefreshRequest request) {
 
         LOGGER.info("AuthController | refreshtoken is started");
