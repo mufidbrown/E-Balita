@@ -15,4 +15,4 @@
 </ul>
 
 ## Swagger
-> **Access : http://localhost:1222/swagger-ui.html**
+> **Access : http://localhost:8088/swagger-ui.html**
